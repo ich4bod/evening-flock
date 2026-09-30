@@ -4,6 +4,17 @@ const canvas = document.querySelector('#flock');
 const context = canvas.getContext('2d');
 const pauseButton = document.querySelector('#pause');
 const resetButton = document.querySelector('#reset');
+const ruleInputs = {
+  separation: document.querySelector('#separation'),
+  alignment: document.querySelector('#alignment'),
+  cohesion: document.querySelector('#cohesion'),
+};
+const ruleOutputs = {
+  separation: document.querySelector('#separation-value'),
+  alignment: document.querySelector('#alignment-value'),
+  cohesion: document.querySelector('#cohesion-value'),
+};
+const restoreRulesButton = document.querySelector('#restore-rules');
 const hawkButton = document.querySelector('#hawk');
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const defaults = { separation: 18, alignment: 0.08, cohesion: 0.004 };
@@ -26,6 +37,30 @@ function isPaused() {
 function updatePauseButton() {
   pauseButton.textContent = manuallyPaused ? 'Resume' : 'Pause';
 }
+
+function formatRuleValue(name, value) {
+  if (name === 'alignment') return Number(value).toFixed(2);
+  if (name === 'cohesion') return Number(value).toFixed(3);
+  return String(Number(value));
+}
+
+function updateRuleOutput(name) {
+  ruleOutputs[name].textContent = formatRuleValue(name, ruleInputs[name].value);
+}
+
+for (const name of Object.keys(ruleInputs)) {
+  ruleInputs[name].addEventListener('input', () => {
+    weights[name] = Number(ruleInputs[name].value);
+    updateRuleOutput(name);
+  });
+}
+restoreRulesButton.addEventListener('click', () => {
+  for (const name of Object.keys(ruleInputs)) {
+    ruleInputs[name].value = String(defaults[name]);
+    updateRuleOutput(name);
+  }
+  weights = { ...defaults };
+});
 
 function resizeCanvas() {
   const rect = canvas.getBoundingClientRect();
