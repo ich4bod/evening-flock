@@ -1,0 +1,83 @@
+const WIDTH = 1000;
+const HEIGHT = 600;
+const DEFAULT_WEIGHTS = { separation: 18, alignment: 0.08, cohesion: 0.004 };
+
+export function seed() {
+  return Array.from({ length: 80 }, (_, i) => ({
+    x: (137 * i + 71) % WIDTH,
+    y: (83 * i + 37) % HEIGHT,
+    vx: 2 * Math.cos(0.7 * i),
+    vy: 2 * Math.sin(0.7 * i),
+  }));
+}
+
+export function step(birds, weights = DEFAULT_WEIGHTS) {
+  return birds.map((bird, index) => {
+    let separationX = 0;
+    let separationY = 0;
+    let velocityX = 0;
+    let velocityY = 0;
+    let displacementX = 0;
+    let displacementY = 0;
+    let neighbors = 0;
+
+    for (let otherIndex = 0; otherIndex < birds.length; otherIndex++) {
+      if (otherIndex === index) continue;
+      const other = birds[otherIndex];
+      let dx = other.x - bird.x;
+      let dy = other.y - bird.y;
+      if (dx > WIDTH / 2) dx -= WIDTH;
+      else if (dx < -WIDTH / 2) dx += WIDTH;
+      if (dy > HEIGHT / 2) dy -= HEIGHT;
+      else if (dy < -HEIGHT / 2) dy += HEIGHT;
+
+      const distanceSquared = dx * dx + dy * dy;
+      if (distanceSquared === 0) continue;
+      const distance = Math.sqrt(distanceSquared);
+      if (distance < 80) {
+        neighbors++;
+        velocityX += other.vx;
+        velocityY += other.vy;
+        displacementX += dx;
+        displacementY += dy;
+        if (distance < 24) {
+          separationX -= dx / distanceSquared;
+          separationY -= dy / distanceSquared;
+        }
+      }
+    }
+
+    let alignmentX = 0;
+    let alignmentY = 0;
+    let cohesionX = 0;
+    let cohesionY = 0;
+    if (neighbors > 0) {
+      alignmentX = velocityX / neighbors - bird.vx;
+      alignmentY = velocityY / neighbors - bird.vy;
+      cohesionX = displacementX / neighbors;
+      cohesionY = displacementY / neighbors;
+    }
+
+    let vx = bird.vx
+      + weights.separation * separationX
+      + weights.alignment * alignmentX
+      + weights.cohesion * cohesionX;
+    let vy = bird.vy
+      + weights.separation * separationY
+      + weights.alignment * alignmentY
+      + weights.cohesion * cohesionY;
+    const speed = Math.hypot(vx, vy);
+    if (speed > 3) {
+      const scale = 3 / speed;
+      vx *= scale;
+      vy *= scale;
+    }
+
+    return {
+      x: ((bird.x + vx) % WIDTH + WIDTH) % WIDTH,
+      y: ((bird.y + vy) % HEIGHT + HEIGHT) % HEIGHT,
+      vx,
+      vy,
+    };
+  });
+}
