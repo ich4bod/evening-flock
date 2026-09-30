@@ -37,6 +37,10 @@ button:focus-visible, a:focus-visible { outline: 3px solid #283346; outline-offs
 .hawk-instruction { margin: 0 auto; max-width: 760px; text-align: center; font-size: 15px; line-height: 1.45; }
 .rules { margin: 20px 0 0; padding: 16px; border-radius: 16px; background: #fff7e7; }
 .rules h2 { margin: 0 0 14px; font: 24px/1.2 Georgia, serif; }
+.recipe-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.recipe-row button { min-height: 44px; border-color: #283346; background: #fff7e7; }
+.recipe-row button[aria-pressed="true"] { background: #e9755c; }
+.recipe-note { margin: 8px 0 14px; font-size: 14px; line-height: 1.45; }
 .rule-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
 .rule-control label { display: flex; justify-content: space-between; gap: 8px; font-weight: 700; }
 .rule-control output { font-variant-numeric: tabular-nums; }

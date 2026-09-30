@@ -19,6 +19,15 @@ const restoreRulesButton = document.querySelector('#restore-rules');
 const hawkButton = document.querySelector('#hawk');
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const defaults = { separation: 18, alignment: 0.08, cohesion: 0.004 };
+const recipes = {
+  coast: { separation: 0, alignment: 0, cohesion: 0 },
+  apart: { separation: 36, alignment: 0, cohesion: 0 },
+  flock: { separation: 18, alignment: 0.08, cohesion: 0.004 },
+};
+const recipeButtons = Object.fromEntries(Object.keys(recipes).map(name => [
+  name,
+  document.querySelector(`#recipe-${name}`),
+]));
 
 let birds = seed();
 let weights = { ...defaults };
@@ -50,19 +59,33 @@ function updateRuleOutput(name) {
   ruleOutputs[name].textContent = formatRuleValue(name, ruleInputs[name].value);
 }
 
+function updateSelectedRecipe() {
+  for (const [name, recipe] of Object.entries(recipes)) {
+    const selected = Object.keys(recipe).every(key => weights[key] === recipe[key]);
+    recipeButtons[name].setAttribute('aria-pressed', String(selected));
+  }
+}
+
+function applyWeights(nextWeights) {
+  weights = { ...nextWeights };
+  for (const name of Object.keys(ruleInputs)) {
+    ruleInputs[name].value = String(weights[name]);
+    updateRuleOutput(name);
+  }
+  updateSelectedRecipe();
+}
+
 for (const name of Object.keys(ruleInputs)) {
   ruleInputs[name].addEventListener('input', () => {
     weights[name] = Number(ruleInputs[name].value);
     updateRuleOutput(name);
+    updateSelectedRecipe();
   });
 }
-restoreRulesButton.addEventListener('click', () => {
-  for (const name of Object.keys(ruleInputs)) {
-    ruleInputs[name].value = String(defaults[name]);
-    updateRuleOutput(name);
-  }
-  weights = { ...defaults };
-});
+for (const [name, button] of Object.entries(recipeButtons)) {
+  button.addEventListener('click', () => applyWeights(recipes[name]));
+}
+restoreRulesButton.addEventListener('click', () => applyWeights(defaults));
 
 function resizeCanvas() {
   const rect = canvas.getBoundingClientRect();

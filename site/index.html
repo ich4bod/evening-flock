@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5d6bb">
   <title>Evening Flock</title>
-  <link rel="stylesheet" href="/style.css?v=4">
+  <link rel="stylesheet" href="/style.css?v=5">
 </head>
 <body>
   <main class="page">
@@ -24,6 +24,12 @@
     <p class="hawk-instruction">Turn on Hawk, then hold a finger in the sky. Let go and the flock regroups.</p>
     <section class="rules" aria-labelledby="rules-heading">
       <h2 id="rules-heading">What makes a flock?</h2>
+      <div class="recipe-row" role="group" aria-label="Flight recipes">
+        <button id="recipe-coast" type="button" aria-pressed="false">Coast</button>
+        <button id="recipe-apart" type="button" aria-pressed="false">Keep apart</button>
+        <button id="recipe-flock" type="button" aria-pressed="true">Flock</button>
+      </div>
+      <p class="recipe-note">Coast removes neighbor steering. Keep apart keeps only the close-range push. Flock restores all three rules.</p>
       <div class="rule-grid">
         <div class="rule-control">
           <label for="separation">Keep apart <output id="separation-value" for="separation">18</output></label>
@@ -48,6 +54,6 @@
     <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
-  <script type="module" src="/app.mjs?v=4"></script>
+  <script type="module" src="/app.mjs?v=5"></script>
 </body>
 </html>
