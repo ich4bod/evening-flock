@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5d6bb">
   <title>Evening Flock</title>
-  <link rel="stylesheet" href="/style.css?v=3">
+  <link rel="stylesheet" href="/style.css?v=4">
 </head>
 <body>
   <main class="page">
@@ -16,9 +16,11 @@
     <canvas id="flock" aria-label="Eighty birds in an evening sky"></canvas>
     <div class="controls" aria-label="Flock controls">
       <button id="pause" type="button">Pause</button>
+      <button id="step" type="button" disabled>One beat</button>
       <button id="reset" type="button">Gather again</button>
       <button id="hawk" type="button" aria-pressed="false">Hawk</button>
     </div>
+    <p class="step-instruction">Pause the sky, then take one beat at a time.</p>
     <p class="hawk-instruction">Turn on Hawk, then hold a finger in the sky. Let go and the flock regroups.</p>
     <section class="rules" aria-labelledby="rules-heading">
       <h2 id="rules-heading">What makes a flock?</h2>
@@ -46,6 +48,6 @@
     <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
-  <script type="module" src="/app.mjs?v=3"></script>
+  <script type="module" src="/app.mjs?v=4"></script>
 </body>
 </html>

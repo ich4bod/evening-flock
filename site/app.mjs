@@ -3,6 +3,7 @@ import { seed, step } from './engine.mjs';
 const canvas = document.querySelector('#flock');
 const context = canvas.getContext('2d');
 const pauseButton = document.querySelector('#pause');
+const stepButton = document.querySelector('#step');
 const resetButton = document.querySelector('#reset');
 const ruleInputs = {
   separation: document.querySelector('#separation'),
@@ -36,6 +37,7 @@ function isPaused() {
 
 function updatePauseButton() {
   pauseButton.textContent = manuallyPaused ? 'Resume' : 'Pause';
+  stepButton.disabled = !(manuallyPaused && !document.hidden);
 }
 
 function formatRuleValue(name, value) {
@@ -132,6 +134,11 @@ pauseButton.addEventListener('click', () => {
   lastTime = null;
   updatePauseButton();
 });
+stepButton.addEventListener('click', () => {
+  if (!manuallyPaused || document.hidden) return;
+  birds = step(birds, weights, predator);
+  draw();
+});
 function clearPredator(releaseCapture = false) {
   const pointerId = activePointerId;
   activePointerId = null;
@@ -182,6 +189,7 @@ document.addEventListener('visibilitychange', () => {
   accumulator = 0;
   lastTime = null;
   if (document.hidden) clearPredator(true);
+  updatePauseButton();
 });
 window.addEventListener('resize', resizeCanvas);
 if ('ResizeObserver' in window) new ResizeObserver(resizeCanvas).observe(canvas);
