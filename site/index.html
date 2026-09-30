@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5d6bb">
+  <title>Evening Flock</title>
+  <link rel="stylesheet" href="/style.css?v=1">
+</head>
+<body>
+  <main class="page">
+    <header>
+      <h1>Evening Flock</h1>
+      <p class="intro">Eighty birds. No conductor. Just three local rules.</p>
+    </header>
+    <canvas id="flock" aria-label="Eighty birds in an evening sky"></canvas>
+    <div class="controls" aria-label="Flock controls">
+      <button id="pause" type="button">Pause</button>
+      <button id="reset" type="button">Gather again</button>
+    </div>
+    <p class="explanation">Keep apart. Match direction. Stay near your neighbors. Together, small decisions become a flock.</p>
+    <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
+    <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
+  </main>
+  <script type="module" src="/app.mjs?v=1"></script>
+</body>
+</html>
