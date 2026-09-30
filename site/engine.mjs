@@ -11,7 +11,7 @@ export function seed() {
   }));
 }
 
-export function step(birds, weights = DEFAULT_WEIGHTS) {
+export function step(birds, weights = DEFAULT_WEIGHTS, predator = null) {
   return birds.map((bird, index) => {
     let separationX = 0;
     let separationY = 0;
@@ -66,6 +66,23 @@ export function step(birds, weights = DEFAULT_WEIGHTS) {
       + weights.separation * separationY
       + weights.alignment * alignmentY
       + weights.cohesion * cohesionY;
+    if (predator) {
+      let dx = bird.x - predator.x;
+      let dy = bird.y - predator.y;
+      if (dx > WIDTH / 2) dx -= WIDTH;
+      else if (dx < -WIDTH / 2) dx += WIDTH;
+      if (dy > HEIGHT / 2) dy -= HEIGHT;
+      else if (dy < -HEIGHT / 2) dy += HEIGHT;
+      const distance = Math.hypot(dx, dy);
+      if (distance < 160) {
+        const magnitude = 0.8 * (1 - distance / 160);
+        if (distance === 0) vx += magnitude;
+        else {
+          vx += (dx / distance) * magnitude;
+          vy += (dy / distance) * magnitude;
+        }
+      }
+    }
     const speed = Math.hypot(vx, vy);
     if (speed > 3) {
       const scale = 3 / speed;
