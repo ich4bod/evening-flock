@@ -5,6 +5,7 @@ const context = canvas.getContext('2d');
 const pauseButton = document.querySelector('#pause');
 const stepButton = document.querySelector('#step');
 const resetButton = document.querySelector('#reset');
+const trailsButton = document.querySelector('#trails');
 const ruleInputs = {
   separation: document.querySelector('#separation'),
   alignment: document.querySelector('#alignment'),
@@ -30,6 +31,8 @@ const recipeButtons = Object.fromEntries(Object.keys(recipes).map(name => [
 ]));
 
 let birds = seed();
+let trails = false;
+let trailFrames = [];
 let weights = { ...defaults };
 let manuallyPaused = reduceMotion.matches;
 let predator = null;
@@ -39,6 +42,14 @@ let accumulator = 0;
 const fixedStep = 1000 / 60;
 const worldWidth = 1000;
 const worldHeight = 600;
+
+function advanceFlock() {
+  birds = step(birds, weights, predator);
+  if (trails) {
+    trailFrames.push(birds.map(({ x, y }) => ({ x, y })));
+    if (trailFrames.length > 12) trailFrames.shift();
+  }
+}
 
 function isPaused() {
   return manuallyPaused || document.hidden;
@@ -102,6 +113,24 @@ function draw() {
   const sy = rect.height / worldHeight;
   context.setTransform(canvas.width / worldWidth, 0, 0, canvas.height / worldHeight, 0, 0);
   context.clearRect(0, 0, worldWidth, worldHeight);
+  const frameCount = trailFrames.length;
+  context.strokeStyle = '#fff7e7';
+  context.lineWidth = 1.5;
+  for (let segmentIndex = 0; segmentIndex < frameCount - 1; segmentIndex++) {
+    context.globalAlpha = 0.08 + 0.22 * (segmentIndex / Math.max(1, frameCount - 1));
+    const earlier = trailFrames[segmentIndex];
+    const later = trailFrames[segmentIndex + 1];
+    for (let birdIndex = 0; birdIndex < earlier.length; birdIndex++) {
+      const from = earlier[birdIndex];
+      const to = later[birdIndex];
+      if (Math.abs(to.x - from.x) > 500 || Math.abs(to.y - from.y) > 300) continue;
+      context.beginPath();
+      context.moveTo(from.x, from.y);
+      context.lineTo(to.x, to.y);
+      context.stroke();
+    }
+  }
+  context.globalAlpha = 1;
   if (predator) {
     context.beginPath();
     context.arc(predator.x, predator.y, 160, 0, Math.PI * 2);
@@ -141,7 +170,7 @@ function animate(now) {
     accumulator += elapsed;
     let steps = 0;
     while (accumulator >= fixedStep && steps < 5) {
-      birds = step(birds, weights, predator);
+      advanceFlock();
       accumulator -= fixedStep;
       steps++;
     }
@@ -159,7 +188,13 @@ pauseButton.addEventListener('click', () => {
 });
 stepButton.addEventListener('click', () => {
   if (!manuallyPaused || document.hidden) return;
-  birds = step(birds, weights, predator);
+  advanceFlock();
+  draw();
+});
+trailsButton.addEventListener('click', () => {
+  trails = trailsButton.getAttribute('aria-pressed') !== 'true';
+  trailFrames = [];
+  trailsButton.setAttribute('aria-pressed', String(trails));
   draw();
 });
 function clearPredator(releaseCapture = false) {
@@ -206,6 +241,7 @@ for (const eventName of ['pointerup', 'pointercancel', 'lostpointercapture']) {
 resetButton.addEventListener('click', () => {
   clearPredator(true);
   birds = seed();
+  trailFrames = [];
   draw();
 });
 document.addEventListener('visibilitychange', () => {
@@ -223,7 +259,7 @@ updatePauseButton();
 resizeCanvas();
 window.__flock = {
   state() {
-    return JSON.parse(JSON.stringify({ birds, weights, paused: isPaused(), predator }));
+    return JSON.parse(JSON.stringify({ birds, weights, paused: isPaused(), predator, trails, trailFrames }));
   },
 };
 requestAnimationFrame(animate);
