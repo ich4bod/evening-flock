@@ -18,6 +18,7 @@ const ruleOutputs = {
 };
 const restoreRulesButton = document.querySelector('#restore-rules');
 const hawkButton = document.querySelector('#hawk');
+const neighborsButton = document.querySelector('#neighbors');
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const defaults = { separation: 18, alignment: 0.08, cohesion: 0.004 };
 const recipes = {
@@ -36,6 +37,8 @@ let trailFrames = [];
 let weights = { ...defaults };
 let manuallyPaused = reduceMotion.matches;
 let predator = null;
+let lensEnabled = false;
+let lensSelection = null;
 let activePointerId = null;
 let lastTime = null;
 let accumulator = 0;
@@ -106,6 +109,44 @@ function resizeCanvas() {
   draw();
 }
 
+function lensSnapshot() {
+  if (lensSelection === null || !birds[lensSelection]) return null;
+  const selected = birds[lensSelection];
+  const neighbors = [];
+  const close = [];
+  for (let index = 0; index < birds.length; index++) {
+    if (index === lensSelection) continue;
+    let dx = birds[index].x - selected.x;
+    let dy = birds[index].y - selected.y;
+    if (dx > worldWidth / 2) dx -= worldWidth;
+    else if (dx < -worldWidth / 2) dx += worldWidth;
+    if (dy > worldHeight / 2) dy -= worldHeight;
+    else if (dy < -worldHeight / 2) dy += worldHeight;
+    const distanceSquared = dx * dx + dy * dy;
+    if (distanceSquared === 0) continue;
+    if (distanceSquared < 80 * 80) neighbors.push(index);
+    if (distanceSquared < 24 * 24) close.push(index);
+  }
+  return { index: lensSelection, neighbors, close };
+}
+
+function drawLensRings() {
+  const selected = birds[lensSelection];
+  if (!selected) return;
+  for (const [radius, color] of [[80, '#e9755c'], [24, '#ffd166']]) {
+    context.beginPath();
+    for (const offsetX of [-worldWidth, 0, worldWidth]) {
+      for (const offsetY of [-worldHeight, 0, worldHeight]) {
+        context.moveTo(selected.x + offsetX + radius, selected.y + offsetY);
+        context.arc(selected.x + offsetX, selected.y + offsetY, radius, 0, Math.PI * 2);
+      }
+    }
+    context.strokeStyle = color;
+    context.lineWidth = 1.5;
+    context.stroke();
+  }
+}
+
 function draw() {
   const rect = canvas.getBoundingClientRect();
   if (!rect.width || !rect.height) return;
@@ -131,6 +172,7 @@ function draw() {
     }
   }
   context.globalAlpha = 1;
+  if (lensSelection !== null) drawLensRings();
   if (predator) {
     context.beginPath();
     context.arc(predator.x, predator.y, 160, 0, Math.PI * 2);
@@ -146,8 +188,10 @@ function draw() {
     context.lineWidth = 3;
     context.stroke();
   }
-  context.fillStyle = '#fff7e7';
-  for (const bird of birds) {
+  const lens = lensSnapshot();
+  for (let birdIndex = 0; birdIndex < birds.length; birdIndex++) {
+    const bird = birds[birdIndex];
+    context.fillStyle = lens && birdIndex === lens.index ? '#e9755c' : '#fff7e7';
     context.save();
     context.translate(bird.x, bird.y);
     context.rotate(Math.atan2(bird.vy, bird.vx));
@@ -217,14 +261,60 @@ function setPredatorFromPointer(event) {
   draw();
 }
 
+function selectNearestBird(event) {
+  const rect = canvas.getBoundingClientRect();
+  if (!rect.width || !rect.height || birds.length === 0) return;
+  const x = ((event.clientX - rect.left) / rect.width) * worldWidth;
+  const y = ((event.clientY - rect.top) / rect.height) * worldHeight;
+  let nearest = 0;
+  let nearestDistance = Infinity;
+  for (let index = 0; index < birds.length; index++) {
+    let dx = birds[index].x - x;
+    let dy = birds[index].y - y;
+    if (dx > worldWidth / 2) dx -= worldWidth;
+    else if (dx < -worldWidth / 2) dx += worldWidth;
+    if (dy > worldHeight / 2) dy -= worldHeight;
+    else if (dy < -worldHeight / 2) dy += worldHeight;
+    const distanceSquared = dx * dx + dy * dy;
+    if (distanceSquared < nearestDistance) {
+      nearest = index;
+      nearestDistance = distanceSquared;
+    }
+  }
+  lensSelection = nearest;
+  draw();
+}
+
 hawkButton.addEventListener('click', () => {
   const enabled = hawkButton.getAttribute('aria-pressed') !== 'true';
   hawkButton.setAttribute('aria-pressed', String(enabled));
-  canvas.style.touchAction = enabled ? 'none' : '';
-  if (!enabled) clearPredator(true);
+  canvas.style.touchAction = enabled || lensEnabled ? 'none' : '';
+  if (enabled) {
+    lensEnabled = false;
+    lensSelection = null;
+    neighborsButton.setAttribute('aria-pressed', 'false');
+    clearPredator(true);
+  } else clearPredator(true);
+});
+neighborsButton.addEventListener('click', () => {
+  lensEnabled = neighborsButton.getAttribute('aria-pressed') !== 'true';
+  neighborsButton.setAttribute('aria-pressed', String(lensEnabled));
+  if (lensEnabled) {
+    hawkButton.setAttribute('aria-pressed', 'false');
+    lensSelection = null;
+    clearPredator(true);
+  } else lensSelection = null;
+  canvas.style.touchAction = lensEnabled || hawkButton.getAttribute('aria-pressed') === 'true' ? 'none' : '';
+  draw();
 });
 canvas.addEventListener('pointerdown', (event) => {
-  if (hawkButton.getAttribute('aria-pressed') !== 'true' || !event.isPrimary || event.button !== 0) return;
+  if (!event.isPrimary || event.button !== 0) return;
+  if (lensEnabled) {
+    event.preventDefault();
+    selectNearestBird(event);
+    return;
+  }
+  if (hawkButton.getAttribute('aria-pressed') !== 'true') return;
   event.preventDefault();
   activePointerId = event.pointerId;
   canvas.setPointerCapture(event.pointerId);
@@ -240,6 +330,7 @@ for (const eventName of ['pointerup', 'pointercancel', 'lostpointercapture']) {
 }
 resetButton.addEventListener('click', () => {
   clearPredator(true);
+  lensSelection = null;
   birds = seed();
   trailFrames = [];
   draw();
@@ -259,7 +350,7 @@ updatePauseButton();
 resizeCanvas();
 window.__flock = {
   state() {
-    return JSON.parse(JSON.stringify({ birds, weights, paused: isPaused(), predator, trails, trailFrames }));
+    return JSON.parse(JSON.stringify({ birds, weights, paused: isPaused(), predator, trails, trailFrames, lens: lensSnapshot() }));
   },
 };
 requestAnimationFrame(animate);

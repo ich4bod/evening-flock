@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5d6bb">
   <title>Evening Flock</title>
-  <link rel="stylesheet" href="/style.css?v=6">
+  <link rel="stylesheet" href="/style.css?v=7">
 </head>
 <body>
   <main class="page">
@@ -19,11 +19,13 @@
       <button id="step" type="button" disabled>One beat</button>
       <button id="reset" type="button">Gather again</button>
       <button id="hawk" type="button" aria-pressed="false">Hawk</button>
+      <button id="neighbors" type="button" aria-pressed="false">Neighbors</button>
       <button id="trails" type="button" aria-pressed="false">Flight trails</button>
     </div>
     <p class="trails-instruction">Short trails show each bird’s recent turns.</p>
     <p class="step-instruction">Pause the sky, then take one beat at a time.</p>
     <p class="hawk-instruction">Turn on Hawk, then hold a finger in the sky. Let go and the flock regroups.</p>
+    <p class="neighbors-instruction">Turn on Neighbors and tap a bird. The wide ring finds neighbors; the small ring marks the close-range push.</p>
     <section class="rules" aria-labelledby="rules-heading">
       <h2 id="rules-heading">What makes a flock?</h2>
       <div class="recipe-row" role="group" aria-label="Flight recipes">
@@ -56,6 +58,6 @@
     <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
-  <script type="module" src="/app.mjs?v=6"></script>
+  <script type="module" src="/app.mjs?v=7"></script>
 </body>
 </html>

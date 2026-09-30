@@ -35,7 +35,7 @@ button[aria-pressed="true"] { border-color: #283346; background: #e9755c; }
 button:focus-visible, a:focus-visible { outline: 3px solid #283346; outline-offset: 3px; }
 .trails-instruction { margin: 0 auto 8px; max-width: 760px; text-align: center; font-size: 16px; line-height: 1.45; }
 .step-instruction { margin: 0 auto 8px; max-width: 760px; text-align: center; font-size: 16px; line-height: 1.45; }
-.hawk-instruction { margin: 0 auto; max-width: 760px; text-align: center; font-size: 15px; line-height: 1.45; }
+.hawk-instruction, .neighbors-instruction { margin: 0 auto; max-width: 760px; text-align: center; font-size: 15px; line-height: 1.45; }
 .rules { margin: 20px 0 0; padding: 16px; border-radius: 16px; background: #fff7e7; }
 .rules h2 { margin: 0 0 14px; font: 24px/1.2 Georgia, serif; }
 .recipe-row { display: flex; flex-wrap: wrap; gap: 8px; }
