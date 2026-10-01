@@ -27,6 +27,12 @@ const neighborsButton = document.querySelector('#neighbors');
 const turnArrowButton = document.querySelector('#turn-arrow');
 const coastArrowButton = document.querySelector('#coast-arrow');
 const neighborLinksButton = document.querySelector('#neighbor-links');
+const reachButtons = {
+  near: document.querySelector('#reach-near'),
+  usual: document.querySelector('#reach-usual'),
+  wide: document.querySelector('#reach-wide'),
+};
+const reachRadii = { near: 40, usual: 80, wide: 120 };
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const defaults = { separation: 18, alignment: 0.08, cohesion: 0.004 };
 const recipes = {
@@ -50,6 +56,7 @@ let lensSelection = null;
 let turnArrow = false;
 let coastArrow = false;
 let neighborLinks = false;
+let neighborRadius = 80;
 let activePointerId = null;
 let lastTime = null;
 let accumulator = 0;
@@ -59,7 +66,7 @@ const worldWidth = 1000;
 const worldHeight = 600;
 
 function advanceFlock() {
-  birds = step(birds, weights, predator);
+  birds = step(birds, weights, predator, neighborRadius);
   if (trails) {
     trailFrames.push(birds.map(({ x, y }) => ({ x, y })));
     if (trailFrames.length > 12) trailFrames.shift();
@@ -68,6 +75,16 @@ function advanceFlock() {
 
 function isPaused() {
   return manuallyPaused || document.hidden;
+}
+
+for (const [name, button] of Object.entries(reachButtons)) {
+  button.addEventListener('click', () => {
+    neighborRadius = reachRadii[name];
+    for (const [selectedName, selectedButton] of Object.entries(reachButtons)) {
+      selectedButton.setAttribute('aria-pressed', String(selectedName === name));
+    }
+    draw();
+  });
 }
 
 for (const [name, button] of Object.entries(paceButtons)) {
@@ -148,13 +165,13 @@ function lensSnapshot() {
     else if (dy < -worldHeight / 2) dy += worldHeight;
     const distanceSquared = dx * dx + dy * dy;
     if (distanceSquared === 0) continue;
-    if (distanceSquared < 80 * 80) {
+    if (distanceSquared < neighborRadius * neighborRadius) {
       neighbors.push(index);
       links.push({ index, dx, dy, close: distanceSquared < 24 * 24 });
     }
     if (distanceSquared < 24 * 24) close.push(index);
   }
-  const predicted = step(birds, weights, null)[lensSelection];
+  const predicted = step(birds, weights, null, neighborRadius)[lensSelection];
   return {
     index: lensSelection,
     neighbors,
@@ -188,7 +205,7 @@ function drawNeighborLinks(lens) {
 function drawLensRings() {
   const selected = birds[lensSelection];
   if (!selected) return;
-  for (const [radius, color] of [[80, '#e9755c'], [24, '#ffd166']]) {
+  for (const [radius, color] of [[neighborRadius, '#e9755c'], [24, '#ffd166']]) {
     context.beginPath();
     for (const offsetX of [-worldWidth, 0, worldWidth]) {
       for (const offsetY of [-worldHeight, 0, worldHeight]) {
@@ -504,7 +521,7 @@ updatePauseButton();
 resizeCanvas();
 window.__flock = {
   state() {
-    return JSON.parse(JSON.stringify({ birds, weights, paused: isPaused(), predator, trails, trailFrames, lens: lensSnapshot(), turnArrow, coastArrow, neighborLinks, pace }));
+    return JSON.parse(JSON.stringify({ birds, weights, paused: isPaused(), predator, trails, trailFrames, lens: lensSnapshot(), turnArrow, coastArrow, neighborLinks, neighborRadius, pace }));
   },
 };
 requestAnimationFrame(animate);

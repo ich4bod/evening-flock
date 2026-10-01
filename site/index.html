@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5d6bb">
   <title>Evening Flock</title>
-  <link rel="stylesheet" href="/style.css?v=14">
+  <link rel="stylesheet" href="/style.css?v=15">
 </head>
 <body>
   <main class="page">
@@ -25,6 +25,15 @@
       <button id="neighbor-links" type="button" aria-pressed="false">Neighbor threads</button>
       <button id="trails" type="button" aria-pressed="false">Flight trails</button>
     </div>
+    <section class="reach-control" aria-labelledby="reach-heading">
+      <h2 id="reach-heading">Neighbor reach</h2>
+      <div class="reach-row" role="group" aria-label="Neighbor reach">
+        <button id="reach-near" type="button" aria-pressed="false">Near</button>
+        <button id="reach-usual" type="button" aria-pressed="true">Usual</button>
+        <button id="reach-wide" type="button" aria-pressed="false">Wide</button>
+      </div>
+      <p>A wider ring lets each bird listen farther away. The close-range push stays the same.</p>
+    </section>
     <section class="sky-control" aria-labelledby="sky-heading">
       <h2 id="sky-heading">Starting sky</h2>
       <div class="sky-row" role="group" aria-label="Starting sky">
@@ -91,6 +100,6 @@
     <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
-  <script type="module" src="/app.mjs?v=16"></script>
+  <script type="module" src="/app.mjs?v=17"></script>
 </body>
 </html>

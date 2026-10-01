@@ -35,6 +35,11 @@ button {
 }
 button[aria-pressed="true"] { border-color: #283346; background: #e9755c; }
 button:focus-visible, a:focus-visible { outline: 3px solid #283346; outline-offset: 3px; }
+.reach-control { margin: 0 auto 8px; text-align: center; }
+.reach-control h2 { margin: 0 0 8px; font: 20px/1.2 Georgia, serif; }
+.reach-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.reach-row button { min-height: 44px; }
+.reach-control p { margin: 8px auto 0; max-width: 760px; font-size: 15px; line-height: 1.45; }
 .sky-control { margin: 0 auto 8px; text-align: center; }
 .sky-control h2 { margin: 0 0 8px; font: 20px/1.2 Georgia, serif; }
 .sky-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
