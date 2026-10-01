@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5d6bb">
   <title>Evening Flock</title>
-  <link rel="stylesheet" href="/style.css?v=15">
+  <link rel="stylesheet" href="/style.css?v=16">
 </head>
 <body>
   <main class="page">
@@ -16,6 +16,7 @@
     <canvas id="flock" tabindex="0" aria-describedby="lens-keyboard-help" aria-label="Eighty birds in an evening sky"></canvas>
     <div class="controls" aria-label="Flock controls">
       <button id="pause" type="button">Pause</button>
+      <button id="step-back" type="button" disabled>Step back</button>
       <button id="step" type="button" disabled>One beat</button>
       <button id="reset" type="button">Gather again</button>
       <button id="hawk" type="button" aria-pressed="false">Hawk</button>
@@ -62,6 +63,7 @@
     </section>
     <p class="trails-instruction">Short trails show each bird’s recent turns.</p>
     <p class="step-instruction">Pause the sky, then take one beat at a time.</p>
+    <p class="step-back-instruction">Step back revisits the last paused beat. Resume or a gust begins a fresh flight.</p>
     <p class="hawk-instruction">Turn on Hawk, then hold a finger in the sky. Let go and the flock regroups.</p>
     <p class="neighbors-instruction">Turn on Neighbors and tap a bird. The wide ring finds neighbors; the small ring marks the close-range push.</p>
     <p id="lens-keyboard-help">Keyboard: turn on Neighbors, focus the sky, then use Left and Right to choose a bird.</p>
@@ -100,6 +102,6 @@
     <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
-  <script type="module" src="/app.mjs?v=17"></script>
+  <script type="module" src="/app.mjs?v=18"></script>
 </body>
 </html>

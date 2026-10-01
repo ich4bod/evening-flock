@@ -46,6 +46,7 @@ const recipeButtons = Object.fromEntries(Object.keys(recipes).map(name => [
 ]));
 
 let birds = seed();
+let beatHistory = [];
 let trails = false;
 let trailFrames = [];
 let weights = { ...defaults };
@@ -101,6 +102,25 @@ for (const [name, button] of Object.entries(paceButtons)) {
 function updatePauseButton() {
   pauseButton.textContent = manuallyPaused ? 'Resume' : 'Pause';
   stepButton.disabled = !(manuallyPaused && !document.hidden);
+  updateStepBack();
+}
+
+function updateStepBack() {
+  document.querySelector('#step-back').disabled = !(manuallyPaused && !document.hidden && beatHistory.length > 0);
+}
+
+function clearBeatHistory() {
+  beatHistory = [];
+  updateStepBack();
+}
+
+function saveBeatSnapshot() {
+  beatHistory.push({
+    birds: birds.map(bird => ({ ...bird })),
+    trailFrames: trailFrames.map(frame => frame.map(point => ({ ...point }))),
+  });
+  if (beatHistory.length > 24) beatHistory.shift();
+  updateStepBack();
 }
 
 function formatRuleValue(name, value) {
@@ -355,15 +375,29 @@ pauseButton.addEventListener('click', () => {
   manuallyPaused = !manuallyPaused;
   accumulator = 0;
   lastTime = null;
+  if (!manuallyPaused) clearBeatHistory();
   updatePauseButton();
+});
+document.querySelector('#step-back').addEventListener('click', () => {
+  if (!manuallyPaused || document.hidden || beatHistory.length === 0) return;
+  const snapshot = beatHistory.pop();
+  birds = snapshot.birds.map(bird => ({ ...bird }));
+  trailFrames = snapshot.trailFrames.map(frame => frame.map(point => ({ ...point })));
+  clearPredator(true);
+  accumulator = 0;
+  lastTime = null;
+  updateStepBack();
+  draw();
 });
 stepButton.addEventListener('click', () => {
   if (!manuallyPaused || document.hidden) return;
+  saveBeatSnapshot();
   advanceFlock();
   draw();
 });
 trailsButton.addEventListener('click', () => {
   trails = trailsButton.getAttribute('aria-pressed') !== 'true';
+  clearBeatHistory();
   trailFrames = [];
   trailsButton.setAttribute('aria-pressed', String(trails));
   draw();
@@ -481,6 +515,7 @@ for (const eventName of ['pointerup', 'pointercancel', 'lostpointercapture']) {
   });
 }
 function applyGust(dx) {
+  clearBeatHistory();
   birds = gust(birds, dx);
   clearPredator(true);
   trailFrames = [];
@@ -493,6 +528,7 @@ document.querySelector('#gust-west').addEventListener('click', () => applyGust(-
 document.querySelector('#gust-east').addEventListener('click', () => applyGust(1));
 
 function resetToBirds(nextBirds) {
+  clearBeatHistory();
   clearPredator(true);
   lensSelection = null;
   birds = nextBirds;
@@ -509,7 +545,10 @@ for (const name of ['two-flocks', 'head-on', 'ring']) {
 document.addEventListener('visibilitychange', () => {
   accumulator = 0;
   lastTime = null;
-  if (document.hidden) clearPredator(true);
+  if (document.hidden) {
+    clearBeatHistory();
+    clearPredator(true);
+  }
   updatePauseButton();
 });
 window.addEventListener('resize', resizeCanvas);
@@ -521,7 +560,7 @@ updatePauseButton();
 resizeCanvas();
 window.__flock = {
   state() {
-    return JSON.parse(JSON.stringify({ birds, weights, paused: isPaused(), predator, trails, trailFrames, lens: lensSnapshot(), turnArrow, coastArrow, neighborLinks, neighborRadius, pace }));
+    return JSON.parse(JSON.stringify({ birds, weights, paused: isPaused(), predator, trails, trailFrames, undoBeats: beatHistory.length, lens: lensSnapshot(), turnArrow, coastArrow, neighborLinks, neighborRadius, pace }));
   },
 };
 requestAnimationFrame(animate);
