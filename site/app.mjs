@@ -11,6 +11,7 @@ const paceButtons = {
 };
 const resetButton = document.querySelector('#reset');
 const trailsButton = document.querySelector('#trails');
+const selectedTrailButton = document.querySelector('#selected-trail');
 const ruleInputs = {
   separation: document.querySelector('#separation'),
   alignment: document.querySelector('#alignment'),
@@ -48,6 +49,7 @@ const recipeButtons = Object.fromEntries(Object.keys(recipes).map(name => [
 let birds = seed();
 let beatHistory = [];
 let trails = false;
+let selectedTrail = false;
 let trailFrames = [];
 let weights = { ...defaults };
 let manuallyPaused = reduceMotion.matches;
@@ -306,6 +308,7 @@ function draw() {
     const earlier = trailFrames[segmentIndex];
     const later = trailFrames[segmentIndex + 1];
     for (let birdIndex = 0; birdIndex < earlier.length; birdIndex++) {
+      if (selectedTrail && (lensSelection === null || !birds[lensSelection] || birdIndex !== lensSelection)) continue;
       const from = earlier[birdIndex];
       const to = later[birdIndex];
       if (Math.abs(to.x - from.x) > 500 || Math.abs(to.y - from.y) > 300) continue;
@@ -400,6 +403,11 @@ trailsButton.addEventListener('click', () => {
   clearBeatHistory();
   trailFrames = [];
   trailsButton.setAttribute('aria-pressed', String(trails));
+  draw();
+});
+selectedTrailButton.addEventListener('click', () => {
+  selectedTrail = selectedTrailButton.getAttribute('aria-pressed') !== 'true';
+  selectedTrailButton.setAttribute('aria-pressed', String(selectedTrail));
   draw();
 });
 neighborLinksButton.addEventListener('click', () => {
@@ -560,7 +568,7 @@ updatePauseButton();
 resizeCanvas();
 window.__flock = {
   state() {
-    return JSON.parse(JSON.stringify({ birds, weights, paused: isPaused(), predator, trails, trailFrames, undoBeats: beatHistory.length, lens: lensSnapshot(), turnArrow, coastArrow, neighborLinks, neighborRadius, pace }));
+    return JSON.parse(JSON.stringify({ birds, weights, paused: isPaused(), predator, trails, selectedTrail, trailFrames, undoBeats: beatHistory.length, lens: lensSnapshot(), turnArrow, coastArrow, neighborLinks, neighborRadius, pace }));
   },
 };
 requestAnimationFrame(animate);
