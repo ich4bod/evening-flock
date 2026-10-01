@@ -29,6 +29,20 @@ export function seedScene(name) {
   });
 }
 
+export function gust(birds, dx) {
+  return birds.map(bird => {
+    let vx = bird.vx + dx;
+    let vy = bird.vy;
+    const speed = Math.hypot(vx, vy);
+    if (speed > 3) {
+      const scale = 3 / speed;
+      vx *= scale;
+      vy *= scale;
+    }
+    return { x: bird.x, y: bird.y, vx, vy };
+  });
+}
+
 export function step(birds, weights = DEFAULT_WEIGHTS, predator = null) {
   return birds.map((bird, index) => {
     let separationX = 0;

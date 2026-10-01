@@ -39,6 +39,10 @@ button:focus-visible, a:focus-visible { outline: 3px solid #283346; outline-offs
 .sky-control h2 { margin: 0 0 8px; font: 20px/1.2 Georgia, serif; }
 .sky-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
 .sky-control p { margin: 8px auto 0; max-width: 760px; font-size: 15px; line-height: 1.45; }
+.gust-control { margin: 0 auto 8px; text-align: center; }
+.gust-control h2 { margin: 0 0 8px; font: 20px/1.2 Georgia, serif; }
+.gust-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.gust-control p { margin: 8px auto 0; max-width: 760px; font-size: 15px; line-height: 1.45; }
 .pace-control { margin: 0 auto 8px; text-align: center; }
 .pace-control h2 { margin: 0 0 8px; font: 20px/1.2 Georgia, serif; }
 .pace-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }

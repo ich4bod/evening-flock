@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5d6bb">
   <title>Evening Flock</title>
-  <link rel="stylesheet" href="/style.css?v=11">
+  <link rel="stylesheet" href="/style.css?v=12">
 </head>
 <body>
   <main class="page">
@@ -30,6 +30,14 @@
         <button id="sky-head-on" type="button">Head-on</button>
       </div>
       <p>Try two small groups, then watch the same rules bring them together.</p>
+    </section>
+    <section class="gust-control" aria-labelledby="gust-heading">
+      <h2 id="gust-heading">A passing gust</h2>
+      <div class="gust-row" role="group" aria-label="A passing gust">
+        <button id="gust-west" type="button">Gust left</button>
+        <button id="gust-east" type="button">Gust right</button>
+      </div>
+      <p>A gust nudges every heading once. The flock rules take it from there.</p>
     </section>
     <section class="pace-control" aria-labelledby="pace-heading">
       <h2 id="pace-heading">Flight pace</h2>
@@ -78,6 +86,6 @@
     <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
-  <script type="module" src="/app.mjs?v=11"></script>
+  <script type="module" src="/app.mjs?v=12"></script>
 </body>
 </html>
