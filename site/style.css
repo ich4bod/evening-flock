@@ -33,6 +33,11 @@ button {
 }
 button[aria-pressed="true"] { border-color: #283346; background: #e9755c; }
 button:focus-visible, a:focus-visible { outline: 3px solid #283346; outline-offset: 3px; }
+.pace-control { margin: 0 auto 8px; text-align: center; }
+.pace-control h2 { margin: 0 0 8px; font: 20px/1.2 Georgia, serif; }
+.pace-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.pace-row button { min-height: 44px; }
+.pace-control p { margin: 8px auto 0; max-width: 760px; font-size: 15px; line-height: 1.45; }
 .trails-instruction { margin: 0 auto 8px; max-width: 760px; text-align: center; font-size: 16px; line-height: 1.45; }
 .step-instruction { margin: 0 auto 8px; max-width: 760px; text-align: center; font-size: 16px; line-height: 1.45; }
 .hawk-instruction, .neighbors-instruction { margin: 0 auto; max-width: 760px; text-align: center; font-size: 15px; line-height: 1.45; }

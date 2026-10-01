@@ -4,6 +4,11 @@ const canvas = document.querySelector('#flock');
 const context = canvas.getContext('2d');
 const pauseButton = document.querySelector('#pause');
 const stepButton = document.querySelector('#step');
+const paceButtons = {
+  quarter: document.querySelector('#pace-quarter'),
+  half: document.querySelector('#pace-half'),
+  full: document.querySelector('#pace-full'),
+};
 const resetButton = document.querySelector('#reset');
 const trailsButton = document.querySelector('#trails');
 const ruleInputs = {
@@ -42,6 +47,7 @@ let lensSelection = null;
 let activePointerId = null;
 let lastTime = null;
 let accumulator = 0;
+let pace = 1;
 const fixedStep = 1000 / 60;
 const worldWidth = 1000;
 const worldHeight = 600;
@@ -56,6 +62,17 @@ function advanceFlock() {
 
 function isPaused() {
   return manuallyPaused || document.hidden;
+}
+
+for (const [name, button] of Object.entries(paceButtons)) {
+  button.addEventListener('click', () => {
+    pace = { quarter: 0.25, half: 0.5, full: 1 }[name];
+    accumulator = 0;
+    lastTime = null;
+    for (const [selectedName, selectedButton] of Object.entries(paceButtons)) {
+      selectedButton.setAttribute('aria-pressed', String(selectedName === name));
+    }
+  });
 }
 
 function updatePauseButton() {
@@ -211,7 +228,7 @@ function animate(now) {
   const elapsed = Math.max(0, now - lastTime);
   lastTime = now;
   if (!isPaused()) {
-    accumulator += elapsed;
+    accumulator += elapsed * pace;
     let steps = 0;
     while (accumulator >= fixedStep && steps < 5) {
       advanceFlock();
@@ -350,7 +367,7 @@ updatePauseButton();
 resizeCanvas();
 window.__flock = {
   state() {
-    return JSON.parse(JSON.stringify({ birds, weights, paused: isPaused(), predator, trails, trailFrames, lens: lensSnapshot() }));
+    return JSON.parse(JSON.stringify({ birds, weights, paused: isPaused(), predator, trails, trailFrames, lens: lensSnapshot(), pace }));
   },
 };
 requestAnimationFrame(animate);

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5d6bb">
   <title>Evening Flock</title>
-  <link rel="stylesheet" href="/style.css?v=7">
+  <link rel="stylesheet" href="/style.css?v=8">
 </head>
 <body>
   <main class="page">
@@ -22,6 +22,15 @@
       <button id="neighbors" type="button" aria-pressed="false">Neighbors</button>
       <button id="trails" type="button" aria-pressed="false">Flight trails</button>
     </div>
+    <section class="pace-control" aria-labelledby="pace-heading">
+      <h2 id="pace-heading">Flight pace</h2>
+      <div class="pace-row" role="group" aria-label="Flight pace">
+        <button id="pace-quarter" type="button" aria-pressed="false">Quarter</button>
+        <button id="pace-half" type="button" aria-pressed="false">Half</button>
+        <button id="pace-full" type="button" aria-pressed="true">Full</button>
+      </div>
+      <p>Slower flight gives you time to follow a turn. One beat stays one decision.</p>
+    </section>
     <p class="trails-instruction">Short trails show each bird’s recent turns.</p>
     <p class="step-instruction">Pause the sky, then take one beat at a time.</p>
     <p class="hawk-instruction">Turn on Hawk, then hold a finger in the sky. Let go and the flock regroups.</p>
@@ -58,6 +67,6 @@
     <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
-  <script type="module" src="/app.mjs?v=7"></script>
+  <script type="module" src="/app.mjs?v=8"></script>
 </body>
 </html>
