@@ -24,6 +24,7 @@ const ruleOutputs = {
 const restoreRulesButton = document.querySelector('#restore-rules');
 const hawkButton = document.querySelector('#hawk');
 const neighborsButton = document.querySelector('#neighbors');
+const turnArrowButton = document.querySelector('#turn-arrow');
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const defaults = { separation: 18, alignment: 0.08, cohesion: 0.004 };
 const recipes = {
@@ -44,6 +45,7 @@ let manuallyPaused = reduceMotion.matches;
 let predator = null;
 let lensEnabled = false;
 let lensSelection = null;
+let turnArrow = false;
 let activePointerId = null;
 let lastTime = null;
 let accumulator = 0;
@@ -144,7 +146,8 @@ function lensSnapshot() {
     if (distanceSquared < 80 * 80) neighbors.push(index);
     if (distanceSquared < 24 * 24) close.push(index);
   }
-  return { index: lensSelection, neighbors, close };
+  const predicted = step(birds, weights, null)[lensSelection];
+  return { index: lensSelection, neighbors, close, nextVelocity: { vx: predicted.vx, vy: predicted.vy } };
 }
 
 function drawLensRings() {
@@ -162,6 +165,31 @@ function drawLensRings() {
     context.lineWidth = 1.5;
     context.stroke();
   }
+}
+
+function drawTurnArrow(lens) {
+  const selected = birds[lens.index];
+  const { vx, vy } = lens.nextVelocity;
+  if (vx === 0 && vy === 0) return;
+  const heading = Math.atan2(vy, vx);
+  context.beginPath();
+  for (const offsetX of [-worldWidth, 0, worldWidth]) {
+    for (const offsetY of [-worldHeight, 0, worldHeight]) {
+      const x = selected.x + offsetX;
+      const y = selected.y + offsetY;
+      const endX = x + 12 * vx;
+      const endY = y + 12 * vy;
+      context.moveTo(x, y);
+      context.lineTo(endX, endY);
+      for (const angle of [heading - 0.5, heading + 0.5]) {
+        context.moveTo(endX, endY);
+        context.lineTo(endX - 6 * Math.cos(angle), endY - 6 * Math.sin(angle));
+      }
+    }
+  }
+  context.strokeStyle = '#ffd166';
+  context.lineWidth = 2;
+  context.stroke();
 }
 
 function draw() {
@@ -206,6 +234,7 @@ function draw() {
     context.stroke();
   }
   const lens = lensSnapshot();
+  if (turnArrow && lens) drawTurnArrow(lens);
   for (let birdIndex = 0; birdIndex < birds.length; birdIndex++) {
     const bird = birds[birdIndex];
     context.fillStyle = lens && birdIndex === lens.index ? '#e9755c' : '#fff7e7';
@@ -256,6 +285,11 @@ trailsButton.addEventListener('click', () => {
   trails = trailsButton.getAttribute('aria-pressed') !== 'true';
   trailFrames = [];
   trailsButton.setAttribute('aria-pressed', String(trails));
+  draw();
+});
+turnArrowButton.addEventListener('click', () => {
+  turnArrow = !turnArrow;
+  turnArrowButton.setAttribute('aria-pressed', String(turnArrow));
   draw();
 });
 function clearPredator(releaseCapture = false) {
@@ -374,7 +408,7 @@ updatePauseButton();
 resizeCanvas();
 window.__flock = {
   state() {
-    return JSON.parse(JSON.stringify({ birds, weights, paused: isPaused(), predator, trails, trailFrames, lens: lensSnapshot(), pace }));
+    return JSON.parse(JSON.stringify({ birds, weights, paused: isPaused(), predator, trails, trailFrames, lens: lensSnapshot(), turnArrow, pace }));
   },
 };
 requestAnimationFrame(animate);
