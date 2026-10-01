@@ -25,6 +25,7 @@ const restoreRulesButton = document.querySelector('#restore-rules');
 const hawkButton = document.querySelector('#hawk');
 const neighborsButton = document.querySelector('#neighbors');
 const turnArrowButton = document.querySelector('#turn-arrow');
+const coastArrowButton = document.querySelector('#coast-arrow');
 const neighborLinksButton = document.querySelector('#neighbor-links');
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const defaults = { separation: 18, alignment: 0.08, cohesion: 0.004 };
@@ -47,6 +48,7 @@ let predator = null;
 let lensEnabled = false;
 let lensSelection = null;
 let turnArrow = false;
+let coastArrow = false;
 let neighborLinks = false;
 let activePointerId = null;
 let lastTime = null;
@@ -153,7 +155,14 @@ function lensSnapshot() {
     if (distanceSquared < 24 * 24) close.push(index);
   }
   const predicted = step(birds, weights, null)[lensSelection];
-  return { index: lensSelection, neighbors, close, links, nextVelocity: { vx: predicted.vx, vy: predicted.vy } };
+  return {
+    index: lensSelection,
+    neighbors,
+    close,
+    links,
+    coastVelocity: { vx: selected.vx, vy: selected.vy },
+    nextVelocity: { vx: predicted.vx, vy: predicted.vy },
+  };
 }
 
 function drawNeighborLinks(lens) {
@@ -218,6 +227,33 @@ function drawTurnArrow(lens) {
   context.stroke();
 }
 
+function drawCoastArrow(lens) {
+  const selected = birds[lens.index];
+  const { vx, vy } = lens.coastVelocity;
+  if (vx === 0 && vy === 0) return;
+  const heading = Math.atan2(vy, vx);
+  context.beginPath();
+  for (const offsetX of [-worldWidth, 0, worldWidth]) {
+    for (const offsetY of [-worldHeight, 0, worldHeight]) {
+      const x = selected.x + offsetX;
+      const y = selected.y + offsetY;
+      const endX = x + 12 * vx;
+      const endY = y + 12 * vy;
+      context.moveTo(x, y);
+      context.lineTo(endX, endY);
+      for (const angle of [heading - 0.5, heading + 0.5]) {
+        context.moveTo(endX, endY);
+        context.lineTo(endX - 6 * Math.cos(angle), endY - 6 * Math.sin(angle));
+      }
+    }
+  }
+  context.strokeStyle = '#fff7e7';
+  context.lineWidth = 2;
+  context.setLineDash([4, 3]);
+  context.stroke();
+  context.setLineDash([]);
+}
+
 function draw() {
   const rect = canvas.getBoundingClientRect();
   if (!rect.width || !rect.height) return;
@@ -261,6 +297,7 @@ function draw() {
     context.lineWidth = 3;
     context.stroke();
   }
+  if (coastArrow && lens) drawCoastArrow(lens);
   if (turnArrow && lens) drawTurnArrow(lens);
   for (let birdIndex = 0; birdIndex < birds.length; birdIndex++) {
     const bird = birds[birdIndex];
@@ -322,6 +359,11 @@ neighborLinksButton.addEventListener('click', () => {
 turnArrowButton.addEventListener('click', () => {
   turnArrow = !turnArrow;
   turnArrowButton.setAttribute('aria-pressed', String(turnArrow));
+  draw();
+});
+coastArrowButton.addEventListener('click', () => {
+  coastArrow = !coastArrow;
+  coastArrowButton.setAttribute('aria-pressed', String(coastArrow));
   draw();
 });
 function clearPredator(releaseCapture = false) {
@@ -462,7 +504,7 @@ updatePauseButton();
 resizeCanvas();
 window.__flock = {
   state() {
-    return JSON.parse(JSON.stringify({ birds, weights, paused: isPaused(), predator, trails, trailFrames, lens: lensSnapshot(), turnArrow, neighborLinks, pace }));
+    return JSON.parse(JSON.stringify({ birds, weights, paused: isPaused(), predator, trails, trailFrames, lens: lensSnapshot(), turnArrow, coastArrow, neighborLinks, pace }));
   },
 };
 requestAnimationFrame(animate);

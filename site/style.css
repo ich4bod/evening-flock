@@ -50,7 +50,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid #283346; outline-offs
 .pace-control p { margin: 8px auto 0; max-width: 760px; font-size: 15px; line-height: 1.45; }
 .trails-instruction { margin: 0 auto 8px; max-width: 760px; text-align: center; font-size: 16px; line-height: 1.45; }
 .step-instruction { margin: 0 auto 8px; max-width: 760px; text-align: center; font-size: 16px; line-height: 1.45; }
-.hawk-instruction, .neighbors-instruction, .turn-arrow-instruction, .neighbor-links-instruction { margin: 0 auto; max-width: 760px; text-align: center; font-size: 15px; line-height: 1.45; }
+.hawk-instruction, .neighbors-instruction, .turn-arrow-instruction, .coast-arrow-instruction, .neighbor-links-instruction { margin: 0 auto; max-width: 760px; text-align: center; font-size: 15px; line-height: 1.45; }
 .rules { margin: 20px 0 0; padding: 16px; border-radius: 16px; background: #fff7e7; }
 .rules h2 { margin: 0 0 14px; font: 24px/1.2 Georgia, serif; }
 .recipe-row { display: flex; flex-wrap: wrap; gap: 8px; }
