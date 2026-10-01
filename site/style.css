@@ -20,7 +20,6 @@ h1 { margin: 0; font: 40px/1.15 Georgia, serif; }
   background: linear-gradient(to bottom, #33445f, #d89b82);
 }
 #flock:focus-visible { outline: 3px solid #ffd166; outline-offset: 4px; }
-#lens-keyboard-help { margin: 0 auto; max-width: 760px; text-align: center; font-size: 16px; line-height: 1.45; color: #283346; }
 .controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; padding: 18px 0 8px; }
 button {
   min-height: 44px;
@@ -53,9 +52,10 @@ button:focus-visible, a:focus-visible { outline: 3px solid #283346; outline-offs
 .pace-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
 .pace-row button { min-height: 44px; }
 .pace-control p { margin: 8px auto 0; max-width: 760px; font-size: 15px; line-height: 1.45; }
-.trails-instruction { margin: 0 auto 8px; max-width: 760px; text-align: center; font-size: 16px; line-height: 1.45; }
-.step-instruction, .step-back-instruction { margin: 0 auto 8px; max-width: 760px; text-align: center; font-size: 16px; line-height: 1.45; }
-.hawk-instruction, .neighbors-instruction, .follow-neighbor-instruction, .turn-arrow-instruction, .coast-arrow-instruction, .neighbor-links-instruction { margin: 0 auto; max-width: 760px; text-align: center; font-size: 15px; line-height: 1.45; }
+#flight-guide { max-width: 680px; margin: 12px auto; padding: 0 12px; border: 1px solid #283346; border-radius: 12px; background: #fff7e7; }
+#flight-guide summary { display: flex; align-items: center; min-height: 44px; color: #283346; font: 18px Georgia, serif; cursor: pointer; }
+#flight-guide summary:focus-visible { outline: 3px solid #e9755c; }
+#flight-guide p { margin: 8px 0; font: 14px/1.5 system-ui, sans-serif; }
 .rules { margin: 20px 0 0; padding: 16px; border-radius: 16px; background: #fff7e7; }
 .rules h2 { margin: 0 0 14px; font: 24px/1.2 Georgia, serif; }
 .recipe-row { display: flex; flex-wrap: wrap; gap: 8px; }
