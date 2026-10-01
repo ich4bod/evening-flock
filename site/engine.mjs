@@ -54,7 +54,7 @@ export function gust(birds, dx) {
   });
 }
 
-export function step(birds, weights = DEFAULT_WEIGHTS, predator = null) {
+export function step(birds, weights = DEFAULT_WEIGHTS, predator = null, neighborRadius = 80) {
   return birds.map((bird, index) => {
     let separationX = 0;
     let separationY = 0;
@@ -77,7 +77,7 @@ export function step(birds, weights = DEFAULT_WEIGHTS, predator = null) {
       const distanceSquared = dx * dx + dy * dy;
       if (distanceSquared === 0) continue;
       const distance = Math.sqrt(distanceSquared);
-      if (distance < 80) {
+      if (distance < neighborRadius) {
         neighbors++;
         velocityX += other.vx;
         velocityY += other.vy;
