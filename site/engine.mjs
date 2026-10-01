@@ -12,6 +12,14 @@ export function seed() {
 }
 
 export function seedScene(name) {
+  if (name === 'crossing') {
+    return Array.from({ length: 80 }, (_, i) => {
+      const j = i % 40;
+      return i < 40
+        ? { x: 260 + 6 * j, y: 300, vx: 2, vy: 0 }
+        : { x: 500, y: 60 + 6 * j, vx: 0, vy: 2 };
+    });
+  }
   if (name === 'ring') {
     return Array.from({ length: 80 }, (_, i) => {
       const t = 2 * Math.PI * i / 80;
