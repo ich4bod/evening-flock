@@ -358,6 +358,16 @@ neighborsButton.addEventListener('click', () => {
   canvas.style.touchAction = lensEnabled || hawkButton.getAttribute('aria-pressed') === 'true' ? 'none' : '';
   draw();
 });
+canvas.addEventListener('keydown', (event) => {
+  if (event.target !== canvas || !lensEnabled || event.ctrlKey || event.altKey || event.metaKey || event.repeat) return;
+  if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+  event.preventDefault();
+  const direction = event.key === 'ArrowRight' ? 1 : -1;
+  lensSelection = lensSelection === null
+    ? (direction === 1 ? 0 : 79)
+    : (lensSelection + direction + 80) % 80;
+  draw();
+});
 canvas.addEventListener('pointerdown', (event) => {
   if (!event.isPrimary || event.button !== 0) return;
   if (lensEnabled) {
