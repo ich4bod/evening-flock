@@ -1,4 +1,4 @@
-import { seed, seedScene, step, gust } from './engine.mjs?v=10';
+import { seed, seedScene, step, gust } from './engine.mjs?v=11';
 
 const canvas = document.querySelector('#flock');
 const context = canvas.getContext('2d');
@@ -444,7 +444,7 @@ function resetToBirds(nextBirds) {
 }
 
 resetButton.addEventListener('click', () => resetToBirds(seed()));
-for (const name of ['two-flocks', 'head-on']) {
+for (const name of ['two-flocks', 'head-on', 'ring']) {
   document.querySelector(`#sky-${name}`).addEventListener('click', () => resetToBirds(seedScene(name)));
 }
 document.addEventListener('visibilitychange', () => {

@@ -12,6 +12,17 @@ export function seed() {
 }
 
 export function seedScene(name) {
+  if (name === 'ring') {
+    return Array.from({ length: 80 }, (_, i) => {
+      const t = 2 * Math.PI * i / 80;
+      return {
+        x: 500 + 180 * Math.cos(t),
+        y: 300 + 180 * Math.sin(t),
+        vx: -2 * Math.sin(t),
+        vy: 2 * Math.cos(t),
+      };
+    });
+  }
   if (name !== 'two-flocks' && name !== 'head-on') return seed();
   return Array.from({ length: 80 }, (_, i) => {
     const j = i % 40;
