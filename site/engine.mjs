@@ -11,6 +11,24 @@ export function seed() {
   }));
 }
 
+export function seedScene(name) {
+  if (name !== 'two-flocks' && name !== 'head-on') return seed();
+  return Array.from({ length: 80 }, (_, i) => {
+    const j = i % 40;
+    const left = i < 40;
+    return {
+      x: name === 'two-flocks'
+        ? (left ? 250 : 750) + (j % 8 - 3.5) * 12
+        : left ? 200 + (j % 8) * 12 : 800 - (j % 8) * 12,
+      y: name === 'two-flocks'
+        ? 300 + (Math.floor(j / 8) - 2) * 12
+        : 200 + Math.floor(j / 8) * 35,
+      vx: left ? 2 : -2,
+      vy: 0,
+    };
+  });
+}
+
 export function step(birds, weights = DEFAULT_WEIGHTS, predator = null) {
   return birds.map((bird, index) => {
     let separationX = 0;

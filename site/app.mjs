@@ -1,4 +1,4 @@
-import { seed, step } from './engine.mjs';
+import { seed, seedScene, step } from './engine.mjs?v=9';
 
 const canvas = document.querySelector('#flock');
 const context = canvas.getContext('2d');
@@ -345,13 +345,20 @@ for (const eventName of ['pointerup', 'pointercancel', 'lostpointercapture']) {
     if (event.pointerId === activePointerId) clearPredator();
   });
 }
-resetButton.addEventListener('click', () => {
+function resetToBirds(nextBirds) {
   clearPredator(true);
   lensSelection = null;
-  birds = seed();
+  birds = nextBirds;
   trailFrames = [];
+  accumulator = 0;
+  lastTime = null;
   draw();
-});
+}
+
+resetButton.addEventListener('click', () => resetToBirds(seed()));
+for (const name of ['two-flocks', 'head-on']) {
+  document.querySelector(`#sky-${name}`).addEventListener('click', () => resetToBirds(seedScene(name)));
+}
 document.addEventListener('visibilitychange', () => {
   accumulator = 0;
   lastTime = null;
