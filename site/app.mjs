@@ -1,4 +1,4 @@
-import { seed, seedScene, step, gust } from './engine.mjs?v=13';
+import { seed, seedScene, step, gust } from './engine.mjs?v=14';
 
 const canvas = document.querySelector('#flock');
 const context = canvas.getContext('2d');
@@ -522,9 +522,9 @@ for (const eventName of ['pointerup', 'pointercancel', 'lostpointercapture']) {
     if (event.pointerId === activePointerId) clearPredator();
   });
 }
-function applyGust(dx) {
+function applyGust(dx, dy = 0) {
   clearBeatHistory();
-  birds = gust(birds, dx);
+  birds = gust(birds, dx, dy);
   clearPredator(true);
   trailFrames = [];
   accumulator = 0;
@@ -534,6 +534,8 @@ function applyGust(dx) {
 
 document.querySelector('#gust-west').addEventListener('click', () => applyGust(-1));
 document.querySelector('#gust-east').addEventListener('click', () => applyGust(1));
+document.querySelector('#gust-north').addEventListener('click', () => applyGust(0, -1));
+document.querySelector('#gust-south').addEventListener('click', () => applyGust(0, 1));
 
 function resetToBirds(nextBirds) {
   clearBeatHistory();

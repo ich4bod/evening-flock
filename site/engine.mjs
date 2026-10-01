@@ -48,10 +48,10 @@ export function seedScene(name) {
   });
 }
 
-export function gust(birds, dx) {
+export function gust(birds, dx, dy = 0) {
   return birds.map(bird => {
     let vx = bird.vx + dx;
-    let vy = bird.vy;
+    let vy = bird.vy + dy;
     const speed = Math.hypot(vx, vy);
     if (speed > 3) {
       const scale = 3 / speed;
