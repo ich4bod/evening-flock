@@ -25,6 +25,7 @@ const ruleOutputs = {
 const restoreRulesButton = document.querySelector('#restore-rules');
 const hawkButton = document.querySelector('#hawk');
 const neighborsButton = document.querySelector('#neighbors');
+const followNeighborButton = document.querySelector('#follow-neighbor');
 const turnArrowButton = document.querySelector('#turn-arrow');
 const coastArrowButton = document.querySelector('#coast-arrow');
 const neighborLinksButton = document.querySelector('#neighbor-links');
@@ -293,6 +294,10 @@ function drawCoastArrow(lens) {
   context.setLineDash([]);
 }
 
+function updateFollowNeighborEligibility(lens = lensSnapshot()) {
+  followNeighborButton.disabled = !lensEnabled || !lens || lens.links.length === 0;
+}
+
 function draw() {
   const rect = canvas.getBoundingClientRect();
   if (!rect.width || !rect.height) return;
@@ -320,6 +325,7 @@ function draw() {
   }
   context.globalAlpha = 1;
   const lens = lensSnapshot();
+  updateFollowNeighborEligibility(lens);
   if (neighborLinks && lens) drawNeighborLinks(lens);
   if (lensSelection !== null) drawLensRings();
   if (predator) {
@@ -479,6 +485,23 @@ hawkButton.addEventListener('click', () => {
     neighborsButton.setAttribute('aria-pressed', 'false');
     clearPredator(true);
   } else clearPredator(true);
+});
+followNeighborButton.addEventListener('click', () => {
+  if (!lensEnabled) return;
+  const lens = lensSnapshot();
+  if (!lens || lens.links.length === 0) {
+    updateFollowNeighborEligibility(lens);
+    return;
+  }
+  let nearest = lens.links[0];
+  for (const link of lens.links.slice(1)) {
+    const distanceSquared = link.dx * link.dx + link.dy * link.dy;
+    const nearestDistanceSquared = nearest.dx * nearest.dx + nearest.dy * nearest.dy;
+    if (distanceSquared < nearestDistanceSquared
+      || (distanceSquared === nearestDistanceSquared && link.index < nearest.index)) nearest = link;
+  }
+  lensSelection = nearest.index;
+  draw();
 });
 neighborsButton.addEventListener('click', () => {
   lensEnabled = neighborsButton.getAttribute('aria-pressed') !== 'true';
