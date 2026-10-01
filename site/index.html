@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5d6bb">
   <title>Evening Flock</title>
-  <link rel="stylesheet" href="/style.css?v=12">
+  <link rel="stylesheet" href="/style.css?v=13">
 </head>
 <body>
   <main class="page">
@@ -21,6 +21,7 @@
       <button id="hawk" type="button" aria-pressed="false">Hawk</button>
       <button id="neighbors" type="button" aria-pressed="false">Neighbors</button>
       <button id="turn-arrow" type="button" aria-pressed="false">Next turn</button>
+      <button id="neighbor-links" type="button" aria-pressed="false">Neighbor threads</button>
       <button id="trails" type="button" aria-pressed="false">Flight trails</button>
     </div>
     <section class="sky-control" aria-labelledby="sky-heading">
@@ -54,6 +55,7 @@
     <p class="neighbors-instruction">Turn on Neighbors and tap a bird. The wide ring finds neighbors; the small ring marks the close-range push.</p>
     <p id="lens-keyboard-help">Keyboard: turn on Neighbors, focus the sky, then use Left and Right to choose a bird.</p>
     <p class="turn-arrow-instruction">In Neighbors, the gold arrow shows the selected bird’s next velocity. Take one beat to follow it.</p>
+    <p class="neighbor-links-instruction">Threads join this bird to the neighbors it can see. Gold threads mark the close-range push.</p>
     <section class="rules" aria-labelledby="rules-heading">
       <h2 id="rules-heading">What makes a flock?</h2>
       <div class="recipe-row" role="group" aria-label="Flight recipes">
@@ -86,6 +88,6 @@
     <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
-  <script type="module" src="/app.mjs?v=12"></script>
+  <script type="module" src="/app.mjs?v=13"></script>
 </body>
 </html>
