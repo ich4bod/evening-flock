@@ -86,6 +86,10 @@ export function gust(birds, dx, dy = 0) {
   });
 }
 
+export function reverseFlight(birds) {
+  return birds.map(bird => ({ x: bird.x, y: bird.y, vx: -bird.vx, vy: -bird.vy }));
+}
+
 export function step(birds, weights = DEFAULT_WEIGHTS, predator = null, neighborRadius = 80) {
   return birds.map((bird, index) => {
     let separationX = 0;

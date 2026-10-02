@@ -1,4 +1,4 @@
-import { seed, seedScene, step, gust } from './engine.mjs?v=16';
+import { seed, seedScene, step, gust, reverseFlight } from './engine.mjs?v=17';
 
 const canvas = document.querySelector('#flock');
 const context = canvas.getContext('2d');
@@ -10,6 +10,7 @@ const paceButtons = {
   full: document.querySelector('#pace-full'),
 };
 const resetButton = document.querySelector('#reset');
+const reverseFlightButton = document.querySelector('#reverse-flight');
 const trailsButton = document.querySelector('#trails');
 const selectedTrailButton = document.querySelector('#selected-trail');
 const ruleInputs = {
@@ -559,6 +560,18 @@ document.querySelector('#gust-west').addEventListener('click', () => applyGust(-
 document.querySelector('#gust-east').addEventListener('click', () => applyGust(1));
 document.querySelector('#gust-north').addEventListener('click', () => applyGust(0, -1));
 document.querySelector('#gust-south').addEventListener('click', () => applyGust(0, 1));
+
+function applyReversal() {
+  clearBeatHistory();
+  birds = reverseFlight(birds);
+  clearPredator(true);
+  trailFrames = [];
+  accumulator = 0;
+  lastTime = null;
+  draw();
+}
+
+reverseFlightButton.addEventListener('click', applyReversal);
 
 function resetToBirds(nextBirds) {
   clearBeatHistory();
