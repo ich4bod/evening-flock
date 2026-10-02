@@ -48,6 +48,7 @@
         <button id="sky-seam" type="button">Across the edge</button>
         <button id="sky-lanes" type="button">Passing lanes</button>
         <button id="sky-still" type="button">Still cloud</button>
+        <button id="sky-crowded" type="button">Crowded sky</button>
       </div>
       <p>Try two groups, a turning ring or crossing streams, then watch the same rules reshape them.</p>
     </section>
@@ -89,6 +90,7 @@
       <p class="seam-instruction">Across the edge puts neighbors on opposite sides of the wrapped sky.</p>
       <p class="lanes-instruction">Passing lanes puts nearby streams in opposite directions.</p>
       <p class="still-instruction">Still cloud starts every bird at rest. Coast leaves it still; neighbor steering can set it moving.</p>
+      <p class="crowded-instruction">Crowded sky packs the birds close enough for the short-range push to matter.</p>
     </details>
     <section class="rules" aria-labelledby="rules-heading">
       <h2 id="rules-heading">What makes a flock?</h2>
@@ -124,6 +126,6 @@
     <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
-  <script type="module" src="/app.mjs?v=28"></script>
+  <script type="module" src="/app.mjs?v=29"></script>
 </body>
 </html>

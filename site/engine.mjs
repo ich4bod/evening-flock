@@ -12,6 +12,14 @@ export function seed() {
 }
 
 export function seedScene(name) {
+  if (name === 'crowded') {
+    return Array.from({ length: 80 }, (_, i) => ({
+      x: 464 + (i % 10) * 8,
+      y: 272 + Math.floor(i / 10) * 8,
+      vx: 2,
+      vy: 0,
+    }));
+  }
   if (name === 'still') {
     return Array.from({ length: 80 }, (_, i) => ({
       x: 320 + (i % 10) * 40,
