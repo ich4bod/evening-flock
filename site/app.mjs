@@ -2,6 +2,7 @@ import { seed, seedScene, step, gust, reverseFlight, restFlight, quarterTurn } f
 
 const canvas = document.querySelector('#flock');
 const context = canvas.getContext('2d');
+const birdCensus = document.querySelector('#bird-census');
 const pauseButton = document.querySelector('#pause');
 const stepButton = document.querySelector('#step');
 const paceButtons = {
@@ -328,6 +329,13 @@ function draw() {
   }
   context.globalAlpha = 1;
   const lens = lensSnapshot();
+  birdCensus.hidden = !lensEnabled;
+  const censusText = !lensEnabled
+    ? ''
+    : lens
+      ? `Bird ${lens.index + 1} · Neighbors: ${lens.neighbors.length} · Too close: ${lens.close.length}`
+      : 'Tap a bird, or use Left and Right in the sky.';
+  if (birdCensus.textContent !== censusText) birdCensus.textContent = censusText;
   updateFollowNeighborEligibility(lens);
   if (neighborLinks && lens) drawNeighborLinks(lens);
   if (lensSelection !== null) drawLensRings();
