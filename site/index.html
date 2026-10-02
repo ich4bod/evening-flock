@@ -91,9 +91,11 @@
       <div class="recipe-row" role="group" aria-label="Flight recipes">
         <button id="recipe-coast" type="button" aria-pressed="false">Coast</button>
         <button id="recipe-apart" type="button" aria-pressed="false">Keep apart</button>
+        <button id="recipe-align" type="button" aria-pressed="false">Match direction</button>
+        <button id="recipe-gather" type="button" aria-pressed="false">Gather</button>
         <button id="recipe-flock" type="button" aria-pressed="true">Flock</button>
       </div>
-      <p class="recipe-note">Coast removes neighbor steering. Keep apart keeps only the close-range push. Flock restores all three rules.</p>
+      <p class="recipe-note">Coast removes neighbor steering. Keep apart keeps only the close-range push. Match direction borrows nearby headings. Gather steers toward nearby birds. Flock combines all three rules.</p>
       <div class="rule-grid">
         <div class="rule-control">
           <label for="separation">Keep apart <output id="separation-value" for="separation">18</output></label>
@@ -118,6 +120,6 @@
     <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
-  <script type="module" src="/app.mjs?v=25"></script>
+  <script type="module" src="/app.mjs?v=26"></script>
 </body>
 </html>

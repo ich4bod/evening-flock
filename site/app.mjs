@@ -41,6 +41,8 @@ const defaults = { separation: 18, alignment: 0.08, cohesion: 0.004 };
 const recipes = {
   coast: { separation: 0, alignment: 0, cohesion: 0 },
   apart: { separation: 36, alignment: 0, cohesion: 0 },
+  align: { separation: 0, alignment: 0.08, cohesion: 0 },
+  gather: { separation: 0, alignment: 0, cohesion: 0.004 },
   flock: { separation: 18, alignment: 0.08, cohesion: 0.004 },
 };
 const recipeButtons = Object.fromEntries(Object.keys(recipes).map(name => [
