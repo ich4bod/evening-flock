@@ -117,6 +117,12 @@ export function reverseFlight(birds) {
   return birds.map(bird => ({ x: bird.x, y: bird.y, vx: -bird.vx, vy: -bird.vy }));
 }
 
+export function quarterTurn(birds, direction) {
+  return birds.map(bird => direction === 1
+    ? { x: bird.x, y: bird.y, vx: -bird.vy, vy: bird.vx }
+    : { x: bird.x, y: bird.y, vx: bird.vy, vy: -bird.vx });
+}
+
 export function step(birds, weights = DEFAULT_WEIGHTS, predator = null, neighborRadius = 80) {
   return birds.map((bird, index) => {
     let separationX = 0;
