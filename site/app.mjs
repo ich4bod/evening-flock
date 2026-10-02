@@ -527,12 +527,16 @@ neighborsButton.addEventListener('click', () => {
 });
 canvas.addEventListener('keydown', (event) => {
   if (event.target !== canvas || !lensEnabled || event.ctrlKey || event.altKey || event.metaKey || event.repeat) return;
-  if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+  if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
   event.preventDefault();
-  const direction = event.key === 'ArrowRight' ? 1 : -1;
-  lensSelection = lensSelection === null
-    ? (direction === 1 ? 0 : 79)
-    : (lensSelection + direction + 80) % 80;
+  if (event.key === 'Home') lensSelection = 0;
+  else if (event.key === 'End') lensSelection = birds.length - 1;
+  else {
+    const direction = event.key === 'ArrowRight' ? 1 : -1;
+    lensSelection = lensSelection === null
+      ? (direction === 1 ? 0 : 79)
+      : (lensSelection + direction + 80) % 80;
+  }
   draw();
 });
 canvas.addEventListener('pointerdown', (event) => {
