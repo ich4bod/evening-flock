@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5d6bb">
   <title>Evening Flock</title>
-  <link rel="stylesheet" href="/style.css?v=18">
+  <link rel="stylesheet" href="/style.css?v=19">
 </head>
 <body>
   <main class="page">
@@ -62,6 +62,7 @@
         <button id="reverse-flight" type="button">Turn around</button>
         <button id="turn-counterclockwise" type="button">Turn left</button>
         <button id="turn-clockwise" type="button">Turn right</button>
+        <button id="rest-flight" type="button">Rest here</button>
       </div>
       <p>A gust nudges every heading once. The flock rules take it from there.</p>
     </section>
@@ -81,6 +82,7 @@
       <p class="step-instruction">Pause the sky, then take one beat at a time.</p>
       <p class="step-back-instruction">Step back revisits the last paused beat. Resume or a gust begins a fresh flight.</p>
       <p class="reverse-flight-instruction">Turn around reverses every heading once. Positions and flock rules stay put.</p>
+      <p class="rest-flight-instruction">Rest here stops every bird in place. Neighbor steering can start them moving again.</p>
       <p class="quarter-turn-instruction">Turn left and Turn right rotate every heading a quarter turn. The birds stay where they are.</p>
       <p class="hawk-instruction">Turn on Hawk, then hold a finger in the sky. Let go and the flock regroups.</p>
       <p class="neighbors-instruction">Turn on Neighbors and tap a bird. The wide ring finds neighbors; the small ring marks the close-range push.</p>
@@ -129,6 +131,6 @@
     <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
-  <script type="module" src="/app.mjs?v=30"></script>
+  <script type="module" src="/app.mjs?v=31"></script>
 </body>
 </html>

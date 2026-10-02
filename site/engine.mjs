@@ -117,6 +117,10 @@ export function reverseFlight(birds) {
   return birds.map(bird => ({ x: bird.x, y: bird.y, vx: -bird.vx, vy: -bird.vy }));
 }
 
+export function restFlight(birds) {
+  return birds.map(bird => ({ x: bird.x, y: bird.y, vx: 0, vy: 0 }));
+}
+
 export function quarterTurn(birds, direction) {
   return birds.map(bird => direction === 1
     ? { x: bird.x, y: bird.y, vx: -bird.vy, vy: bird.vx }

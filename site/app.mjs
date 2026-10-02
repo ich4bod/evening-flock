@@ -1,4 +1,4 @@
-import { seed, seedScene, step, gust, reverseFlight, quarterTurn } from './engine.mjs?v=21';
+import { seed, seedScene, step, gust, reverseFlight, restFlight, quarterTurn } from './engine.mjs?v=22';
 
 const canvas = document.querySelector('#flock');
 const context = canvas.getContext('2d');
@@ -573,6 +573,16 @@ function applyReversal() {
   draw();
 }
 
+function applyRest() {
+  clearBeatHistory();
+  birds = restFlight(birds);
+  clearPredator(true);
+  trailFrames = [];
+  accumulator = 0;
+  lastTime = null;
+  draw();
+}
+
 function applyQuarterTurn(direction) {
   clearBeatHistory();
   birds = quarterTurn(birds, direction);
@@ -584,6 +594,7 @@ function applyQuarterTurn(direction) {
 }
 
 reverseFlightButton.addEventListener('click', applyReversal);
+document.querySelector('#rest-flight').addEventListener('click', applyRest);
 document.querySelector('#turn-counterclockwise').addEventListener('click', () => applyQuarterTurn(-1));
 document.querySelector('#turn-clockwise').addEventListener('click', () => applyQuarterTurn(1));
 
