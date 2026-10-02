@@ -12,6 +12,14 @@ export function seed() {
 }
 
 export function seedScene(name) {
+  if (name === 'still') {
+    return Array.from({ length: 80 }, (_, i) => ({
+      x: 320 + (i % 10) * 40,
+      y: 160 + Math.floor(i / 10) * 40,
+      vx: 0,
+      vy: 0,
+    }));
+  }
   if (name === 'lanes') {
     return Array.from({ length: 80 }, (_, i) => {
       const j = i % 40;
