@@ -12,6 +12,18 @@ export function seed() {
 }
 
 export function seedScene(name) {
+  if (name === 'seam') {
+    return Array.from({ length: 80 }, (_, i) => {
+      const j = i % 40;
+      const left = i < 40;
+      return {
+        x: (left ? 20 : 896) + (j % 8) * 12,
+        y: 252 + Math.floor(j / 8) * 24,
+        vx: left ? -2 : 2,
+        vy: 0,
+      };
+    });
+  }
   if (name === 'overtaking') {
     return Array.from({ length: 80 }, (_, i) => {
       const j = i % 40;
