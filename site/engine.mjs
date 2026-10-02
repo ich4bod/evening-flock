@@ -12,6 +12,17 @@ export function seed() {
 }
 
 export function seedScene(name) {
+  if (name === 'lanes') {
+    return Array.from({ length: 80 }, (_, i) => {
+      const j = i % 40;
+      return {
+        x: i < 40 ? 200 + (j % 20) * 24 : 800 - (j % 20) * 24,
+        y: (i < 40 ? 260 : 320) + Math.floor(j / 20) * 20,
+        vx: i < 40 ? 2 : -2,
+        vy: 0,
+      };
+    });
+  }
   if (name === 'seam') {
     return Array.from({ length: 80 }, (_, i) => {
       const j = i % 40;
