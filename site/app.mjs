@@ -8,6 +8,7 @@ const birdRightButton = document.querySelector('#bird-right');
 const birdReverseButton = document.querySelector('#bird-reverse');
 const birdRestButton = document.querySelector('#bird-rest');
 const birdSlowerButton = document.querySelector('#bird-slower');
+const birdFasterButton = document.querySelector('#bird-faster');
 const pauseButton = document.querySelector('#pause');
 const stepButton = document.querySelector('#step');
 const paceButtons = {
@@ -120,28 +121,43 @@ for (const [name, button] of Object.entries(paceButtons)) {
   });
 }
 
+function selectedBirdCandidate(kind, selected) {
+  if (kind === 'slower') return { vx: selected.vx * 0.5, vy: selected.vy * 0.5 };
+  if (kind === 'faster') {
+    const speed = Math.hypot(selected.vx, selected.vy);
+    if (speed === 0 || speed >= 3) return null;
+    const factor = Math.min(2, 3 / speed);
+    return { vx: selected.vx * factor, vy: selected.vy * factor };
+  }
+  return null;
+}
+
 function updateBirdEditEligibility() {
   const selected = lensSelection === null ? null : birds[lensSelection];
   const eligible = manuallyPaused && !document.hidden && lensEnabled && lensSelection !== null
     && selected && (selected.vx !== 0 || selected.vy !== 0);
   const reverseEligible = eligible && (selected.vx !== 0 || selected.vy !== 0);
-  const slowerCandidate = selected ? { vx: selected.vx * 0.5, vy: selected.vy * 0.5 } : null;
+  const slowerCandidate = selected ? selectedBirdCandidate('slower', selected) : null;
+  const fasterCandidate = selected ? selectedBirdCandidate('faster', selected) : null;
   const slowerEligible = manuallyPaused && !document.hidden && lensEnabled && lensSelection !== null
     && selected && slowerCandidate && (slowerCandidate.vx !== selected.vx || slowerCandidate.vy !== selected.vy);
+  const fasterEligible = manuallyPaused && !document.hidden && lensEnabled && lensSelection !== null
+    && selected && fasterCandidate && (fasterCandidate.vx !== selected.vx || fasterCandidate.vy !== selected.vy);
   birdLeftButton.disabled = !eligible;
   birdRightButton.disabled = !eligible;
   birdReverseButton.disabled = !reverseEligible;
   birdRestButton.disabled = !eligible;
   birdSlowerButton.disabled = !slowerEligible;
+  birdFasterButton.disabled = !fasterEligible;
 }
 
 function editSelectedBird(kind) {
-  if (!['left', 'right', 'reverse', 'rest', 'slower'].includes(kind) || !manuallyPaused || document.hidden || !lensEnabled
+  if (!['left', 'right', 'reverse', 'rest', 'slower', 'faster'].includes(kind) || !manuallyPaused || document.hidden || !lensEnabled
     || lensSelection === null || !birds[lensSelection]) return;
   const selected = birds[lensSelection];
-  if (kind === 'slower') {
-    const candidate = { vx: selected.vx * 0.5, vy: selected.vy * 0.5 };
-    if (candidate.vx === selected.vx && candidate.vy === selected.vy) return;
+  if (kind === 'slower' || kind === 'faster') {
+    const candidate = selectedBirdCandidate(kind, selected);
+    if (!candidate || (candidate.vx === selected.vx && candidate.vy === selected.vy)) return;
     saveBeatSnapshot();
     birds = birds.map((bird, index) => index === lensSelection
       ? { ...bird, vx: candidate.vx, vy: candidate.vy }
@@ -582,6 +598,7 @@ birdRightButton.addEventListener('click', () => editSelectedBird('right'));
 birdReverseButton.addEventListener('click', () => editSelectedBird('reverse'));
 birdRestButton.addEventListener('click', () => editSelectedBird('rest'));
 birdSlowerButton.addEventListener('click', () => editSelectedBird('slower'));
+birdFasterButton.addEventListener('click', () => editSelectedBird('faster'));
 trailsButton.addEventListener('click', () => {
   trails = trailsButton.getAttribute('aria-pressed') !== 'true';
   clearBeatHistory();
