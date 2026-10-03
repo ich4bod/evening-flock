@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5d6bb">
   <title>Evening Flock</title>
-  <link rel="stylesheet" href="/style.css?v=25">
+  <link rel="stylesheet" href="/style.css?v=26">
 </head>
 <body>
   <main class="page">
@@ -38,10 +38,12 @@
         <button id="bird-left" type="button" disabled>Turn this bird left</button>
         <button id="bird-right" type="button" disabled>Turn this bird right</button>
         <button id="bird-reverse" type="button" disabled>Turn this bird around</button>
+        <button id="bird-rest" type="button" disabled>Rest this bird</button>
       </div>
       <p class="bird-left-helper">Pause, turn on Neighbors and choose a bird. Turn this bird left changes only its heading. One beat lets the neighbors respond; Step back undoes the edit.</p>
       <p class="bird-right-helper">Turn this bird right rotates only the selected heading a quarter turn. The other birds keep their headings until a beat.</p>
       <p class="bird-reverse-helper">Turn this bird around reverses only the selected heading. Step back restores it before you try a different turn.</p>
+      <p class="bird-rest-helper">Rest this bird sets only the selected velocity to zero. Neighbor steering can start it again on the next beat.</p>
     </details>
     <section id="quick-recipes" aria-labelledby="quick-recipes-heading">
       <h2 id="quick-recipes-heading">Try the flock rules</h2>
@@ -164,6 +166,6 @@
     <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
-  <script type="module" src="/app.mjs?v=42"></script>
+  <script type="module" src="/app.mjs?v=43"></script>
 </body>
 </html>

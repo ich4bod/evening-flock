@@ -6,6 +6,7 @@ const birdCensus = document.querySelector('#bird-census');
 const birdLeftButton = document.querySelector('#bird-left');
 const birdRightButton = document.querySelector('#bird-right');
 const birdReverseButton = document.querySelector('#bird-reverse');
+const birdRestButton = document.querySelector('#bird-rest');
 const pauseButton = document.querySelector('#pause');
 const stepButton = document.querySelector('#step');
 const paceButtons = {
@@ -126,20 +127,23 @@ function updateBirdEditEligibility() {
   birdLeftButton.disabled = !eligible;
   birdRightButton.disabled = !eligible;
   birdReverseButton.disabled = !reverseEligible;
+  birdRestButton.disabled = !eligible;
 }
 
 function editSelectedBird(kind) {
-  if (!['left', 'right', 'reverse'].includes(kind) || !manuallyPaused || document.hidden || !lensEnabled
+  if (!['left', 'right', 'reverse', 'rest'].includes(kind) || !manuallyPaused || document.hidden || !lensEnabled
     || lensSelection === null || !birds[lensSelection]) return;
   const selected = birds[lensSelection];
   if (selected.vx === 0 && selected.vy === 0) return;
   saveBeatSnapshot();
   birds = birds.map((bird, index) => index === lensSelection
-    ? kind === 'reverse'
-      ? { ...bird, vx: -bird.vx, vy: -bird.vy }
-      : kind === 'right'
-        ? { ...bird, vx: -bird.vy, vy: bird.vx }
-        : { ...bird, vx: bird.vy, vy: -bird.vx }
+    ? kind === 'rest'
+      ? { ...bird, vx: 0, vy: 0 }
+      : kind === 'reverse'
+        ? { ...bird, vx: -bird.vx, vy: -bird.vy }
+        : kind === 'right'
+          ? { ...bird, vx: -bird.vy, vy: bird.vx }
+          : { ...bird, vx: bird.vy, vy: -bird.vx }
     : bird);
   accumulator = 0;
   lastTime = null;
@@ -562,6 +566,7 @@ stepButton.addEventListener('click', () => {
 birdLeftButton.addEventListener('click', () => editSelectedBird('left'));
 birdRightButton.addEventListener('click', () => editSelectedBird('right'));
 birdReverseButton.addEventListener('click', () => editSelectedBird('reverse'));
+birdRestButton.addEventListener('click', () => editSelectedBird('rest'));
 trailsButton.addEventListener('click', () => {
   trails = trailsButton.getAttribute('aria-pressed') !== 'true';
   clearBeatHistory();
