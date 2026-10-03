@@ -69,7 +69,10 @@ button:focus-visible, a:focus-visible { outline: 3px solid #283346; outline-offs
 .recipe-row button { min-height: 44px; border-color: #283346; background: #fff7e7; }
 .recipe-row button[aria-pressed="true"] { background: #e9755c; }
 .recipe-note { margin: 8px 0 14px; font-size: 14px; line-height: 1.45; }
-.rule-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+#fine-rules { margin: 8px 0; padding: 0 12px; border: 1px solid #283346; border-radius: 12px; background: #fff7e7; }
+#fine-rules summary { display: flex; align-items: center; min-height: 44px; color: #283346; font: 18px Georgia, serif; cursor: pointer; }
+#fine-rules summary:focus-visible { outline: 3px solid #e9755c; }
+.rule-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin: 12px 0; }
 .rule-control label { display: flex; justify-content: space-between; gap: 8px; font-weight: 700; }
 .rule-control output { font-variant-numeric: tabular-nums; }
 .rule-control p { min-height: 2.9em; margin: 6px 0; font-size: 14px; line-height: 1.45; }

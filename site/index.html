@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5d6bb">
   <title>Evening Flock</title>
-  <link rel="stylesheet" href="/style.css?v=21">
+  <link rel="stylesheet" href="/style.css?v=22">
 </head>
 <body>
   <main class="page">
@@ -114,23 +114,26 @@
     </details>
     <section class="rules" aria-labelledby="rules-heading">
       <h2 id="rules-heading">What makes a flock?</h2>
-      <div class="rule-grid">
-        <div class="rule-control">
-          <label for="separation">Keep apart <output id="separation-value" for="separation">18</output></label>
-          <p>Turn away from birds that are too close.</p>
-          <input id="separation" type="range" min="0" max="36" step="1" value="18">
+      <details id="fine-rules">
+        <summary>Fine-tune the three rules</summary>
+        <div class="rule-grid">
+          <div class="rule-control">
+            <label for="separation">Keep apart <output id="separation-value" for="separation">18</output></label>
+            <p>Turn away from birds that are too close.</p>
+            <input id="separation" type="range" min="0" max="36" step="1" value="18">
+          </div>
+          <div class="rule-control">
+            <label for="alignment">Match direction <output id="alignment-value" for="alignment">0.08</output></label>
+            <p>Borrow the heading of nearby birds.</p>
+            <input id="alignment" type="range" min="0" max="0.16" step="0.01" value="0.08">
+          </div>
+          <div class="rule-control">
+            <label for="cohesion">Stay together <output id="cohesion-value" for="cohesion">0.004</output></label>
+            <p>Steer toward nearby birds.</p>
+            <input id="cohesion" type="range" min="0" max="0.008" step="0.001" value="0.004">
+          </div>
         </div>
-        <div class="rule-control">
-          <label for="alignment">Match direction <output id="alignment-value" for="alignment">0.08</output></label>
-          <p>Borrow the heading of nearby birds.</p>
-          <input id="alignment" type="range" min="0" max="0.16" step="0.01" value="0.08">
-        </div>
-        <div class="rule-control">
-          <label for="cohesion">Stay together <output id="cohesion-value" for="cohesion">0.004</output></label>
-          <p>Steer toward nearby birds.</p>
-          <input id="cohesion" type="range" min="0" max="0.008" step="0.001" value="0.004">
-        </div>
-      </div>
+      </details>
       <button id="restore-rules" type="button">Restore the flock rules</button>
       <p class="rule-note">These are toy steering rules, not a measurement of a real bird flock.</p>
     </section>
