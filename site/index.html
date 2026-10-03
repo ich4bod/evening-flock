@@ -25,6 +25,7 @@
       <button id="turn-arrow" type="button" aria-pressed="false">Next turn</button>
       <button id="coast-arrow" type="button" aria-pressed="false">Without a turn</button>
       <button id="neighbor-links" type="button" aria-pressed="false">Neighbor threads</button>
+      <button id="apart-arrow" type="button" aria-pressed="false">Push away</button>
       <button id="alignment-arrow" type="button" aria-pressed="false">Matching direction</button>
       <button id="gather-arrow" type="button" aria-pressed="false">Gathering direction</button>
       <button id="trails" type="button" aria-pressed="false">Flight trails</button>
@@ -110,6 +111,7 @@
       <p class="turn-arrow-instruction">In Neighbors, the gold arrow shows the selected bird’s next velocity. Take one beat to follow it.</p>
       <p class="coast-arrow-instruction">The dashed ivory arrow keeps the current heading. The gold arrow includes the next neighbor decision.</p>
       <p class="neighbor-links-instruction">Threads join this bird to the neighbors it can see. Gold threads mark the close-range push.</p>
+      <p class="apart-arrow-instruction">Push away points away from birds inside the small close-range ring. An empty ring has no push to show.</p>
       <p class="alignment-arrow-instruction">Matching direction shows the correction toward nearby headings. Matching birds need no correction, so their arrow disappears.</p>
       <p class="gather-arrow-instruction">Gathering direction points toward the average nearby offset, across the sky’s wrapped edges. It shows a direction, not the strength of a turn.</p>
       <p class="overtaking-instruction">Overtaking starts a faster group behind a slower one.</p>
@@ -149,6 +151,6 @@
     <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
-  <script type="module" src="/app.mjs?v=37"></script>
+  <script type="module" src="/app.mjs?v=38"></script>
 </body>
 </html>

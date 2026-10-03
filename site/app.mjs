@@ -31,6 +31,7 @@ const followNeighborButton = document.querySelector('#follow-neighbor');
 const turnArrowButton = document.querySelector('#turn-arrow');
 const coastArrowButton = document.querySelector('#coast-arrow');
 const neighborLinksButton = document.querySelector('#neighbor-links');
+const apartArrowButton = document.querySelector('#apart-arrow');
 const gatherArrowButton = document.querySelector('#gather-arrow');
 const alignmentArrowButton = document.querySelector('#alignment-arrow');
 const reachButtons = {
@@ -68,6 +69,7 @@ let lensSelection = null;
 let turnArrow = false;
 let coastArrow = false;
 let neighborLinks = false;
+let apartArrow = false;
 let gatherArrow = false;
 let alignmentArrow = false;
 let neighborRadius = 80;
@@ -192,6 +194,8 @@ function lensSnapshot() {
   let gatherY = 0;
   let alignmentX = 0;
   let alignmentY = 0;
+  let apartX = 0;
+  let apartY = 0;
   for (let index = 0; index < birds.length; index++) {
     if (index === lensSelection) continue;
     let dx = birds[index].x - selected.x;
@@ -203,6 +207,10 @@ function lensSnapshot() {
     const distanceSquared = dx * dx + dy * dy;
     if (distanceSquared === 0) continue;
     if (distanceSquared < neighborRadius * neighborRadius) {
+      if (distanceSquared < 24 * 24) {
+        apartX -= dx / distanceSquared;
+        apartY -= dy / distanceSquared;
+      }
       neighbors.push(index);
       links.push({ index, dx, dy, close: distanceSquared < 24 * 24 });
       gatherX += dx;
@@ -224,6 +232,7 @@ function lensSnapshot() {
     alignmentVector: neighbors.length
       ? { vx: alignmentX / neighbors.length - selected.vx, vy: alignmentY / neighbors.length - selected.vy }
       : { vx: 0, vy: 0 },
+    apartVector: { vx: apartX, vy: apartY },
     coastVelocity: { vx: selected.vx, vy: selected.vy },
     nextVelocity: { vx: predicted.vx, vy: predicted.vy },
   };
@@ -343,6 +352,32 @@ function drawGatherArrow(lens) {
   context.stroke();
 }
 
+function drawApartArrow(lens) {
+  const selected = birds[lens.index];
+  const { vx, vy } = lens.apartVector;
+  const length = Math.hypot(vx, vy);
+  if (length === 0) return;
+  const heading = Math.atan2(vy, vx);
+  context.beginPath();
+  for (const offsetX of [-worldWidth, 0, worldWidth]) {
+    for (const offsetY of [-worldHeight, 0, worldHeight]) {
+      const x = selected.x + offsetX;
+      const y = selected.y + offsetY;
+      const endX = x + 60 * vx / length;
+      const endY = y + 60 * vy / length;
+      context.moveTo(x, y);
+      context.lineTo(endX, endY);
+      for (const angle of [heading - 0.5, heading + 0.5]) {
+        context.moveTo(endX, endY);
+        context.lineTo(endX - 6 * Math.cos(angle), endY - 6 * Math.sin(angle));
+      }
+    }
+  }
+  context.strokeStyle = '#c2a4e8';
+  context.lineWidth = 2;
+  context.stroke();
+}
+
 function drawCoastArrow(lens) {
   const selected = birds[lens.index];
   const { vx, vy } = lens.coastVelocity;
@@ -427,6 +462,7 @@ function draw() {
     context.stroke();
   }
   if (coastArrow && lens) drawCoastArrow(lens);
+  if (apartArrow && lensEnabled && lens) drawApartArrow(lens);
   if (turnArrow && lens) drawTurnArrow(lens);
   if (gatherArrow && lensEnabled && lens) drawGatherArrow(lens);
   if (alignmentArrow && lensEnabled && lens) drawAlignmentArrow(lens);
@@ -504,6 +540,11 @@ selectedTrailButton.addEventListener('click', () => {
 neighborLinksButton.addEventListener('click', () => {
   neighborLinks = !neighborLinks;
   neighborLinksButton.setAttribute('aria-pressed', String(neighborLinks));
+  draw();
+});
+apartArrowButton.addEventListener('click', () => {
+  apartArrow = !apartArrow;
+  apartArrowButton.setAttribute('aria-pressed', String(apartArrow));
   draw();
 });
 gatherArrowButton.addEventListener('click', () => {
@@ -727,7 +768,7 @@ updatePauseButton();
 resizeCanvas();
 window.__flock = {
   state() {
-    return JSON.parse(JSON.stringify({ birds, weights, paused: isPaused(), predator, trails, selectedTrail, trailFrames, undoBeats: beatHistory.length, lens: lensSnapshot(), turnArrow, coastArrow, neighborLinks, neighborRadius, pace, gatherArrow, alignmentArrow }));
+    return JSON.parse(JSON.stringify({ birds, weights, paused: isPaused(), predator, trails, selectedTrail, trailFrames, undoBeats: beatHistory.length, lens: lensSnapshot(), turnArrow, coastArrow, neighborLinks, apartArrow, neighborRadius, pace, gatherArrow, alignmentArrow }));
   },
 };
 requestAnimationFrame(animate);
