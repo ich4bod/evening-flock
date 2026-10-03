@@ -7,6 +7,7 @@ const birdLeftButton = document.querySelector('#bird-left');
 const birdRightButton = document.querySelector('#bird-right');
 const birdReverseButton = document.querySelector('#bird-reverse');
 const birdRestButton = document.querySelector('#bird-rest');
+const birdSlowerButton = document.querySelector('#bird-slower');
 const pauseButton = document.querySelector('#pause');
 const stepButton = document.querySelector('#step');
 const paceButtons = {
@@ -124,27 +125,40 @@ function updateBirdEditEligibility() {
   const eligible = manuallyPaused && !document.hidden && lensEnabled && lensSelection !== null
     && selected && (selected.vx !== 0 || selected.vy !== 0);
   const reverseEligible = eligible && (selected.vx !== 0 || selected.vy !== 0);
+  const slowerCandidate = selected ? { vx: selected.vx * 0.5, vy: selected.vy * 0.5 } : null;
+  const slowerEligible = manuallyPaused && !document.hidden && lensEnabled && lensSelection !== null
+    && selected && slowerCandidate && (slowerCandidate.vx !== selected.vx || slowerCandidate.vy !== selected.vy);
   birdLeftButton.disabled = !eligible;
   birdRightButton.disabled = !eligible;
   birdReverseButton.disabled = !reverseEligible;
   birdRestButton.disabled = !eligible;
+  birdSlowerButton.disabled = !slowerEligible;
 }
 
 function editSelectedBird(kind) {
-  if (!['left', 'right', 'reverse', 'rest'].includes(kind) || !manuallyPaused || document.hidden || !lensEnabled
+  if (!['left', 'right', 'reverse', 'rest', 'slower'].includes(kind) || !manuallyPaused || document.hidden || !lensEnabled
     || lensSelection === null || !birds[lensSelection]) return;
   const selected = birds[lensSelection];
-  if (selected.vx === 0 && selected.vy === 0) return;
-  saveBeatSnapshot();
-  birds = birds.map((bird, index) => index === lensSelection
-    ? kind === 'rest'
-      ? { ...bird, vx: 0, vy: 0 }
-      : kind === 'reverse'
-        ? { ...bird, vx: -bird.vx, vy: -bird.vy }
-        : kind === 'right'
-          ? { ...bird, vx: -bird.vy, vy: bird.vx }
-          : { ...bird, vx: bird.vy, vy: -bird.vx }
-    : bird);
+  if (kind === 'slower') {
+    const candidate = { vx: selected.vx * 0.5, vy: selected.vy * 0.5 };
+    if (candidate.vx === selected.vx && candidate.vy === selected.vy) return;
+    saveBeatSnapshot();
+    birds = birds.map((bird, index) => index === lensSelection
+      ? { ...bird, vx: candidate.vx, vy: candidate.vy }
+      : bird);
+  } else {
+    if (selected.vx === 0 && selected.vy === 0) return;
+    saveBeatSnapshot();
+    birds = birds.map((bird, index) => index === lensSelection
+      ? kind === 'rest'
+        ? { ...bird, vx: 0, vy: 0 }
+        : kind === 'reverse'
+          ? { ...bird, vx: -bird.vx, vy: -bird.vy }
+          : kind === 'right'
+            ? { ...bird, vx: -bird.vy, vy: bird.vx }
+            : { ...bird, vx: bird.vy, vy: -bird.vx }
+      : bird);
+  }
   accumulator = 0;
   lastTime = null;
   draw();
@@ -567,6 +581,7 @@ birdLeftButton.addEventListener('click', () => editSelectedBird('left'));
 birdRightButton.addEventListener('click', () => editSelectedBird('right'));
 birdReverseButton.addEventListener('click', () => editSelectedBird('reverse'));
 birdRestButton.addEventListener('click', () => editSelectedBird('rest'));
+birdSlowerButton.addEventListener('click', () => editSelectedBird('slower'));
 trailsButton.addEventListener('click', () => {
   trails = trailsButton.getAttribute('aria-pressed') !== 'true';
   clearBeatHistory();
