@@ -39,7 +39,11 @@ button:focus-visible, a:focus-visible { outline: 3px solid #283346; outline-offs
 #bird-edits { margin: 12px 0; padding: 0 12px; border: 1px solid #283346; border-radius: 12px; background: #fff7e7; }
 #bird-edits summary { display: flex; align-items: center; min-height: 44px; color: #283346; font: 18px Georgia, serif; cursor: pointer; }
 #bird-edits summary:focus-visible { outline: 3px solid #e9755c; }
-.bird-edit-row { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin: 8px 0; }
+#bird-edit-guide { margin: 8px 0 12px; padding: 0 12px; border: 1px solid #283346; border-radius: 12px; background: #fff7e7; }
+#bird-edit-guide summary { display: flex; align-items: center; min-height: 44px; color: #283346; font: 18px Georgia, serif; cursor: pointer; }
+#bird-edit-guide summary:focus-visible { outline: 3px solid #e9755c; }
+#bird-edit-guide .bird-left-helper, #bird-edit-guide .bird-right-helper, #bird-edit-guide .bird-reverse-helper, #bird-edit-guide .bird-rest-helper, #bird-edit-guide .bird-slower-helper, #bird-edit-guide .bird-faster-helper, #bird-edit-guide .bird-borrow-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
+.bird-edit-row { display: flex; align-items: center; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 8px 0; }
 .bird-edit-row button { min-height: 44px; padding: 8px 14px; border: 2px solid #283346; background: #fff7e7; font: 16px system-ui, sans-serif; }
 .bird-left-helper, .bird-reverse-helper, .bird-rest-helper { margin: 8px 0; font: 14px/1.5 system-ui, sans-serif; }
 .bird-slower-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
