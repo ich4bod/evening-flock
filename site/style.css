@@ -35,6 +35,12 @@ button {
 button[aria-pressed="true"] { border-color: #283346; background: #e9755c; }
 button:focus-visible, a:focus-visible { outline: 3px solid #283346; outline-offset: 3px; }
 #bird-census { margin: 8px 0; min-height: 36px; color: #283346; text-align: center; font: 13px system-ui, sans-serif; }
+#quick-recipes { margin: 8px auto 12px; text-align: center; }
+#quick-recipes h2 { margin: 0 0 8px; color: #283346; font: 20px Georgia, serif; }
+#quick-recipes .recipe-row { justify-content: center; }
+#recipe-guide { max-width: 680px; margin: 8px auto; padding: 0 12px; border: 1px solid #283346; border-radius: 12px; background: #fff7e7; text-align: left; }
+#recipe-guide summary { display: flex; align-items: center; min-height: 44px; color: #283346; font: 18px Georgia, serif; cursor: pointer; }
+#recipe-guide summary:focus-visible { outline: 3px solid #e9755c; }
 .reach-control { margin: 0 auto 8px; text-align: center; }
 .reach-control h2 { margin: 0 0 8px; font: 20px/1.2 Georgia, serif; }
 .reach-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
@@ -59,7 +65,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid #283346; outline-offs
 #flight-guide p { margin: 8px 0; font: 14px/1.5 system-ui, sans-serif; }
 .rules { margin: 20px 0 0; padding: 16px; border-radius: 16px; background: #fff7e7; }
 .rules h2 { margin: 0 0 14px; font: 24px/1.2 Georgia, serif; }
-.recipe-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.recipe-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
 .recipe-row button { min-height: 44px; border-color: #283346; background: #fff7e7; }
 .recipe-row button[aria-pressed="true"] { background: #e9755c; }
 .recipe-note { margin: 8px 0 14px; font-size: 14px; line-height: 1.45; }

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5d6bb">
   <title>Evening Flock</title>
-  <link rel="stylesheet" href="/style.css?v=20">
+  <link rel="stylesheet" href="/style.css?v=21">
 </head>
 <body>
   <main class="page">
@@ -29,6 +29,20 @@
       <button id="selected-trail" type="button" aria-pressed="false">Selected trail</button>
     </div>
     <p id="bird-census" hidden aria-live="off"></p>
+    <section id="quick-recipes" aria-labelledby="quick-recipes-heading">
+      <h2 id="quick-recipes-heading">Try the flock rules</h2>
+      <div class="recipe-row" role="group" aria-label="Flight recipes">
+        <button id="recipe-coast" type="button" aria-pressed="false">Coast</button>
+        <button id="recipe-apart" type="button" aria-pressed="false">Keep apart</button>
+        <button id="recipe-align" type="button" aria-pressed="false">Match direction</button>
+        <button id="recipe-gather" type="button" aria-pressed="false">Gather</button>
+        <button id="recipe-flock" type="button" aria-pressed="true">Flock</button>
+      </div>
+      <details id="recipe-guide">
+        <summary>What each recipe keeps</summary>
+        <p class="recipe-note">Coast removes neighbor steering. Keep apart keeps only the close-range push. Match direction borrows nearby headings. Gather steers toward nearby birds. Flock combines all three rules.</p>
+      </details>
+    </section>
     <section class="reach-control" aria-labelledby="reach-heading">
       <h2 id="reach-heading">Neighbor reach</h2>
       <div class="reach-row" role="group" aria-label="Neighbor reach">
@@ -100,14 +114,6 @@
     </details>
     <section class="rules" aria-labelledby="rules-heading">
       <h2 id="rules-heading">What makes a flock?</h2>
-      <div class="recipe-row" role="group" aria-label="Flight recipes">
-        <button id="recipe-coast" type="button" aria-pressed="false">Coast</button>
-        <button id="recipe-apart" type="button" aria-pressed="false">Keep apart</button>
-        <button id="recipe-align" type="button" aria-pressed="false">Match direction</button>
-        <button id="recipe-gather" type="button" aria-pressed="false">Gather</button>
-        <button id="recipe-flock" type="button" aria-pressed="true">Flock</button>
-      </div>
-      <p class="recipe-note">Coast removes neighbor steering. Keep apart keeps only the close-range push. Match direction borrows nearby headings. Gather steers toward nearby birds. Flock combines all three rules.</p>
       <div class="rule-grid">
         <div class="rule-control">
           <label for="separation">Keep apart <output id="separation-value" for="separation">18</output></label>
