@@ -49,6 +49,7 @@ const recipes = {
   gather: { separation: 0, alignment: 0, cohesion: 0.004 },
   'apart-align': { separation: 18, alignment: 0.08, cohesion: 0 },
   'apart-gather': { separation: 18, alignment: 0, cohesion: 0.004 },
+  'align-gather': { separation: 0, alignment: 0.08, cohesion: 0.004 },
   flock: { separation: 18, alignment: 0.08, cohesion: 0.004 },
 };
 const recipeButtons = Object.fromEntries(Object.keys(recipes).map(name => [

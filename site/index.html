@@ -41,6 +41,7 @@
         <button id="recipe-gather" type="button" aria-pressed="false">Gather</button>
         <button id="recipe-apart-align" type="button" aria-pressed="false">Apart + direction</button>
         <button id="recipe-apart-gather" type="button" aria-pressed="false">Apart + gathering</button>
+        <button id="recipe-align-gather" type="button" aria-pressed="false">Direction + gathering</button>
         <button id="recipe-flock" type="button" aria-pressed="true">Flock</button>
       </div>
       <details id="recipe-guide">
@@ -121,6 +122,7 @@
       <p class="crowded-instruction">Crowded sky packs the birds close enough for the short-range push to matter.</p>
       <p class="apart-align-instruction">Apart + direction keeps the close-range push and heading matching, without gathering toward neighbors.</p>
       <p class="apart-gather-instruction">Apart + gathering keeps the close-range push and gathering, without matching neighbors’ headings.</p>
+      <p class="align-gather-instruction">Direction + gathering matches nearby headings and gathers toward neighbors, without the close-range push.</p>
     </details>
     <section class="rules" aria-labelledby="rules-heading">
       <h2 id="rules-heading">What makes a flock?</h2>
@@ -151,6 +153,6 @@
     <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
-  <script type="module" src="/app.mjs?v=38"></script>
+  <script type="module" src="/app.mjs?v=39"></script>
 </body>
 </html>
