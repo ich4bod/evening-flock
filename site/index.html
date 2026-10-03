@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5d6bb">
   <title>Evening Flock</title>
-  <link rel="stylesheet" href="/style.css?v=28">
+  <link rel="stylesheet" href="/style.css?v=29">
 </head>
 <body>
   <main class="page">
@@ -41,6 +41,7 @@
         <button id="bird-rest" type="button" disabled>Rest this bird</button>
         <button id="bird-slower" type="button" disabled>Slow this bird</button>
         <button id="bird-faster" type="button" disabled>Speed up this bird</button>
+        <button id="bird-borrow" type="button" disabled>Borrow nearest flight</button>
       </div>
       <p class="bird-left-helper">Pause, turn on Neighbors and choose a bird. Turn this bird left changes only its heading. One beat lets the neighbors respond; Step back undoes the edit.</p>
       <p class="bird-right-helper">Turn this bird right rotates only the selected heading a quarter turn. The other birds keep their headings until a beat.</p>
@@ -48,6 +49,7 @@
       <p class="bird-rest-helper">Rest this bird sets only the selected velocity to zero. Neighbor steering can start it again on the next beat.</p>
       <p class="bird-slower-helper">Slow this bird halves only its velocity. Its heading stays the same; One beat lets the neighbors respond.</p>
       <p class="bird-faster-helper">Speed up this bird doubles its velocity up to three world units per beat. Only this bird changes, and Step back restores it.</p>
+      <p class="bird-borrow-helper">Borrow nearest flight copies the closest bird’s velocity inside the neighbor ring. It changes only this bird, not the flock rule.</p>
     </details>
     <section id="quick-recipes" aria-labelledby="quick-recipes-heading">
       <h2 id="quick-recipes-heading">Try the flock rules</h2>
@@ -170,6 +172,6 @@
     <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
-  <script type="module" src="/app.mjs?v=45"></script>
+  <script type="module" src="/app.mjs?v=46"></script>
 </body>
 </html>
