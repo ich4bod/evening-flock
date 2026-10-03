@@ -36,6 +36,7 @@
         <button id="recipe-apart" type="button" aria-pressed="false">Keep apart</button>
         <button id="recipe-align" type="button" aria-pressed="false">Match direction</button>
         <button id="recipe-gather" type="button" aria-pressed="false">Gather</button>
+        <button id="recipe-apart-align" type="button" aria-pressed="false">Apart + direction</button>
         <button id="recipe-flock" type="button" aria-pressed="true">Flock</button>
       </div>
       <details id="recipe-guide">
@@ -111,6 +112,7 @@
       <p class="lanes-instruction">Passing lanes puts nearby streams in opposite directions.</p>
       <p class="still-instruction">Still cloud starts every bird at rest. Coast leaves it still; neighbor steering can set it moving.</p>
       <p class="crowded-instruction">Crowded sky packs the birds close enough for the short-range push to matter.</p>
+      <p class="apart-align-instruction">Apart + direction keeps the close-range push and heading matching, without gathering toward neighbors.</p>
     </details>
     <section class="rules" aria-labelledby="rules-heading">
       <h2 id="rules-heading">What makes a flock?</h2>
@@ -141,6 +143,6 @@
     <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
-  <script type="module" src="/app.mjs?v=33"></script>
+  <script type="module" src="/app.mjs?v=34"></script>
 </body>
 </html>
