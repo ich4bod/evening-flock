@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5d6bb">
   <title>Evening Flock</title>
-  <link rel="stylesheet" href="/style.css?v=23">
+  <link rel="stylesheet" href="/style.css?v=24">
 </head>
 <body>
   <main class="page">
@@ -36,8 +36,10 @@
       <summary>Change one bird</summary>
       <div class="bird-edit-row">
         <button id="bird-left" type="button" disabled>Turn this bird left</button>
+        <button id="bird-right" type="button" disabled>Turn this bird right</button>
       </div>
       <p class="bird-left-helper">Pause, turn on Neighbors and choose a bird. Turn this bird left changes only its heading. One beat lets the neighbors respond; Step back undoes the edit.</p>
+      <p class="bird-right-helper">Turn this bird right rotates only the selected heading a quarter turn. The other birds keep their headings until a beat.</p>
     </details>
     <section id="quick-recipes" aria-labelledby="quick-recipes-heading">
       <h2 id="quick-recipes-heading">Try the flock rules</h2>
@@ -160,6 +162,6 @@
     <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
-  <script type="module" src="/app.mjs?v=40"></script>
+  <script type="module" src="/app.mjs?v=41"></script>
 </body>
 </html>
