@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5d6bb">
   <title>Evening Flock</title>
-  <link rel="stylesheet" href="/style.css?v=33">
+  <link rel="stylesheet" href="/style.css?v=34">
 </head>
 <body>
   <main class="page">
@@ -45,6 +45,7 @@
         <button id="bird-nearest-toward" type="button" disabled>Face nearest bird</button>
         <button id="bird-nearest-away" type="button" disabled>Face away from nearest</button>
         <button id="bird-nearest-speed" type="button" disabled>Match nearest speed</button>
+        <button id="bird-position-closer" type="button" disabled>Move closer to nearest</button>
       </div>
     </details>
     <details id="bird-edit-guide">
@@ -59,6 +60,7 @@
       <p class="bird-nearest-toward-helper">Face nearest bird aims this bird at its closest neighbor inside the ring. Its speed stays the same; positions do not move until One beat.</p>
       <p class="bird-nearest-away-helper">Face away from nearest aims directly away from the closest neighbor inside the ring. Its speed stays the same, and Step back restores the sky.</p>
       <p class="bird-nearest-speed-helper">Match nearest speed copies the closest neighbor’s speed, up to three world units per beat, while keeping this bird’s heading. A resting bird has no heading to keep.</p>
+      <p class="bird-position-closer-helper">Move closer to nearest shifts this bird toward its closest neighbor by twelve world units, or half the gap if that is smaller. Headings stay put. Step back restores the positions.</p>
     </details>
     <section id="quick-recipes" aria-labelledby="quick-recipes-heading">
       <h2 id="quick-recipes-heading">Try the flock rules</h2>
@@ -181,6 +183,6 @@
     <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
-  <script type="module" src="/app.mjs?v=49"></script>
+  <script type="module" src="/app.mjs?v=50"></script>
 </body>
 </html>
