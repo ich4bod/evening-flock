@@ -33,7 +33,7 @@ button {
   cursor: pointer;
 }
 button[aria-pressed="true"] { border-color: #283346; background: #e9755c; }
-#bird-left:disabled, #bird-right:disabled, #bird-reverse:disabled, #bird-rest:disabled, #bird-slower:disabled, #bird-faster:disabled, #bird-borrow:disabled, #bird-nearest-toward:disabled { opacity: 0.45; cursor: not-allowed; }
+#bird-left:disabled, #bird-right:disabled, #bird-reverse:disabled, #bird-rest:disabled, #bird-slower:disabled, #bird-faster:disabled, #bird-borrow:disabled, #bird-nearest-toward:disabled, #bird-nearest-away:disabled { opacity: 0.45; cursor: not-allowed; }
 button:focus-visible, a:focus-visible { outline: 3px solid #283346; outline-offset: 3px; }
 #bird-census { margin: 8px 0; min-height: 36px; color: #283346; text-align: center; font: 13px system-ui, sans-serif; }
 #bird-edits { margin: 12px 0; padding: 0 12px; border: 1px solid #283346; border-radius: 12px; background: #fff7e7; }
@@ -42,7 +42,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid #283346; outline-offs
 #bird-edit-guide { margin: 8px 0 12px; padding: 0 12px; border: 1px solid #283346; border-radius: 12px; background: #fff7e7; }
 #bird-edit-guide summary { display: flex; align-items: center; min-height: 44px; color: #283346; font: 18px Georgia, serif; cursor: pointer; }
 #bird-edit-guide summary:focus-visible { outline: 3px solid #e9755c; }
-#bird-edit-guide .bird-left-helper, #bird-edit-guide .bird-right-helper, #bird-edit-guide .bird-reverse-helper, #bird-edit-guide .bird-rest-helper, #bird-edit-guide .bird-slower-helper, #bird-edit-guide .bird-faster-helper, #bird-edit-guide .bird-borrow-helper, #bird-edit-guide .bird-nearest-toward-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
+#bird-edit-guide .bird-left-helper, #bird-edit-guide .bird-right-helper, #bird-edit-guide .bird-reverse-helper, #bird-edit-guide .bird-rest-helper, #bird-edit-guide .bird-slower-helper, #bird-edit-guide .bird-faster-helper, #bird-edit-guide .bird-borrow-helper, #bird-edit-guide .bird-nearest-toward-helper, #bird-edit-guide .bird-nearest-away-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
 .bird-edit-row { display: flex; align-items: center; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 8px 0; }
 .bird-edit-row button { min-height: 44px; padding: 8px 14px; border: 2px solid #283346; background: #fff7e7; font: 16px system-ui, sans-serif; }
 .bird-left-helper, .bird-reverse-helper, .bird-rest-helper { margin: 8px 0; font: 14px/1.5 system-ui, sans-serif; }
