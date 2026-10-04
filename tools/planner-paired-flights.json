@@ -1,0 +1,6 @@
+[
+{"id":"blend","label":"Meet nearest flight halfway","helper":"Meet nearest flight halfway averages this bird’s velocity with its nearest neighbor’s. Only this bird changes; positions stay put. Opposite flights can cancel into rest. Step back restores the flight.","output":"one bird blends its flight with its nearest neighbor without moving"},
+{"id":"unison","label":"Give the pair one flight","helper":"Give the pair one flight gives both birds their average velocity. Their positions stay put, and equal opposite flights become rest. This is an edit, not a new flock rule. Step back restores both flights.","output":"a neighboring pair shares its average flight reversibly"},
+{"id":"counter","label":"Counter nearest flight","helper":"Counter nearest flight gives this bird the negative of its nearest neighbor’s velocity. The neighbor keeps flying as before. A resting neighbor gives this bird rest too. Step back restores the flight.","output":"one bird counters its nearest neighbors exact flight"},
+{"id":"rest-pair","label":"Rest this pair","helper":"Rest this pair sets this bird and its nearest neighbor to zero velocity without moving either. One beat can let the flock rules steer them again. Step back restores both flights.","output":"two neighboring birds rest in place before a reversible beat"}
+]
