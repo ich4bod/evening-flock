@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5d6bb">
   <title>Evening Flock</title>
-  <link rel="stylesheet" href="/style.css?v=35">
+  <link rel="stylesheet" href="/style.css?v=36">
 </head>
 <body>
   <main class="page">
@@ -47,6 +47,7 @@
         <button id="bird-nearest-speed" type="button" disabled>Match nearest speed</button>
         <button id="bird-position-closer" type="button" disabled>Move closer to nearest</button>
         <button id="bird-position-farther" type="button" disabled>Move farther from nearest</button>
+        <button id="bird-position-halfway" type="button" disabled>Meet nearest halfway</button>
       </div>
     </details>
     <details id="bird-edit-guide">
@@ -63,6 +64,7 @@
       <p class="bird-nearest-speed-helper">Match nearest speed copies the closest neighbor’s speed, up to three world units per beat, while keeping this bird’s heading. A resting bird has no heading to keep.</p>
       <p class="bird-position-closer-helper">Move closer to nearest shifts this bird toward its closest neighbor by twelve world units, or half the gap if that is smaller. Headings stay put. Step back restores the positions.</p>
       <p class="bird-position-farther-helper">Move farther from nearest shifts this bird twelve world units away from its closest neighbor. Positions wrap across the sky edge; headings stay put.</p>
+      <p class="bird-position-halfway-helper">Meet nearest halfway moves only this bird to the midpoint of the shortest wrapped gap. The neighbor stays put, and both headings stay the same.</p>
     </details>
     <section id="quick-recipes" aria-labelledby="quick-recipes-heading">
       <h2 id="quick-recipes-heading">Try the flock rules</h2>
@@ -185,6 +187,6 @@
     <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
-  <script type="module" src="/app.mjs?v=51"></script>
+  <script type="module" src="/app.mjs?v=52"></script>
 </body>
 </html>
