@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5d6bb">
   <title>Evening Flock</title>
-  <link rel="stylesheet" href="/style.css?v=41">
+  <link rel="stylesheet" href="/style.css?v=42">
 </head>
 <body>
   <main class="page">
@@ -52,6 +52,7 @@
         <button id="bird-position-orbit-left" type="button" disabled>Circle nearest left</button>
         <button id="bird-position-orbit-right" type="button" disabled>Circle nearest right</button>
         <button id="bird-position-flight-swap" type="button" disabled>Trade flights with nearest</button>
+        <button id="bird-flight-blend" type="button" disabled>Meet nearest flight halfway</button>
       </div>
     </details>
     <details id="bird-edit-guide">
@@ -73,6 +74,7 @@
       <p class="bird-position-orbit-left-helper">Circle nearest left moves this bird a quarter turn around its closest neighbor across the wrapped sky. The gap stays the same; headings do not turn. Step back restores the position.</p>
       <p class="bird-position-orbit-right-helper">Circle nearest right moves this bird a quarter turn around its closest neighbor across the wrapped sky. The neighbor stays put; headings do not turn. Step back restores the position.</p>
       <p class="bird-position-flight-swap-helper">Trade flights with nearest swaps these two birds’ velocities, not their positions. The selected bird stays selected; Step back restores both flights.</p>
+      <p class="bird-flight-blend-helper">Meet nearest flight halfway averages this bird’s velocity with its nearest neighbor’s. Only this bird changes; positions stay put. Opposite flights can cancel into rest. Step back restores the flight.</p>
     </details>
     <section id="quick-recipes" aria-labelledby="quick-recipes-heading">
       <h2 id="quick-recipes-heading">Try the flock rules</h2>
@@ -195,6 +197,6 @@
     <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
-  <script type="module" src="/app.mjs?v=56"></script>
+  <script type="module" src="/app.mjs?v=57"></script>
 </body>
 </html>
