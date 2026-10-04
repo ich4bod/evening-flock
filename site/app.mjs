@@ -16,6 +16,7 @@ const birdNearestSpeedButton = document.querySelector('#bird-nearest-speed');
 const birdPositionCloserButton = document.querySelector('#bird-position-closer');
 const birdPositionFartherButton = document.querySelector('#bird-position-farther');
 const birdPositionHalfwayButton = document.querySelector('#bird-position-halfway');
+const birdPositionSwapButton = document.querySelector('#bird-position-swap');
 const pauseButton = document.querySelector('#pause');
 const stepButton = document.querySelector('#step');
 const paceButtons = {
@@ -161,11 +162,19 @@ function nearestBirdCandidate(flock, selectedIndex, radius) {
 }
 
 function nearestPositionCandidate(kind) {
-  if (!['closer', 'farther', 'halfway'].includes(kind) || lensSelection === null) return null;
+  if (!['closer', 'farther', 'halfway', 'swap'].includes(kind) || lensSelection === null) return null;
   const selected = birds[lensSelection];
   if (!selected) return null;
   const nearest = nearestBirdCandidate(birds, lensSelection, neighborRadius);
   if (!nearest) return null;
+  if (kind === 'swap') {
+    const other = birds[nearest.index];
+    return birds.map((bird, index) => index === lensSelection
+      ? { ...bird, x: other.x, y: other.y }
+      : index === nearest.index
+        ? { ...bird, x: selected.x, y: selected.y }
+        : bird);
+  }
   const distance = Math.sqrt(nearest.distanceSquared);
   const factor = kind === 'halfway' ? 0.5
     : kind === 'farther' ? -12 / distance : Math.min(12, distance / 2) / distance;
@@ -237,10 +246,13 @@ function updateBirdEditEligibility() {
   const halfwayCandidate = baseEligible ? nearestPositionCandidate('halfway') : null;
   birdPositionHalfwayButton.disabled = !baseEligible || !halfwayCandidate
     || (halfwayCandidate[lensSelection].x === selected.x && halfwayCandidate[lensSelection].y === selected.y);
+  const swapCandidate = baseEligible ? nearestPositionCandidate('swap') : null;
+  birdPositionSwapButton.disabled = !baseEligible || !swapCandidate
+    || (swapCandidate[lensSelection].x === selected.x && swapCandidate[lensSelection].y === selected.y);
 }
 
 function moveSelectedBird(kind) {
-  if (!['closer', 'farther', 'halfway'].includes(kind) || !manuallyPaused || document.hidden || !lensEnabled
+  if (!['closer', 'farther', 'halfway', 'swap'].includes(kind) || !manuallyPaused || document.hidden || !lensEnabled
     || lensSelection === null || !birds[lensSelection]) return;
   const selected = birds[lensSelection];
   const candidate = nearestPositionCandidate(kind);
@@ -721,6 +733,7 @@ birdNearestSpeedButton.addEventListener('click', () => editSelectedBird('nearest
 birdPositionCloserButton.addEventListener('click', () => moveSelectedBird('closer'));
 birdPositionFartherButton.addEventListener('click', () => moveSelectedBird('farther'));
 birdPositionHalfwayButton.addEventListener('click', () => moveSelectedBird('halfway'));
+birdPositionSwapButton.addEventListener('click', () => moveSelectedBird('swap'));
 trailsButton.addEventListener('click', () => {
   trails = trailsButton.getAttribute('aria-pressed') !== 'true';
   clearBeatHistory();
