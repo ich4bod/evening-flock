@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5d6bb">
   <title>Evening Flock</title>
-  <link rel="stylesheet" href="/style.css?v=48">
+  <link rel="stylesheet" href="/style.css?v=49">
 </head>
 <body>
   <main class="page">
@@ -59,6 +59,7 @@
         <button id="bird-flight-pair-left" type="button" disabled>Turn this pair left</button>
         <button id="bird-flight-pair-right" type="button" disabled>Turn this pair right</button>
         <button id="bird-flight-pair-reverse" type="button" disabled>Turn this pair around</button>
+        <button id="bird-flight-pair-half" type="button" disabled>Slow this pair by half</button>
       </div>
     </details>
     <details id="bird-edit-guide">
@@ -87,6 +88,7 @@
       <p class="bird-flight-pair-left-helper">Turn this pair left rotates both velocities a quarter turn left. Neither bird moves until a beat. Step back restores both flights.</p>
       <p class="bird-flight-pair-right-helper">Turn this pair right rotates both velocities a quarter turn right. Neither bird moves until a beat. Step back restores both flights.</p>
       <p class="bird-flight-pair-reverse-helper">Turn this pair around reverses both velocities. Their speeds and positions stay the same. Step back restores both flights.</p>
+      <p class="bird-flight-pair-half-helper">Slow this pair by half halves both velocities. It leaves the rest of the sky at its current pace. One beat shows the local difference; Step back restores both flights.</p>
     </details>
     <section id="quick-recipes" aria-labelledby="quick-recipes-heading">
       <h2 id="quick-recipes-heading">Try the flock rules</h2>
@@ -209,6 +211,6 @@
     <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
-  <script type="module" src="/app.mjs?v=63"></script>
+  <script type="module" src="/app.mjs?v=64"></script>
 </body>
 </html>
