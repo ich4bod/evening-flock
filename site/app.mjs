@@ -24,6 +24,7 @@ const birdFlightBlendButton = document.querySelector('#bird-flight-blend');
 const birdFlightUnisonButton = document.querySelector('#bird-flight-unison');
 const birdFlightCounterButton = document.querySelector('#bird-flight-counter');
 const birdFlightRestPairButton = document.querySelector('#bird-flight-rest-pair');
+const birdFlightPairLeftButton = document.querySelector('#bird-flight-pair-left');
 const pauseButton = document.querySelector('#pause');
 const stepButton = document.querySelector('#step');
 const paceButtons = {
@@ -215,11 +216,20 @@ function swapNearestFlightsCandidate(flock, selectedIndex, radius) {
 }
 
 function pairedFlightCandidate(kind, flock, selectedIndex, radius) {
-  if (!['blend', 'unison', 'counter', 'rest-pair'].includes(kind) || selectedIndex === null || !flock[selectedIndex]) return null;
+  if (!['blend', 'unison', 'counter', 'rest-pair', 'pair-left'].includes(kind) || selectedIndex === null || !flock[selectedIndex]) return null;
   const nearest = nearestBirdCandidate(flock, selectedIndex, radius);
   if (!nearest) return null;
   const selected = flock[selectedIndex];
   const neighbor = flock[nearest.index];
+  if (kind === 'pair-left') {
+    if (selected.vy === selected.vx && -selected.vx === selected.vy
+      && neighbor.vy === neighbor.vx && -neighbor.vx === neighbor.vy) return null;
+    return flock.map((bird, index) => index === selectedIndex
+      ? { ...bird, vx: selected.vy, vy: -selected.vx }
+      : index === nearest.index
+        ? { ...bird, vx: neighbor.vy, vy: -neighbor.vx }
+        : bird);
+  }
   if (kind === 'rest-pair') {
     if (selected.vx === 0 && selected.vy === 0 && neighbor.vx === 0 && neighbor.vy === 0) return null;
     return flock.map((bird, index) => index === selectedIndex || index === nearest.index
@@ -326,10 +336,12 @@ function updateBirdEditEligibility() {
   birdFlightCounterButton.disabled = !baseEligible || !counterCandidate;
   const restPairCandidate = baseEligible ? pairedFlightCandidate('rest-pair', birds, lensSelection, neighborRadius) : null;
   birdFlightRestPairButton.disabled = !baseEligible || !restPairCandidate;
+  const pairLeftCandidate = baseEligible ? pairedFlightCandidate('pair-left', birds, lensSelection, neighborRadius) : null;
+  birdFlightPairLeftButton.disabled = !baseEligible || !pairLeftCandidate;
 }
 
 function editPairedFlight(kind) {
-  if (!['blend', 'unison', 'counter', 'rest-pair'].includes(kind) || !manuallyPaused || document.hidden || !lensEnabled
+  if (!['blend', 'unison', 'counter', 'rest-pair', 'pair-left'].includes(kind) || !manuallyPaused || document.hidden || !lensEnabled
     || lensSelection === null || !birds[lensSelection]) return;
   const candidate = pairedFlightCandidate(kind, birds, lensSelection, neighborRadius);
   if (!candidate) return;
@@ -841,6 +853,7 @@ birdFlightBlendButton.addEventListener('click', () => editPairedFlight('blend'))
 birdFlightUnisonButton.addEventListener('click', () => editPairedFlight('unison'));
 birdFlightCounterButton.addEventListener('click', () => editPairedFlight('counter'));
 birdFlightRestPairButton.addEventListener('click', () => editPairedFlight('rest-pair'));
+birdFlightPairLeftButton.addEventListener('click', () => editPairedFlight('pair-left'));
 trailsButton.addEventListener('click', () => {
   trails = trailsButton.getAttribute('aria-pressed') !== 'true';
   clearBeatHistory();
