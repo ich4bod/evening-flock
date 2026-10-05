@@ -35,6 +35,7 @@ const birdPlaceRightButton = document.querySelector('#bird-place-right');
 const birdPlaceAroundButton = document.querySelector('#bird-place-around');
 const birdPlaceNearButton = document.querySelector('#bird-place-near');
 const birdPlaceApartButton = document.querySelector('#bird-place-apart');
+const birdPlaceReflectButton = document.querySelector('#bird-place-reflect');
 const pauseButton = document.querySelector('#pause');
 const stepButton = document.querySelector('#step');
 const paceButtons = {
@@ -226,15 +227,15 @@ function swapNearestFlightsCandidate(flock, selectedIndex, radius) {
 }
 
 function pairedPlaceCandidate(kind, flock, selectedIndex, radius) {
-  if (!['place-left', 'place-right', 'place-around', 'place-near', 'place-apart'].includes(kind) || selectedIndex === null || !flock[selectedIndex]) return null;
+  if (!['place-left', 'place-right', 'place-around', 'place-near', 'place-apart', 'place-reflect'].includes(kind) || selectedIndex === null || !flock[selectedIndex]) return null;
   const nearest = nearestBirdCandidate(flock, selectedIndex, radius);
   if (!nearest) return null;
   const selected = flock[selectedIndex];
   const neighbor = flock[nearest.index];
   const mx = selected.x + nearest.dx / 2;
   const my = selected.y + nearest.dy / 2;
-  const tx = kind === 'place-apart' ? nearest.dx * 2 : kind === 'place-near' ? nearest.dx / 2 : kind === 'place-around' ? -nearest.dx : kind === 'place-right' ? -nearest.dy : nearest.dy;
-  const ty = kind === 'place-apart' ? nearest.dy * 2 : kind === 'place-near' ? nearest.dy / 2 : kind === 'place-around' ? -nearest.dy : kind === 'place-right' ? nearest.dx : -nearest.dx;
+  const tx = kind === 'place-apart' ? nearest.dx * 2 : kind === 'place-near' ? nearest.dx / 2 : kind === 'place-around' ? -nearest.dx : kind === 'place-right' ? -nearest.dy : kind === 'place-reflect' ? -nearest.dx : nearest.dy;
+  const ty = kind === 'place-apart' ? nearest.dy * 2 : kind === 'place-near' ? nearest.dy / 2 : kind === 'place-around' ? -nearest.dy : kind === 'place-right' ? nearest.dx : kind === 'place-reflect' ? nearest.dy : -nearest.dx;
   const wrap = (value, modulus) => ((value % modulus) + modulus) % modulus;
   const x = wrap(mx - tx / 2, worldWidth);
   const y = wrap(my - ty / 2, worldHeight);
@@ -430,10 +431,12 @@ function updateBirdEditEligibility() {
   birdPlaceNearButton.disabled = !baseEligible || !placeNearCandidate;
   const placeApartCandidate = baseEligible ? pairedPlaceCandidate('place-apart', birds, lensSelection, neighborRadius) : null;
   birdPlaceApartButton.disabled = !baseEligible || !placeApartCandidate;
+  const placeReflectCandidate = baseEligible ? pairedPlaceCandidate('place-reflect', birds, lensSelection, neighborRadius) : null;
+  birdPlaceReflectButton.disabled = !baseEligible || !placeReflectCandidate;
 }
 
 function editPairedPlace(kind) {
-  if (!['place-left', 'place-right', 'place-around', 'place-near', 'place-apart'].includes(kind) || !manuallyPaused || document.hidden || !lensEnabled
+  if (!['place-left', 'place-right', 'place-around', 'place-near', 'place-apart', 'place-reflect'].includes(kind) || !manuallyPaused || document.hidden || !lensEnabled
     || lensSelection === null || !birds[lensSelection]) return;
   const candidate = pairedPlaceCandidate(kind, birds, lensSelection, neighborRadius);
   if (!candidate) return;
@@ -968,6 +971,7 @@ birdPlaceRightButton.addEventListener('click', () => editPairedPlace('place-righ
 birdPlaceAroundButton.addEventListener('click', () => editPairedPlace('place-around'));
 birdPlaceNearButton.addEventListener('click', () => editPairedPlace('place-near'));
 birdPlaceApartButton.addEventListener('click', () => editPairedPlace('place-apart'));
+birdPlaceReflectButton.addEventListener('click', () => editPairedPlace('place-reflect'));
 trailsButton.addEventListener('click', () => {
   trails = trailsButton.getAttribute('aria-pressed') !== 'true';
   clearBeatHistory();
