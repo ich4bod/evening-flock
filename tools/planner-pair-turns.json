@@ -1,0 +1,44 @@
+[
+  {
+    "id": "pair-left",
+    "label": "Turn this pair left",
+    "helper": "Turn this pair left rotates both velocities a quarter turn left. Neither bird moves until a beat. Step back restores both flights.",
+    "formula": "n[i].vx=v.vy;n[i].vy=-v.vx;n[j].vx=w.vy;n[j].vy=-w.vx;",
+    "output": "pair-left edits only the neighboring flights before a reversible beat"
+  },
+  {
+    "id": "pair-right",
+    "label": "Turn this pair right",
+    "helper": "Turn this pair right rotates both velocities a quarter turn right. Neither bird moves until a beat. Step back restores both flights.",
+    "formula": "n[i].vx=-v.vy;n[i].vy=v.vx;n[j].vx=-w.vy;n[j].vy=w.vx;",
+    "output": "pair-right edits only the neighboring flights before a reversible beat"
+  },
+  {
+    "id": "pair-reverse",
+    "label": "Turn this pair around",
+    "helper": "Turn this pair around reverses both velocities. Their speeds and positions stay the same. Step back restores both flights.",
+    "formula": "n[i].vx=-v.vx;n[i].vy=-v.vy;n[j].vx=-w.vx;n[j].vy=-w.vy;",
+    "output": "pair-reverse edits only the neighboring flights before a reversible beat"
+  },
+  {
+    "id": "pair-half",
+    "label": "Slow this pair by half",
+    "helper": "Slow this pair by half halves both velocities. It leaves the rest of the sky at its current pace. One beat shows the local difference; Step back restores both flights.",
+    "formula": "n[i].vx=v.vx/2;n[i].vy=v.vy/2;n[j].vx=w.vx/2;n[j].vy=w.vy/2;",
+    "output": "pair-half edits only the neighboring flights before a reversible beat"
+  },
+  {
+    "id": "rest-nearest",
+    "label": "Rest only the nearest",
+    "helper": "Rest only the nearest sets the nearest neighbor\u2019s velocity to zero. This bird keeps its flight, and neither position changes. Step back restores the neighbor\u2019s flight.",
+    "formula": "n[j].vx=0;n[j].vy=0;",
+    "output": "rest-nearest edits only the neighboring flights before a reversible beat"
+  },
+  {
+    "id": "teach-nearest",
+    "label": "Give nearest this flight",
+    "helper": "Give nearest this flight copies this bird\u2019s velocity to its nearest neighbor. This bird keeps its own flight. The edit does not add a new flock rule; Step back restores the neighbor\u2019s flight.",
+    "formula": "n[j].vx=v.vx;n[j].vy=v.vy;",
+    "output": "teach-nearest edits only the neighboring flights before a reversible beat"
+  }
+]
