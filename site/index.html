@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5d6bb">
   <title>Evening Flock</title>
-  <link rel="stylesheet" href="/style.css?v=55">
+  <link rel="stylesheet" href="/style.css?v=56">
 </head>
 <body>
   <main class="page">
@@ -66,6 +66,7 @@
         <button id="bird-place-right" type="button" disabled>Turn the pair’s places right</button>
         <button id="bird-place-around" type="button" disabled>Turn the pair’s places around</button>
         <button id="bird-place-near" type="button" disabled>Bring both places closer</button>
+        <button id="bird-place-apart" type="button" disabled>Spread both places apart</button>
       </div>
     </details>
     <details id="bird-edit-guide">
@@ -101,6 +102,7 @@
       <p class="bird-place-right-helper">Turn the pair’s places right rotates both positions a quarter turn around their shared midpoint along the shortest wrap-around gap. Their flight arrows do not turn. Step back restores the places.</p>
       <p class="bird-place-around-helper">Turn the pair’s places around exchanges the two positions by a half turn about their wrap-aware midpoint. Each bird keeps its own flight. Step back restores the places.</p>
       <p class="bird-place-near-helper">Bring both places closer halves the gap, moving both birds equally toward their shared midpoint. It does not slow either flight. One beat lets the closer neighbors react; Step back restores the places.</p>
+      <p class="bird-place-apart-helper">Spread both places apart doubles the original shortest gap about its midpoint, wrapping each position back into the sky. It may put the birds outside each other’s neighbor rings. Flights stay unchanged; Step back restores the places.</p>
     </details>
     <section id="quick-recipes" aria-labelledby="quick-recipes-heading">
       <h2 id="quick-recipes-heading">Try the flock rules</h2>
@@ -223,6 +225,6 @@
     <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
-  <script type="module" src="/app.mjs?v=70"></script>
+  <script type="module" src="/app.mjs?v=71"></script>
 </body>
 </html>
