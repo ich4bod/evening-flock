@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5d6bb">
   <title>Evening Flock</title>
-  <link rel="stylesheet" href="/style.css?v=46">
+  <link rel="stylesheet" href="/style.css?v=47">
 </head>
 <body>
   <main class="page">
@@ -57,6 +57,7 @@
         <button id="bird-flight-counter" type="button" disabled>Counter nearest flight</button>
         <button id="bird-flight-rest-pair" type="button" disabled>Rest this pair</button>
         <button id="bird-flight-pair-left" type="button" disabled>Turn this pair left</button>
+        <button id="bird-flight-pair-right" type="button" disabled>Turn this pair right</button>
       </div>
     </details>
     <details id="bird-edit-guide">
@@ -83,6 +84,7 @@
       <p class="bird-flight-counter-helper">Counter nearest flight gives this bird the negative of its nearest neighbor’s velocity. The neighbor keeps flying as before. A resting neighbor gives this bird rest too. Step back restores the flight.</p>
       <p class="bird-flight-rest-pair-helper">Rest this pair sets this bird and its nearest neighbor to zero velocity without moving either. One beat can let the flock rules steer them again. Step back restores both flights.</p>
       <p class="bird-flight-pair-left-helper">Turn this pair left rotates both velocities a quarter turn left. Neither bird moves until a beat. Step back restores both flights.</p>
+      <p class="bird-flight-pair-right-helper">Turn this pair right rotates both velocities a quarter turn right. Neither bird moves until a beat. Step back restores both flights.</p>
     </details>
     <section id="quick-recipes" aria-labelledby="quick-recipes-heading">
       <h2 id="quick-recipes-heading">Try the flock rules</h2>
@@ -205,6 +207,6 @@
     <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
-  <script type="module" src="/app.mjs?v=61"></script>
+  <script type="module" src="/app.mjs?v=62"></script>
 </body>
 </html>
