@@ -47,6 +47,9 @@ button:focus-visible, a:focus-visible { outline: 3px solid #283346; outline-offs
 #bird-flight-rest-nearest:disabled { opacity: 0.45; cursor: default; }
 #bird-flight-rest-nearest:focus-visible { outline: 3px solid #283346; outline-offset: 3px; }
 #bird-edit-guide .bird-flight-rest-nearest-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
+#bird-flight-teach-nearest:disabled { opacity: 0.45; cursor: default; }
+#bird-flight-teach-nearest:focus-visible { outline: 3px solid #283346; outline-offset: 3px; }
+#bird-edit-guide .bird-flight-teach-nearest-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
 .bird-edit-row { display: flex; align-items: center; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 8px 0; }
 .bird-edit-row button { min-height: 44px; padding: 8px 14px; border: 2px solid #283346; background: #fff7e7; font: 16px system-ui, sans-serif; }
 #bird-flight-blend:focus-visible, #bird-flight-unison:focus-visible, #bird-flight-counter:focus-visible, #bird-flight-rest-pair:focus-visible, #bird-flight-pair-left:focus-visible, #bird-flight-pair-right:focus-visible, #bird-flight-pair-reverse:focus-visible, #bird-flight-pair-half:focus-visible { outline: 3px solid #283346; outline-offset: 3px; }
