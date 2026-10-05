@@ -38,7 +38,10 @@ button[aria-pressed="true"] { border-color: #283346; background: #e9755c; }
 button:focus-visible, a:focus-visible { outline: 3px solid #283346; outline-offset: 3px; }
 #bird-place-level:disabled { opacity: 0.45; cursor: default; }
 #bird-place-level:focus-visible { outline: 3px solid #283346; outline-offset: 3px; }
+#bird-place-upright:disabled { opacity: 0.45; cursor: default; }
+#bird-place-upright:focus-visible { outline: 3px solid #283346; outline-offset: 3px; }
 #bird-edit-guide .bird-place-level-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
+#bird-edit-guide .bird-place-upright-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
 #bird-census { margin: 8px 0; min-height: 36px; color: #283346; text-align: center; font: 13px system-ui, sans-serif; }
 #bird-edits { margin: 12px 0; padding: 0 12px; border: 1px solid #283346; border-radius: 12px; background: #fff7e7; }
 #bird-edits summary { display: flex; align-items: center; min-height: 44px; color: #283346; font: 18px Georgia, serif; cursor: pointer; }
