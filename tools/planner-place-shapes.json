@@ -1,0 +1,51 @@
+[
+  {
+    "id": "place-other-diagonal",
+    "label": "Use the other diagonal",
+    "helper": "Keep the shortest-gap midpoint and distance; put the nearest bird down and left on a 45-degree diagonal. Both flights stay unchanged.",
+    "formula": "[-Math.hypot(dx,dy)/Math.sqrt(2),Math.hypot(dx,dy)/Math.sqrt(2)]",
+    "output": "place-other-diagonal changes two places without changing their flights"
+  },
+  {
+    "id": "place-level",
+    "label": "Put the pair side by side",
+    "helper": "Keep the shortest-gap midpoint and distance; put the nearest bird to the right. Both flights stay unchanged.",
+    "formula": "[Math.hypot(dx,dy),0]",
+    "output": "place-level changes two places without changing their flights"
+  },
+  {
+    "id": "place-upright",
+    "label": "Stack the pair’s places",
+    "helper": "Keep the shortest-gap midpoint and distance; put the nearest bird below. Both flights stay unchanged.",
+    "formula": "[0,Math.hypot(dx,dy)]",
+    "output": "place-upright changes two places without changing their flights"
+  },
+  {
+    "id": "place-flatten",
+    "label": "Halve the pair’s height gap",
+    "helper": "Halve only the shortest vertical gap around the shared midpoint. Keep the horizontal gap and both flights.",
+    "formula": "[dx,dy/2]",
+    "output": "place-flatten changes two places without changing their flights"
+  },
+  {
+    "id": "place-narrow",
+    "label": "Halve the pair’s width gap",
+    "helper": "Halve only the shortest horizontal gap around the shared midpoint. Keep the vertical gap and both flights.",
+    "formula": "[dx/2,dy]",
+    "output": "place-narrow changes two places without changing their flights"
+  },
+  {
+    "id": "place-diagonal",
+    "label": "Put the pair on a diagonal",
+    "helper": "Keep the shortest-gap midpoint and distance; put the nearest bird down and right on a 45-degree diagonal. Both flights stay unchanged.",
+    "formula": "[Math.hypot(dx,dy)/Math.sqrt(2),Math.hypot(dx,dy)/Math.sqrt(2)]",
+    "output": "place-diagonal changes two places without changing their flights"
+  },
+  {
+    "id": "place-flip-height",
+    "label": "Flip the pair top to bottom",
+    "helper": "Reverse only the shortest vertical gap around the shared midpoint. Keep the horizontal gap and both flights.",
+    "formula": "[dx,-dy]",
+    "output": "place-flip-height changes two places without changing their flights"
+  }
+]
