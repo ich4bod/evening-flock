@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5d6bb">
   <title>Evening Flock</title>
-  <link rel="stylesheet" href="/style.css?v=60">
+  <link rel="stylesheet" href="/style.css?v=61">
 </head>
 <body>
   <main class="page">
@@ -70,6 +70,7 @@
         <button id="bird-place-reflect" type="button" disabled>Reflect the pair’s places</button>
         <button id="bird-place-level" type="button" disabled>Put the pair side by side</button>
         <button id="bird-place-upright" type="button" disabled>Stack the pair’s places</button>
+        <button id="bird-place-flatten" type="button" disabled>Halve the pair’s height gap</button>
       </div>
     </details>
     <details id="bird-edit-guide">
@@ -109,6 +110,7 @@
       <p class="bird-place-reflect-helper">Reflect the pair’s places flips their left-to-right separation about the vertical line through their shared midpoint. Their heights and flight arrows stay unchanged. Step back restores both places.</p>
       <p class="bird-place-level-helper">Keep the shortest-gap midpoint and distance; put the nearest bird to the right. Both flights stay unchanged.</p>
       <p class="bird-place-upright-helper">Keep the shortest-gap midpoint and distance; put the nearest bird below. Both flights stay unchanged.</p>
+      <p class="bird-place-flatten-helper">Halve only the shortest vertical gap around the shared midpoint. Keep the horizontal gap and both flights.</p>
     </details>
     <section id="quick-recipes" aria-labelledby="quick-recipes-heading">
       <h2 id="quick-recipes-heading">Try the flock rules</h2>
@@ -231,6 +233,6 @@
     <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
-  <script type="module" src="/app.mjs?v=75"></script>
+  <script type="module" src="/app.mjs?v=76"></script>
 </body>
 </html>
