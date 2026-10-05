@@ -90,6 +90,9 @@ button:focus-visible, a:focus-visible { outline: 3px solid #283346; outline-offs
 #bird-place-reflect:focus-visible { outline: 3px solid #283346; outline-offset: 3px; }
 #bird-edit-guide .bird-place-reflect-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
 .bird-edit-row { display: flex; align-items: center; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 8px 0; }
+#bird-edits .bird-edit-family { width: 100%; flex-basis: 100%; min-width: 0; margin: 4px 0; padding: 8px; border: 1px solid #283346; border-radius: 8px; background: #fff7e7; color: #283346; }
+#bird-edits .bird-edit-family legend { padding: 0 6px; color: #283346; text-align: left; font: 14px/1.4 system-ui, sans-serif; }
+#bird-edits .bird-edit-family .family-buttons { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; }
 .bird-edit-row button { min-height: 44px; padding: 8px 14px; border: 2px solid #283346; background: #fff7e7; font: 16px system-ui, sans-serif; }
 #bird-flight-blend:focus-visible, #bird-flight-unison:focus-visible, #bird-flight-counter:focus-visible, #bird-flight-rest-pair:focus-visible, #bird-flight-pair-left:focus-visible, #bird-flight-pair-right:focus-visible, #bird-flight-pair-reverse:focus-visible, #bird-flight-pair-half:focus-visible { outline: 3px solid #283346; outline-offset: 3px; }
 #bird-position-halfway:focus-visible, #bird-position-swap:focus-visible, #bird-position-orbit-left:focus-visible, #bird-position-orbit-right:focus-visible, #bird-position-flight-swap:focus-visible { outline: 3px solid #283346; outline-offset: 3px; }
