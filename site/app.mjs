@@ -37,6 +37,7 @@ const birdPlaceNearButton = document.querySelector('#bird-place-near');
 const birdPlaceApartButton = document.querySelector('#bird-place-apart');
 const birdPlaceReflectButton = document.querySelector('#bird-place-reflect');
 const birdPlaceOtherDiagonalButton = document.querySelector('#bird-place-other-diagonal');
+const birdPlaceFlipHeightButton = document.querySelector('#bird-place-flip-height');
 const birdPlaceLevelButton = document.querySelector('#bird-place-level');
 const birdPlaceUprightButton = document.querySelector('#bird-place-upright');
 const birdPlaceFlattenButton = document.querySelector('#bird-place-flatten');
@@ -233,7 +234,7 @@ function swapNearestFlightsCandidate(flock, selectedIndex, radius) {
 }
 
 function pairedPlaceCandidate(kind, flock, selectedIndex, radius) {
-  if (!['place-left', 'place-right', 'place-around', 'place-near', 'place-apart', 'place-reflect', 'place-other-diagonal', 'place-level', 'place-upright', 'place-flatten', 'place-narrow', 'place-diagonal'].includes(kind) || selectedIndex === null || !flock[selectedIndex]) return null;
+  if (!['place-left', 'place-right', 'place-around', 'place-near', 'place-apart', 'place-reflect', 'place-other-diagonal', 'place-level', 'place-upright', 'place-flatten', 'place-narrow', 'place-diagonal', 'place-flip-height'].includes(kind) || selectedIndex === null || !flock[selectedIndex]) return null;
   const nearest = nearestBirdCandidate(flock, selectedIndex, radius);
   if (!nearest) return null;
   const selected = flock[selectedIndex];
@@ -241,8 +242,8 @@ function pairedPlaceCandidate(kind, flock, selectedIndex, radius) {
   const mx = selected.x + nearest.dx / 2;
   const my = selected.y + nearest.dy / 2;
   const distance = Math.hypot(nearest.dx, nearest.dy);
-  const tx = kind === 'place-other-diagonal' ? -distance / Math.sqrt(2) : kind === 'place-upright' ? 0 : kind === 'place-level' ? distance : kind === 'place-apart' ? nearest.dx * 2 : kind === 'place-near' ? nearest.dx / 2 : kind === 'place-around' ? -nearest.dx : kind === 'place-right' ? -nearest.dy : kind === 'place-reflect' ? -nearest.dx : kind === 'place-flatten' ? nearest.dx : kind === 'place-narrow' ? nearest.dx / 2 : kind === 'place-diagonal' ? distance / Math.sqrt(2) : nearest.dy;
-  const ty = kind === 'place-other-diagonal' ? distance / Math.sqrt(2) : kind === 'place-upright' ? distance : kind === 'place-level' ? 0 : kind === 'place-apart' ? nearest.dy * 2 : kind === 'place-near' ? nearest.dy / 2 : kind === 'place-around' ? -nearest.dy : kind === 'place-right' ? nearest.dx : kind === 'place-reflect' ? nearest.dy : kind === 'place-flatten' ? nearest.dy / 2 : kind === 'place-narrow' ? nearest.dy : kind === 'place-diagonal' ? distance / Math.sqrt(2) : -nearest.dx;
+  const tx = kind === 'place-other-diagonal' ? -distance / Math.sqrt(2) : kind === 'place-upright' ? 0 : kind === 'place-level' ? distance : kind === 'place-apart' ? nearest.dx * 2 : kind === 'place-near' ? nearest.dx / 2 : kind === 'place-around' ? -nearest.dx : kind === 'place-right' ? -nearest.dy : kind === 'place-reflect' ? -nearest.dx : kind === 'place-flatten' ? nearest.dx : kind === 'place-narrow' ? nearest.dx / 2 : kind === 'place-diagonal' ? distance / Math.sqrt(2) : kind === 'place-flip-height' ? nearest.dx : nearest.dy;
+  const ty = kind === 'place-other-diagonal' ? distance / Math.sqrt(2) : kind === 'place-upright' ? distance : kind === 'place-level' ? 0 : kind === 'place-apart' ? nearest.dy * 2 : kind === 'place-near' ? nearest.dy / 2 : kind === 'place-around' ? -nearest.dy : kind === 'place-right' ? nearest.dx : kind === 'place-reflect' ? nearest.dy : kind === 'place-flatten' ? nearest.dy / 2 : kind === 'place-narrow' ? nearest.dy : kind === 'place-diagonal' ? distance / Math.sqrt(2) : kind === 'place-flip-height' ? -nearest.dy : -nearest.dx;
   const wrap = (value, modulus) => ((value % modulus) + modulus) % modulus;
   const x = wrap(mx - tx / 2, worldWidth);
   const y = wrap(my - ty / 2, worldHeight);
@@ -452,10 +453,12 @@ function updateBirdEditEligibility() {
   birdPlaceNarrowButton.disabled = !baseEligible || !placeNarrowCandidate;
   const placeDiagonalCandidate = baseEligible ? pairedPlaceCandidate('place-diagonal', birds, lensSelection, neighborRadius) : null;
   birdPlaceDiagonalButton.disabled = !baseEligible || !placeDiagonalCandidate;
+  const placeFlipHeightCandidate = baseEligible ? pairedPlaceCandidate('place-flip-height', birds, lensSelection, neighborRadius) : null;
+  birdPlaceFlipHeightButton.disabled = !baseEligible || !placeFlipHeightCandidate;
 }
 
 function editPairedPlace(kind) {
-  if (!['place-left', 'place-right', 'place-around', 'place-near', 'place-apart', 'place-reflect', 'place-other-diagonal', 'place-level', 'place-upright', 'place-flatten', 'place-narrow', 'place-diagonal'].includes(kind) || !manuallyPaused || document.hidden || !lensEnabled
+  if (!['place-left', 'place-right', 'place-around', 'place-near', 'place-apart', 'place-reflect', 'place-other-diagonal', 'place-level', 'place-upright', 'place-flatten', 'place-narrow', 'place-diagonal', 'place-flip-height'].includes(kind) || !manuallyPaused || document.hidden || !lensEnabled
     || lensSelection === null || !birds[lensSelection]) return;
   const candidate = pairedPlaceCandidate(kind, birds, lensSelection, neighborRadius);
   if (!candidate) return;
@@ -992,6 +995,7 @@ birdPlaceNearButton.addEventListener('click', () => editPairedPlace('place-near'
 birdPlaceApartButton.addEventListener('click', () => editPairedPlace('place-apart'));
 birdPlaceReflectButton.addEventListener('click', () => editPairedPlace('place-reflect'));
 birdPlaceOtherDiagonalButton.addEventListener('click', () => editPairedPlace('place-other-diagonal'));
+birdPlaceFlipHeightButton.addEventListener('click', () => editPairedPlace('place-flip-height'));
 birdPlaceLevelButton.addEventListener('click', () => editPairedPlace('place-level'));
 birdPlaceUprightButton.addEventListener('click', () => editPairedPlace('place-upright'));
 birdPlaceFlattenButton.addEventListener('click', () => editPairedPlace('place-flatten'));
