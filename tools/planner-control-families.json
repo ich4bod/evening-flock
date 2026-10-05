@@ -1,0 +1,180 @@
+[
+  {
+    "id": "own-flight",
+    "legend": "Change this bird’s flight",
+    "controls": [
+      {
+        "id": "bird-left",
+        "label": "Turn this bird left"
+      },
+      {
+        "id": "bird-right",
+        "label": "Turn this bird right"
+      },
+      {
+        "id": "bird-reverse",
+        "label": "Turn this bird around"
+      },
+      {
+        "id": "bird-rest",
+        "label": "Rest this bird"
+      },
+      {
+        "id": "bird-slower",
+        "label": "Slow this bird"
+      },
+      {
+        "id": "bird-faster",
+        "label": "Speed up this bird"
+      },
+      {
+        "id": "bird-borrow",
+        "label": "Borrow nearest flight"
+      },
+      {
+        "id": "bird-nearest-toward",
+        "label": "Face nearest bird"
+      },
+      {
+        "id": "bird-nearest-away",
+        "label": "Face away from nearest"
+      },
+      {
+        "id": "bird-nearest-speed",
+        "label": "Match nearest speed"
+      },
+      {
+        "id": "bird-flight-blend",
+        "label": "Meet nearest flight halfway"
+      },
+      {
+        "id": "bird-flight-counter",
+        "label": "Counter nearest flight"
+      }
+    ]
+  },
+  {
+    "id": "shared-flight",
+    "legend": "Change the neighboring flights",
+    "controls": [
+      {
+        "id": "bird-position-flight-swap",
+        "label": "Trade flights with nearest"
+      },
+      {
+        "id": "bird-flight-unison",
+        "label": "Give the pair one flight"
+      },
+      {
+        "id": "bird-flight-rest-pair",
+        "label": "Rest this pair"
+      },
+      {
+        "id": "bird-flight-pair-left",
+        "label": "Turn this pair left"
+      },
+      {
+        "id": "bird-flight-pair-right",
+        "label": "Turn this pair right"
+      },
+      {
+        "id": "bird-flight-pair-reverse",
+        "label": "Turn this pair around"
+      },
+      {
+        "id": "bird-flight-pair-half",
+        "label": "Slow this pair by half"
+      },
+      {
+        "id": "bird-flight-rest-nearest",
+        "label": "Rest only the nearest"
+      },
+      {
+        "id": "bird-flight-teach-nearest",
+        "label": "Give nearest this flight"
+      }
+    ]
+  },
+  {
+    "id": "bird-places",
+    "legend": "Change places, keep flights",
+    "controls": [
+      {
+        "id": "bird-position-closer",
+        "label": "Move closer to nearest"
+      },
+      {
+        "id": "bird-position-farther",
+        "label": "Move farther from nearest"
+      },
+      {
+        "id": "bird-position-halfway",
+        "label": "Meet nearest halfway"
+      },
+      {
+        "id": "bird-position-swap",
+        "label": "Trade places with nearest"
+      },
+      {
+        "id": "bird-position-orbit-left",
+        "label": "Circle nearest left"
+      },
+      {
+        "id": "bird-position-orbit-right",
+        "label": "Circle nearest right"
+      },
+      {
+        "id": "bird-place-left",
+        "label": "Turn the pair’s places left"
+      },
+      {
+        "id": "bird-place-right",
+        "label": "Turn the pair’s places right"
+      },
+      {
+        "id": "bird-place-around",
+        "label": "Turn the pair’s places around"
+      },
+      {
+        "id": "bird-place-near",
+        "label": "Bring both places closer"
+      },
+      {
+        "id": "bird-place-apart",
+        "label": "Spread both places apart"
+      },
+      {
+        "id": "bird-place-reflect",
+        "label": "Reflect the pair’s places"
+      },
+      {
+        "id": "bird-place-other-diagonal",
+        "label": "Use the other diagonal"
+      },
+      {
+        "id": "bird-place-level",
+        "label": "Put the pair side by side"
+      },
+      {
+        "id": "bird-place-upright",
+        "label": "Stack the pair’s places"
+      },
+      {
+        "id": "bird-place-flatten",
+        "label": "Halve the pair’s height gap"
+      },
+      {
+        "id": "bird-place-narrow",
+        "label": "Halve the pair’s width gap"
+      },
+      {
+        "id": "bird-place-diagonal",
+        "label": "Put the pair on a diagonal"
+      },
+      {
+        "id": "bird-place-flip-height",
+        "label": "Flip the pair top to bottom"
+      }
+    ]
+  }
+]
