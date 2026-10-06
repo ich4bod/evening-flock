@@ -9,6 +9,8 @@ const turnPartsDrawer = document.querySelector('#turn-parts');
 const turnPartsEmpty = document.querySelector('#turn-parts-empty');
 const turnApartRow = document.querySelector('#turn-apart-row');
 const turnApartReadout = document.querySelector('#turn-apart');
+const turnGatherRow = document.querySelector('#turn-gather-row');
+const turnGatherReadout = document.querySelector('#turn-gather');
 const birdLeftButton = document.querySelector('#bird-left');
 const birdRightButton = document.querySelector('#bird-right');
 const birdReverseButton = document.querySelector('#bird-reverse');
@@ -716,12 +718,15 @@ function updateTurnParts(lens) {
   turnPartsDrawer.hidden = !lensEnabled;
   turnPartsEmpty.hidden = Boolean(lens);
   turnApartRow.hidden = !lens;
+  turnGatherRow.hidden = !lens;
   if (!lens) {
     turnApartReadout.textContent = '';
+    turnGatherReadout.textContent = '';
     return;
   }
-  const { apart } = turnParts(lens);
+  const { apart, gather } = turnParts(lens);
   turnApartReadout.textContent = `Δvx ${formatTurnPart(apart.vx)} · Δvy ${formatTurnPart(apart.vy)}.`;
+  turnGatherReadout.textContent = `Δvx ${formatTurnPart(gather.vx)} · Δvy ${formatTurnPart(gather.vy)}.`;
 }
 
 function drawNeighborLinks(lens) {
