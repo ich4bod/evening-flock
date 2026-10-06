@@ -15,6 +15,8 @@ const turnGatherRow = document.querySelector('#turn-gather-row');
 const turnGatherReadout = document.querySelector('#turn-gather');
 const turnSumRow = document.querySelector('#turn-sum-row');
 const turnSumReadout = document.querySelector('#turn-sum');
+const turnVelocityRow = document.querySelector('#turn-velocity-row');
+const turnVelocityReadout = document.querySelector('#turn-velocity');
 const birdLeftButton = document.querySelector('#bird-left');
 const birdRightButton = document.querySelector('#bird-right');
 const birdReverseButton = document.querySelector('#bird-reverse');
@@ -725,18 +727,21 @@ function updateTurnParts(lens) {
   turnAlignRow.hidden = !lens;
   turnGatherRow.hidden = !lens;
   turnSumRow.hidden = !lens;
+  turnVelocityRow.hidden = !lens;
   if (!lens) {
     turnApartReadout.textContent = '';
     turnAlignReadout.textContent = '';
     turnGatherReadout.textContent = '';
     turnSumReadout.textContent = '';
+    turnVelocityReadout.textContent = '';
     return;
   }
-  const { apart, align, gather, sum } = turnParts(lens);
+  const { apart, align, gather, sum, raw, next } = turnParts(lens);
   turnApartReadout.textContent = `Δvx ${formatTurnPart(apart.vx)} · Δvy ${formatTurnPart(apart.vy)}.`;
   turnAlignReadout.textContent = `Δvx ${formatTurnPart(align.vx)} · Δvy ${formatTurnPart(align.vy)}.`;
   turnGatherReadout.textContent = `Δvx ${formatTurnPart(gather.vx)} · Δvy ${formatTurnPart(gather.vy)}.`;
   turnSumReadout.textContent = `Δvx ${formatTurnPart(sum.vx)} · Δvy ${formatTurnPart(sum.vy)}.`;
+  turnVelocityReadout.textContent = `Before limit: vx ${formatTurnPart(raw.vx)} · vy ${formatTurnPart(raw.vy)}. Next: vx ${formatTurnPart(next.vx)} · vy ${formatTurnPart(next.vy)}.`;
 }
 
 function drawNeighborLinks(lens) {
