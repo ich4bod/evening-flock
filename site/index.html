@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5d6bb">
   <title>Evening Flock</title>
-  <link rel="stylesheet" href="/style.css?v=66">
+  <link rel="stylesheet" href="/style.css?v=67">
 </head>
 <body>
   <main class="page">
@@ -52,21 +52,26 @@
             <button id="bird-flight-counter" type="button" disabled>Counter nearest flight</button>
           </div>
         </fieldset>
+        <fieldset id="family-shared-flight" class="bird-edit-family">
+          <legend>Change the neighboring flights</legend>
+          <div class="family-buttons">
+            <button id="bird-position-flight-swap" type="button" disabled>Trade flights with nearest</button>
+            <button id="bird-flight-unison" type="button" disabled>Give the pair one flight</button>
+            <button id="bird-flight-rest-pair" type="button" disabled>Rest this pair</button>
+            <button id="bird-flight-pair-left" type="button" disabled>Turn this pair left</button>
+            <button id="bird-flight-pair-right" type="button" disabled>Turn this pair right</button>
+            <button id="bird-flight-pair-reverse" type="button" disabled>Turn this pair around</button>
+            <button id="bird-flight-pair-half" type="button" disabled>Slow this pair by half</button>
+            <button id="bird-flight-rest-nearest" type="button" disabled>Rest only the nearest</button>
+            <button id="bird-flight-teach-nearest" type="button" disabled>Give nearest this flight</button>
+          </div>
+        </fieldset>
         <button id="bird-position-closer" type="button" disabled>Move closer to nearest</button>
         <button id="bird-position-farther" type="button" disabled>Move farther from nearest</button>
         <button id="bird-position-halfway" type="button" disabled>Meet nearest halfway</button>
         <button id="bird-position-swap" type="button" disabled>Trade places with nearest</button>
         <button id="bird-position-orbit-left" type="button" disabled>Circle nearest left</button>
         <button id="bird-position-orbit-right" type="button" disabled>Circle nearest right</button>
-        <button id="bird-position-flight-swap" type="button" disabled>Trade flights with nearest</button>
-        <button id="bird-flight-unison" type="button" disabled>Give the pair one flight</button>
-        <button id="bird-flight-rest-pair" type="button" disabled>Rest this pair</button>
-        <button id="bird-flight-pair-left" type="button" disabled>Turn this pair left</button>
-        <button id="bird-flight-pair-right" type="button" disabled>Turn this pair right</button>
-        <button id="bird-flight-pair-reverse" type="button" disabled>Turn this pair around</button>
-        <button id="bird-flight-pair-half" type="button" disabled>Slow this pair by half</button>
-        <button id="bird-flight-rest-nearest" type="button" disabled>Rest only the nearest</button>
-        <button id="bird-flight-teach-nearest" type="button" disabled>Give nearest this flight</button>
         <button id="bird-place-left" type="button" disabled>Turn the pair’s places left</button>
         <button id="bird-place-right" type="button" disabled>Turn the pair’s places right</button>
         <button id="bird-place-around" type="button" disabled>Turn the pair’s places around</button>
