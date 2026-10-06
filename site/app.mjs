@@ -11,6 +11,8 @@ const turnApartRow = document.querySelector('#turn-apart-row');
 const turnApartReadout = document.querySelector('#turn-apart');
 const turnGatherRow = document.querySelector('#turn-gather-row');
 const turnGatherReadout = document.querySelector('#turn-gather');
+const turnSumRow = document.querySelector('#turn-sum-row');
+const turnSumReadout = document.querySelector('#turn-sum');
 const birdLeftButton = document.querySelector('#bird-left');
 const birdRightButton = document.querySelector('#bird-right');
 const birdReverseButton = document.querySelector('#bird-reverse');
@@ -719,14 +721,17 @@ function updateTurnParts(lens) {
   turnPartsEmpty.hidden = Boolean(lens);
   turnApartRow.hidden = !lens;
   turnGatherRow.hidden = !lens;
+  turnSumRow.hidden = !lens;
   if (!lens) {
     turnApartReadout.textContent = '';
     turnGatherReadout.textContent = '';
+    turnSumReadout.textContent = '';
     return;
   }
-  const { apart, gather } = turnParts(lens);
+  const { apart, gather, sum } = turnParts(lens);
   turnApartReadout.textContent = `Δvx ${formatTurnPart(apart.vx)} · Δvy ${formatTurnPart(apart.vy)}.`;
   turnGatherReadout.textContent = `Δvx ${formatTurnPart(gather.vx)} · Δvy ${formatTurnPart(gather.vy)}.`;
+  turnSumReadout.textContent = `Δvx ${formatTurnPart(sum.vx)} · Δvy ${formatTurnPart(sum.vy)}.`;
 }
 
 function drawNeighborLinks(lens) {
