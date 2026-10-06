@@ -17,6 +17,8 @@ const turnSumRow = document.querySelector('#turn-sum-row');
 const turnSumReadout = document.querySelector('#turn-sum');
 const turnVelocityRow = document.querySelector('#turn-velocity-row');
 const turnVelocityReadout = document.querySelector('#turn-velocity');
+const relativeFlightRow = document.querySelector('#relative-flight-row');
+const relativeFlightReadout = document.querySelector('#relative-flight');
 const turnPartsDiagram = document.querySelector('#turn-parts-diagram');
 const turnPartsDiagramHelp = document.querySelector('#turn-parts-diagram-help');
 const flightLimitDiagram = document.querySelector('#flight-limit-diagram');
@@ -1085,6 +1087,20 @@ function draw() {
       ? `Nearest: Bird ${nearestLink.index + 1} · gap ${Math.sqrt(nearestLink.dx * nearestLink.dx + nearestLink.dy * nearestLink.dy).toFixed(1)} toy units.`
       : 'Nearest: none inside the neighbor ring.';
   if (nearestReadout.textContent !== nearestText) nearestReadout.textContent = nearestText;
+  relativeFlightRow.hidden = !lens;
+  if (!lens) {
+    relativeFlightReadout.textContent = '';
+  } else if (!nearestLink) {
+    relativeFlightReadout.textContent = 'No nearest bird inside the neighbor ring.';
+  } else {
+    const selected = birds[lens.index];
+    const neighbor = birds[nearestLink.index];
+    const relativeVx = neighbor.vx - selected.vx;
+    const relativeVy = neighbor.vy - selected.vy;
+    const gapChange = (nearestLink.dx * relativeVx + nearestLink.dy * relativeVy)
+      / Math.hypot(nearestLink.dx, nearestLink.dy);
+    relativeFlightReadout.textContent = `Bird ${nearestLink.index + 1} · Δvx ${formatTurnPart(relativeVx)} · Δvy ${formatTurnPart(relativeVy)} · gap change ${formatTurnPart(gapChange)} toy units per beat.`;
+  }
   updateFollowNeighborEligibility(lens);
   updateBirdEditEligibility();
   if (neighborLinks && lens) drawNeighborLinks(lens);
