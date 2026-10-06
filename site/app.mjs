@@ -4,6 +4,7 @@ const canvas = document.querySelector('#flock');
 const context = canvas.getContext('2d');
 const birdCensus = document.querySelector('#bird-census');
 const speedReadout = document.querySelector('#speed-readout');
+const nearestReadout = document.querySelector('#nearest-readout');
 const birdLeftButton = document.querySelector('#bird-left');
 const birdRightButton = document.querySelector('#bird-right');
 const birdReverseButton = document.querySelector('#bird-reverse');
@@ -884,6 +885,24 @@ function draw() {
     ? 'Choose a bird to read its speed.'
     : `Speed: ${Math.hypot(birds[lens.index].vx, birds[lens.index].vy).toFixed(2)} toy units per beat.`;
   if (speedReadout.textContent !== speedText) speedReadout.textContent = speedText;
+  nearestReadout.hidden = !lensEnabled;
+  let nearestLink = null;
+  if (lens) {
+    for (const link of lens.links) {
+      const distanceSquared = link.dx * link.dx + link.dy * link.dy;
+      const nearestDistanceSquared = nearestLink
+        ? nearestLink.dx * nearestLink.dx + nearestLink.dy * nearestLink.dy
+        : Infinity;
+      if (distanceSquared < nearestDistanceSquared
+        || (distanceSquared === nearestDistanceSquared && link.index < nearestLink.index)) nearestLink = link;
+    }
+  }
+  const nearestText = !lens
+    ? 'Choose a bird to find its nearest neighbor.'
+    : nearestLink
+      ? `Nearest: Bird ${nearestLink.index + 1} · gap ${Math.sqrt(nearestLink.dx * nearestLink.dx + nearestLink.dy * nearestLink.dy).toFixed(1)} toy units.`
+      : 'Nearest: none inside the neighbor ring.';
+  if (nearestReadout.textContent !== nearestText) nearestReadout.textContent = nearestText;
   updateFollowNeighborEligibility(lens);
   updateBirdEditEligibility();
   if (neighborLinks && lens) drawNeighborLinks(lens);
