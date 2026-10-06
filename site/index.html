@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5d6bb">
   <title>Evening Flock</title>
-  <link rel="stylesheet" href="/style.css?v=70">
+  <link rel="stylesheet" href="/style.css?v=71">
 </head>
 <body>
   <main class="page">
@@ -34,6 +34,17 @@
     <p id="bird-census" hidden aria-live="off"></p>
     <p id="speed-readout" class="bird-local-readout" hidden aria-live="off"></p>
     <p id="nearest-readout" class="bird-local-readout" hidden aria-live="off"></p>
+    <details id="turn-parts" hidden aria-live="off">
+      <summary>Before the next beat</summary>
+      <p id="turn-parts-help">Rule corrections change this bird’s velocity. Positive vx is right; positive vy is down. Units are toy units per beat. Neighbor rules only; the hawk is left out.</p>
+      <p id="turn-parts-empty">Choose a bird to inspect its next turn.</p>
+      <dl id="turn-parts-values">
+        <div id="turn-apart-row" hidden>
+          <dt id="turn-apart-label">Keep apart</dt>
+          <dd id="turn-apart"></dd>
+        </div>
+      </dl>
+    </details>
     <details id="bird-edits">
       <summary>Change one bird</summary>
       <div class="bird-edit-row">
@@ -267,6 +278,6 @@
     <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
-  <script type="module" src="/app.mjs?v=82"></script>
+  <script type="module" src="/app.mjs?v=83"></script>
 </body>
 </html>

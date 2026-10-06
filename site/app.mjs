@@ -5,6 +5,10 @@ const context = canvas.getContext('2d');
 const birdCensus = document.querySelector('#bird-census');
 const speedReadout = document.querySelector('#speed-readout');
 const nearestReadout = document.querySelector('#nearest-readout');
+const turnPartsDrawer = document.querySelector('#turn-parts');
+const turnPartsEmpty = document.querySelector('#turn-parts-empty');
+const turnApartRow = document.querySelector('#turn-apart-row');
+const turnApartReadout = document.querySelector('#turn-apart');
 const birdLeftButton = document.querySelector('#bird-left');
 const birdRightButton = document.querySelector('#bird-right');
 const birdReverseButton = document.querySelector('#bird-reverse');
@@ -675,6 +679,51 @@ function lensSnapshot() {
   };
 }
 
+function turnParts(lens) {
+  const apart = {
+    vx: weights.separation * lens.apartVector.vx,
+    vy: weights.separation * lens.apartVector.vy,
+  };
+  const align = {
+    vx: weights.alignment * lens.alignmentVector.vx,
+    vy: weights.alignment * lens.alignmentVector.vy,
+  };
+  const gather = {
+    vx: weights.cohesion * lens.gatherVector.vx,
+    vy: weights.cohesion * lens.gatherVector.vy,
+  };
+  const sum = {
+    vx: apart.vx + align.vx + gather.vx,
+    vy: apart.vy + align.vy + gather.vy,
+  };
+  const raw = {
+    vx: lens.coastVelocity.vx + sum.vx,
+    vy: lens.coastVelocity.vy + sum.vy,
+  };
+  const speed = Math.hypot(raw.vx, raw.vy);
+  const next = speed > 3
+    ? { vx: raw.vx * 3 / speed, vy: raw.vy * 3 / speed }
+    : { vx: raw.vx, vy: raw.vy };
+  return { apart, align, gather, sum, raw, next };
+}
+
+function formatTurnPart(value) {
+  const formatted = value.toFixed(3);
+  return formatted === '-0.000' ? '0.000' : formatted;
+}
+
+function updateTurnParts(lens) {
+  turnPartsDrawer.hidden = !lensEnabled;
+  turnPartsEmpty.hidden = Boolean(lens);
+  turnApartRow.hidden = !lens;
+  if (!lens) {
+    turnApartReadout.textContent = '';
+    return;
+  }
+  const { apart } = turnParts(lens);
+  turnApartReadout.textContent = `Δvx ${formatTurnPart(apart.vx)} · Δvy ${formatTurnPart(apart.vy)}.`;
+}
+
 function drawNeighborLinks(lens) {
   const selected = birds[lens.index];
   for (const link of lens.links) {
@@ -873,6 +922,7 @@ function draw() {
   }
   context.globalAlpha = 1;
   const lens = lensSnapshot();
+  updateTurnParts(lens);
   birdCensus.hidden = !lensEnabled;
   const censusText = !lensEnabled
     ? ''
