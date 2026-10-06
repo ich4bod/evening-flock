@@ -17,6 +17,29 @@ const turnSumRow = document.querySelector('#turn-sum-row');
 const turnSumReadout = document.querySelector('#turn-sum');
 const turnVelocityRow = document.querySelector('#turn-velocity-row');
 const turnVelocityReadout = document.querySelector('#turn-velocity');
+const turnPartsDiagram = document.querySelector('#turn-parts-diagram');
+const turnPartsDiagramHelp = document.querySelector('#turn-parts-diagram-help');
+const turnPartsDiagramTerms = [
+  ['apart', '#c2a4e8'],
+  ['align', '#a7d46f'],
+  ['gather', '#7bc9d6'],
+  ['sum', '#fff7e7'],
+];
+const turnPartsDiagramElements = new Map(turnPartsDiagramTerms.map(([term, color]) => {
+  const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+  line.dataset.term = term;
+  line.setAttribute('x1', '120');
+  line.setAttribute('y1', '120');
+  line.setAttribute('stroke', color);
+  line.setAttribute('stroke-width', '2');
+  const head = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
+  head.dataset.term = term;
+  head.setAttribute('fill', 'none');
+  head.setAttribute('stroke', color);
+  head.setAttribute('stroke-width', '2');
+  turnPartsDiagram.append(line, head);
+  return [term, { line, head }];
+}));
 const birdLeftButton = document.querySelector('#bird-left');
 const birdRightButton = document.querySelector('#bird-right');
 const birdReverseButton = document.querySelector('#bird-reverse');
@@ -720,8 +743,34 @@ function formatTurnPart(value) {
   return formatted === '-0.000' ? '0.000' : formatted;
 }
 
+function drawTurnPartsDiagram(parts) {
+  const scale = 96 / Math.max(1, ...['apart', 'align', 'gather', 'sum'].map(term => Math.hypot(parts[term].vx, parts[term].vy)));
+  for (const [term] of turnPartsDiagramTerms) {
+    const vector = parts[term];
+    const x = 120 + scale * vector.vx;
+    const y = 120 + scale * vector.vy;
+    const { line, head } = turnPartsDiagramElements.get(term);
+    line.setAttribute('x2', String(x));
+    line.setAttribute('y2', String(y));
+    if (vector.vx === 0 && vector.vy === 0) {
+      head.setAttribute('display', 'none');
+      head.setAttribute('points', `${x},${y} ${x},${y} ${x},${y}`);
+    } else {
+      head.removeAttribute('display');
+      const angle = Math.atan2(vector.vy, vector.vx);
+      head.setAttribute('points', [
+        `${x - 6 * Math.cos(angle - 0.5)},${y - 6 * Math.sin(angle - 0.5)}`,
+        `${x},${y}`,
+        `${x - 6 * Math.cos(angle + 0.5)},${y - 6 * Math.sin(angle + 0.5)}`,
+      ].join(' '));
+    }
+  }
+}
+
 function updateTurnParts(lens) {
   turnPartsDrawer.hidden = !lensEnabled;
+  turnPartsDiagram.toggleAttribute('hidden', !lens);
+  turnPartsDiagramHelp.toggleAttribute('hidden', !lens);
   turnPartsEmpty.hidden = Boolean(lens);
   turnApartRow.hidden = !lens;
   turnAlignRow.hidden = !lens;
@@ -734,9 +783,17 @@ function updateTurnParts(lens) {
     turnGatherReadout.textContent = '';
     turnSumReadout.textContent = '';
     turnVelocityReadout.textContent = '';
+    drawTurnPartsDiagram({
+      apart: { vx: 0, vy: 0 },
+      align: { vx: 0, vy: 0 },
+      gather: { vx: 0, vy: 0 },
+      sum: { vx: 0, vy: 0 },
+    });
     return;
   }
-  const { apart, align, gather, sum, raw, next } = turnParts(lens);
+  const parts = turnParts(lens);
+  const { apart, align, gather, sum, raw, next } = parts;
+  drawTurnPartsDiagram(parts);
   turnApartReadout.textContent = `Δvx ${formatTurnPart(apart.vx)} · Δvy ${formatTurnPart(apart.vy)}.`;
   turnAlignReadout.textContent = `Δvx ${formatTurnPart(align.vx)} · Δvy ${formatTurnPart(align.vy)}.`;
   turnGatherReadout.textContent = `Δvx ${formatTurnPart(gather.vx)} · Δvy ${formatTurnPart(gather.vy)}.`;
