@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5d6bb">
   <title>Evening Flock</title>
-  <link rel="stylesheet" href="/style.css?v=73">
+  <link rel="stylesheet" href="/style.css?v=74">
 </head>
 <body>
   <main class="page">
@@ -69,6 +69,8 @@
       <p id="turn-parts-diagram-help" hidden>All four arrows share one scale. Colored arrows are rule corrections; ivory is their sum.</p>
       <svg id="flight-limit-diagram" viewBox="0 0 240 240" role="img" aria-label="Current flight, uncapped flight and next flight" hidden></svg>
       <p id="flight-limit-help" hidden>Current flight (ivory), before limit (coral), next flight (gold). One shared scale; the next flight cannot exceed three toy units per beat.</p>
+      <svg id="coasting-pair-diagram" viewBox="0 0 240 240" role="img" aria-label="A pair now and after one coasting beat" hidden></svg>
+      <p id="coasting-pair-help" hidden>Ivory: the pair now. Coral: one beat of unchanged flight. This local preview ignores steering, the hawk and boundary wrapping; it does not advance the flock.</p>
     </details>
     <details id="bird-edits">
       <summary>Change one bird</summary>
@@ -303,6 +305,6 @@
     <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
-  <script type="module" src="/app.mjs?v=90"></script>
+  <script type="module" src="/app.mjs?v=91"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-import { seed, seedScene, step, gust, reverseFlight, restFlight, quarterTurn } from './engine.mjs?v=22';
+import { seed, seedScene, step, gust, reverseFlight, restFlight, quarterTurn } from './engine.mjs?v=23';
 
 const canvas = document.querySelector('#flock');
 const context = canvas.getContext('2d');
@@ -23,6 +23,24 @@ const turnPartsDiagram = document.querySelector('#turn-parts-diagram');
 const turnPartsDiagramHelp = document.querySelector('#turn-parts-diagram-help');
 const flightLimitDiagram = document.querySelector('#flight-limit-diagram');
 const flightLimitHelp = document.querySelector('#flight-limit-help');
+const coastingPairDiagram = document.querySelector('#coasting-pair-diagram');
+const coastingPairHelp = document.querySelector('#coasting-pair-help');
+const coastingPairLines = [
+  document.createElementNS('http://www.w3.org/2000/svg', 'line'),
+  document.createElementNS('http://www.w3.org/2000/svg', 'line'),
+];
+const coastingPairCircles = ['#fff7e7', '#fff7e7', '#e9755c', '#e9755c'].map(fill => {
+  const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+  circle.setAttribute('r', '3');
+  circle.setAttribute('fill', fill);
+  return circle;
+});
+coastingPairLines.forEach((line, index) => {
+  line.setAttribute('stroke', index === 0 ? '#fff7e7' : '#e9755c');
+  line.setAttribute('stroke-width', '2');
+  if (index === 1) line.setAttribute('stroke-dasharray', '4 3');
+});
+coastingPairDiagram.append(...coastingPairLines, ...coastingPairCircles);
 const turnPartsDiagramTerms = [
   ['apart', '#c2a4e8'],
   ['align', '#a7d46f'],
@@ -816,12 +834,57 @@ function drawFlightLimitDiagram(values) {
   }
 }
 
+function drawCoastingPair(lens) {
+  const links = lens?.links ?? [];
+  const link = [...links].sort((a, b) => a.dx * a.dx + a.dy * a.dy - (b.dx * b.dx + b.dy * b.dy) || a.index - b.index)[0];
+  if (!lens || !link) {
+    coastingPairDiagram.toggleAttribute('hidden', true);
+    coastingPairHelp.toggleAttribute('hidden', true);
+    for (const line of coastingPairLines) {
+      line.setAttribute('x1', '120');
+      line.setAttribute('y1', '120');
+      line.setAttribute('x2', '120');
+      line.setAttribute('y2', '120');
+    }
+    for (const circle of coastingPairCircles) {
+      circle.setAttribute('cx', '120');
+      circle.setAttribute('cy', '120');
+    }
+    return;
+  }
+  const a = birds[lens.index];
+  const b = birds[link.index];
+  const points = [
+    { x: 0, y: 0 },
+    { x: link.dx, y: link.dy },
+    { x: a.vx, y: a.vy },
+    { x: link.dx + b.vx, y: link.dy + b.vy },
+  ];
+  const scale = 96 / Math.max(1, ...points.map(point => Math.hypot(point.x, point.y)));
+  const mapped = points.map(point => ({ x: 120 + scale * point.x, y: 120 + scale * point.y }));
+  for (const [index, [from, to]] of [[mapped[0], mapped[1]], [mapped[2], mapped[3]]].entries()) {
+    const line = coastingPairLines[index];
+    line.setAttribute('x1', String(from.x));
+    line.setAttribute('y1', String(from.y));
+    line.setAttribute('x2', String(to.x));
+    line.setAttribute('y2', String(to.y));
+  }
+  for (const [index, point] of mapped.entries()) {
+    const circle = coastingPairCircles[index];
+    circle.setAttribute('cx', String(point.x));
+    circle.setAttribute('cy', String(point.y));
+  }
+  coastingPairDiagram.toggleAttribute('hidden', false);
+  coastingPairHelp.toggleAttribute('hidden', false);
+}
+
 function updateTurnParts(lens) {
   turnPartsDrawer.hidden = !lensEnabled;
   turnPartsDiagram.toggleAttribute('hidden', !lens);
   turnPartsDiagramHelp.toggleAttribute('hidden', !lens);
   flightLimitDiagram.toggleAttribute('hidden', !lens);
   flightLimitHelp.toggleAttribute('hidden', !lens);
+  drawCoastingPair(lens);
   turnPartsEmpty.hidden = Boolean(lens);
   turnApartRow.hidden = !lens;
   turnAlignRow.hidden = !lens;
