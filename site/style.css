@@ -58,6 +58,8 @@ button:focus-visible, a:focus-visible { outline: 3px solid #283346; outline-offs
 #bird-edit-guide .bird-place-other-diagonal-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
 #bird-edit-guide .bird-place-flip-height-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
 #bird-census { margin: 8px 0; min-height: 36px; color: #283346; text-align: center; font: 13px system-ui, sans-serif; }
+.bird-local-readout { margin: 4px 0; min-height: 40px; color: #283346; text-align: center; font: 14px/20px system-ui, sans-serif; }
+.bird-local-readout[hidden] { display: none; }
 #bird-edits { margin: 12px 0; padding: 0 12px; border: 1px solid #283346; border-radius: 12px; background: #fff7e7; }
 #bird-edits summary { display: flex; align-items: center; min-height: 44px; color: #283346; font: 18px Georgia, serif; cursor: pointer; }
 #bird-edits summary:focus-visible { outline: 3px solid #e9755c; }

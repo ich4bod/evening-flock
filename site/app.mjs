@@ -3,6 +3,7 @@ import { seed, seedScene, step, gust, reverseFlight, restFlight, quarterTurn } f
 const canvas = document.querySelector('#flock');
 const context = canvas.getContext('2d');
 const birdCensus = document.querySelector('#bird-census');
+const speedReadout = document.querySelector('#speed-readout');
 const birdLeftButton = document.querySelector('#bird-left');
 const birdRightButton = document.querySelector('#bird-right');
 const birdReverseButton = document.querySelector('#bird-reverse');
@@ -878,6 +879,11 @@ function draw() {
       ? `Bird ${lens.index + 1} · Neighbors: ${lens.neighbors.length} · Too close: ${lens.close.length}`
       : 'Tap a bird, or use Left and Right in the sky.';
   if (birdCensus.textContent !== censusText) birdCensus.textContent = censusText;
+  speedReadout.hidden = !lensEnabled;
+  const speedText = !lens
+    ? 'Choose a bird to read its speed.'
+    : `Speed: ${Math.hypot(birds[lens.index].vx, birds[lens.index].vy).toFixed(2)} toy units per beat.`;
+  if (speedReadout.textContent !== speedText) speedReadout.textContent = speedText;
   updateFollowNeighborEligibility(lens);
   updateBirdEditEligibility();
   if (neighborLinks && lens) drawNeighborLinks(lens);
