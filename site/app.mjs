@@ -9,6 +9,8 @@ const turnPartsDrawer = document.querySelector('#turn-parts');
 const turnPartsEmpty = document.querySelector('#turn-parts-empty');
 const turnApartRow = document.querySelector('#turn-apart-row');
 const turnApartReadout = document.querySelector('#turn-apart');
+const turnAlignRow = document.querySelector('#turn-align-row');
+const turnAlignReadout = document.querySelector('#turn-align');
 const turnGatherRow = document.querySelector('#turn-gather-row');
 const turnGatherReadout = document.querySelector('#turn-gather');
 const turnSumRow = document.querySelector('#turn-sum-row');
@@ -720,16 +722,19 @@ function updateTurnParts(lens) {
   turnPartsDrawer.hidden = !lensEnabled;
   turnPartsEmpty.hidden = Boolean(lens);
   turnApartRow.hidden = !lens;
+  turnAlignRow.hidden = !lens;
   turnGatherRow.hidden = !lens;
   turnSumRow.hidden = !lens;
   if (!lens) {
     turnApartReadout.textContent = '';
+    turnAlignReadout.textContent = '';
     turnGatherReadout.textContent = '';
     turnSumReadout.textContent = '';
     return;
   }
-  const { apart, gather, sum } = turnParts(lens);
+  const { apart, align, gather, sum } = turnParts(lens);
   turnApartReadout.textContent = `Δvx ${formatTurnPart(apart.vx)} · Δvy ${formatTurnPart(apart.vy)}.`;
+  turnAlignReadout.textContent = `Δvx ${formatTurnPart(align.vx)} · Δvy ${formatTurnPart(align.vy)}.`;
   turnGatherReadout.textContent = `Δvx ${formatTurnPart(gather.vx)} · Δvy ${formatTurnPart(gather.vy)}.`;
   turnSumReadout.textContent = `Δvx ${formatTurnPart(sum.vx)} · Δvy ${formatTurnPart(sum.vy)}.`;
 }
