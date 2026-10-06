@@ -68,6 +68,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid #283346; outline-offs
 #turn-parts dt { font-weight: 650; }
 #turn-parts dd { margin: 2px 0 10px; font: 14px/1.5 system-ui, sans-serif; overflow-wrap: anywhere; }
 #turn-parts-diagram { display: block; width: min(100%, 240px); aspect-ratio: 1; margin: 8px auto; border-radius: 12px; background: #33445f; }
+#flight-limit-diagram { display: block; width: min(100%, 240px); aspect-ratio: 1; margin: 8px auto; background: #33445f; border-radius: 12px; }
 #turn-parts[hidden], #turn-parts [hidden] { display: none; }
 #bird-edits { margin: 12px 0; padding: 0 12px; border: 1px solid #283346; border-radius: 12px; background: #fff7e7; }
 #bird-edits summary { display: flex; align-items: center; min-height: 44px; color: #283346; font: 18px Georgia, serif; cursor: pointer; }

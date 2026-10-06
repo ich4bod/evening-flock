@@ -19,6 +19,8 @@ const turnVelocityRow = document.querySelector('#turn-velocity-row');
 const turnVelocityReadout = document.querySelector('#turn-velocity');
 const turnPartsDiagram = document.querySelector('#turn-parts-diagram');
 const turnPartsDiagramHelp = document.querySelector('#turn-parts-diagram-help');
+const flightLimitDiagram = document.querySelector('#flight-limit-diagram');
+const flightLimitHelp = document.querySelector('#flight-limit-help');
 const turnPartsDiagramTerms = [
   ['apart', '#c2a4e8'],
   ['align', '#a7d46f'],
@@ -39,6 +41,27 @@ const turnPartsDiagramElements = new Map(turnPartsDiagramTerms.map(([term, color
   head.setAttribute('stroke-width', '2');
   turnPartsDiagram.append(line, head);
   return [term, { line, head }];
+}));
+const flightLimitTerms = [
+  ['coast', '#fff7e7', '2', '4 3'],
+  ['raw', '#e9755c', '2', null],
+  ['next', '#ffd166', '4', null],
+];
+const flightLimitElements = new Map(flightLimitTerms.map(([flight, color, width, dash]) => {
+  const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+  line.dataset.flight = flight;
+  line.setAttribute('x1', '120');
+  line.setAttribute('y1', '120');
+  line.setAttribute('stroke', color);
+  line.setAttribute('stroke-width', width);
+  if (dash) line.setAttribute('stroke-dasharray', dash);
+  const head = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
+  head.dataset.flight = flight;
+  head.setAttribute('fill', 'none');
+  head.setAttribute('stroke', color);
+  head.setAttribute('stroke-width', width);
+  flightLimitDiagram.append(line, head);
+  return [flight, { line, head }];
 }));
 const birdLeftButton = document.querySelector('#bird-left');
 const birdRightButton = document.querySelector('#bird-right');
@@ -767,10 +790,36 @@ function drawTurnPartsDiagram(parts) {
   }
 }
 
+function drawFlightLimitDiagram(values) {
+  const scale = 96 / Math.max(1, ...Object.values(values).map(vector => Math.hypot(vector.vx, vector.vy)));
+  for (const [flight] of flightLimitTerms) {
+    const vector = values[flight];
+    const x = 120 + scale * vector.vx;
+    const y = 120 + scale * vector.vy;
+    const { line, head } = flightLimitElements.get(flight);
+    line.setAttribute('x2', String(x));
+    line.setAttribute('y2', String(y));
+    if (vector.vx === 0 && vector.vy === 0) {
+      head.setAttribute('display', 'none');
+      head.setAttribute('points', `${x},${y} ${x},${y} ${x},${y}`);
+    } else {
+      head.removeAttribute('display');
+      const angle = Math.atan2(vector.vy, vector.vx);
+      head.setAttribute('points', [
+        `${x - 6 * Math.cos(angle - 0.5)},${y - 6 * Math.sin(angle - 0.5)}`,
+        `${x},${y}`,
+        `${x - 6 * Math.cos(angle + 0.5)},${y - 6 * Math.sin(angle + 0.5)}`,
+      ].join(' '));
+    }
+  }
+}
+
 function updateTurnParts(lens) {
   turnPartsDrawer.hidden = !lensEnabled;
   turnPartsDiagram.toggleAttribute('hidden', !lens);
   turnPartsDiagramHelp.toggleAttribute('hidden', !lens);
+  flightLimitDiagram.toggleAttribute('hidden', !lens);
+  flightLimitHelp.toggleAttribute('hidden', !lens);
   turnPartsEmpty.hidden = Boolean(lens);
   turnApartRow.hidden = !lens;
   turnAlignRow.hidden = !lens;
@@ -783,6 +832,11 @@ function updateTurnParts(lens) {
     turnGatherReadout.textContent = '';
     turnSumReadout.textContent = '';
     turnVelocityReadout.textContent = '';
+    drawFlightLimitDiagram({
+      coast: { vx: 0, vy: 0 },
+      raw: { vx: 0, vy: 0 },
+      next: { vx: 0, vy: 0 },
+    });
     drawTurnPartsDiagram({
       apart: { vx: 0, vy: 0 },
       align: { vx: 0, vy: 0 },
@@ -794,6 +848,7 @@ function updateTurnParts(lens) {
   const parts = turnParts(lens);
   const { apart, align, gather, sum, raw, next } = parts;
   drawTurnPartsDiagram(parts);
+  drawFlightLimitDiagram({ coast: lens.coastVelocity, raw, next });
   turnApartReadout.textContent = `Δvx ${formatTurnPart(apart.vx)} · Δvy ${formatTurnPart(apart.vy)}.`;
   turnAlignReadout.textContent = `Δvx ${formatTurnPart(align.vx)} · Δvy ${formatTurnPart(align.vy)}.`;
   turnGatherReadout.textContent = `Δvx ${formatTurnPart(gather.vx)} · Δvy ${formatTurnPart(gather.vy)}.`;
