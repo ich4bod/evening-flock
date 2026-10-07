@@ -72,6 +72,8 @@ button:focus-visible, a:focus-visible { outline: 3px solid #283346; outline-offs
 #coasting-pair-diagram { display: block; width: min(100%, 240px); aspect-ratio: 1; margin: 8px auto; background: #33445f; border-radius: 12px; }
 #turn-parts label[for="coasting-fraction"] { display: block; margin: 8px 0 4px; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
 #turn-parts #coasting-fraction { display: block; width: 100%; height: 44px; margin: 0; accent-color: #e9755c; cursor: pointer; }
+#turn-parts #coasting-seek-closest { min-height: 44px; }
+#turn-parts #coasting-seek-closest:focus-visible { outline: 3px solid #ffd166; outline-offset: 3px; }
 #turn-parts[hidden], #turn-parts [hidden] { display: none; }
 #bird-edits { margin: 12px 0; padding: 0 12px; border: 1px solid #283346; border-radius: 12px; background: #fff7e7; }
 #bird-edits summary { display: flex; align-items: center; min-height: 44px; color: #283346; font: 18px Georgia, serif; cursor: pointer; }

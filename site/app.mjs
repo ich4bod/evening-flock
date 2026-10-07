@@ -36,6 +36,8 @@ const coastingFractionInput = document.querySelector('#coasting-fraction');
 const coastingFractionReadout = document.querySelector('#coasting-fraction-readout');
 const coastingFractionHelp = document.querySelector('#coasting-fraction-help');
 const coastingFractionMarkersHelp = document.querySelector('#coasting-fraction-markers-help');
+const coastingSeekClosestButton = document.querySelector('#coasting-seek-closest');
+const coastingSeekHelp = document.querySelector('#coasting-seek-help');
 const coastingFractionLabel = document.querySelector('label[for="coasting-fraction"]');
 const coastingPairLines = [
   document.createElementNS('http://www.w3.org/2000/svg', 'line'),
@@ -943,6 +945,9 @@ function updateTurnParts(lens, nearestLink) {
   flightLimitDiagram.toggleAttribute('hidden', !lens);
   flightLimitHelp.toggleAttribute('hidden', !lens);
   drawCoastingPair(lens, nearestLink);
+  coastingSeekClosestButton.hidden = !lens;
+  coastingSeekClosestButton.disabled = !nearestLink;
+  coastingSeekHelp.hidden = !lens;
   turnPartsEmpty.hidden = Boolean(lens);
   turnApartRow.hidden = !lens;
   turnAlignRow.hidden = !lens;
@@ -1301,6 +1306,20 @@ function animate(now) {
 
 coastingFractionInput.addEventListener('input', () => {
   coastingFraction = Number(coastingFractionInput.value);
+  draw();
+});
+coastingSeekClosestButton.addEventListener('click', () => {
+  if (!lensEnabled) return;
+  const lens = lensSnapshot();
+  const nearestLink = closestCoastingLink(lens);
+  if (!lens || !nearestLink) return;
+  const closestApproach = closestCoastingApproach(
+    nearestLink,
+    birds[lens.index],
+    birds[nearestLink.index],
+  );
+  coastingFraction = Math.round(closestApproach.t * 1000) / 1000;
+  coastingFractionInput.value = String(coastingFraction);
   draw();
 });
 
