@@ -35,6 +35,7 @@ const coastingPairHelp = document.querySelector('#coasting-pair-help');
 const coastingFractionInput = document.querySelector('#coasting-fraction');
 const coastingFractionReadout = document.querySelector('#coasting-fraction-readout');
 const coastingFractionHelp = document.querySelector('#coasting-fraction-help');
+const coastingFractionMarkersHelp = document.querySelector('#coasting-fraction-markers-help');
 const coastingFractionLabel = document.querySelector('label[for="coasting-fraction"]');
 const coastingPairLines = [
   document.createElementNS('http://www.w3.org/2000/svg', 'line'),
@@ -52,6 +53,18 @@ coastingPairLines.forEach((line, index) => {
   if (index === 1) line.setAttribute('stroke-dasharray', '4 3');
 });
 coastingPairDiagram.append(...coastingPairLines, ...coastingPairCircles);
+const coastingFractionMarkers = ['a', 'b'].map(name => {
+  const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+  circle.id = `coasting-fraction-${name}`;
+  circle.setAttribute('r', '3');
+  circle.setAttribute('fill', '#91c8b4');
+  circle.setAttribute('stroke', '#33445f');
+  circle.setAttribute('stroke-width', '1');
+  circle.setAttribute('pointer-events', 'none');
+  circle.setAttribute('aria-hidden', 'true');
+  return circle;
+});
+coastingPairDiagram.append(...coastingFractionMarkers);
 const turnPartsDiagramTerms = [
   ['apart', '#c2a4e8'],
   ['align', '#a7d46f'],
@@ -883,6 +896,10 @@ function drawCoastingPair(lens, link) {
       circle.setAttribute('cx', '120');
       circle.setAttribute('cy', '120');
     }
+    for (const circle of coastingFractionMarkers) {
+      circle.setAttribute('cx', '120');
+      circle.setAttribute('cy', '120');
+    }
     return;
   }
   const a = birds[lens.index];
@@ -906,6 +923,14 @@ function drawCoastingPair(lens, link) {
     const circle = coastingPairCircles[index];
     circle.setAttribute('cx', String(point.x));
     circle.setAttribute('cy', String(point.y));
+  }
+  for (const [index, point] of [
+    { x: coastingFraction * a.vx, y: coastingFraction * a.vy },
+    { x: link.dx + coastingFraction * b.vx, y: link.dy + coastingFraction * b.vy },
+  ].entries()) {
+    const circle = coastingFractionMarkers[index];
+    circle.setAttribute('cx', String(120 + scale * point.x));
+    circle.setAttribute('cy', String(120 + scale * point.y));
   }
   coastingPairDiagram.toggleAttribute('hidden', false);
   coastingPairHelp.toggleAttribute('hidden', false);
@@ -1177,6 +1202,7 @@ function draw() {
   coastingFractionInput.hidden = !nearestLink;
   coastingFractionReadout.hidden = !lens;
   coastingFractionHelp.hidden = !nearestLink;
+  coastingFractionMarkersHelp.hidden = !nearestLink;
   const fractionText = !lens
     ? ''
     : !nearestLink
