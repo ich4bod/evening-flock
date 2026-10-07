@@ -30,6 +30,10 @@ const flightLimitDiagram = document.querySelector('#flight-limit-diagram');
 const flightLimitHelp = document.querySelector('#flight-limit-help');
 const coastingPairDiagram = document.querySelector('#coasting-pair-diagram');
 const coastingPairHelp = document.querySelector('#coasting-pair-help');
+const coastingFractionInput = document.querySelector('#coasting-fraction');
+const coastingFractionReadout = document.querySelector('#coasting-fraction-readout');
+const coastingFractionHelp = document.querySelector('#coasting-fraction-help');
+const coastingFractionLabel = document.querySelector('label[for="coasting-fraction"]');
 const coastingPairLines = [
   document.createElementNS('http://www.w3.org/2000/svg', 'line'),
   document.createElementNS('http://www.w3.org/2000/svg', 'line'),
@@ -198,6 +202,7 @@ let neighborLinks = false;
 let apartArrow = false;
 let gatherArrow = false;
 let alignmentArrow = false;
+let coastingFraction = 0.5;
 let neighborRadius = 80;
 let activePointerId = null;
 let lastTime = null;
@@ -839,9 +844,20 @@ function drawFlightLimitDiagram(values) {
   }
 }
 
-function drawCoastingPair(lens) {
-  const links = lens?.links ?? [];
-  const link = [...links].sort((a, b) => a.dx * a.dx + a.dy * a.dy - (b.dx * b.dx + b.dy * b.dy) || a.index - b.index)[0];
+function closestCoastingLink(lens) {
+  let closest = null;
+  for (const link of lens?.links ?? []) {
+    const distanceSquared = link.dx * link.dx + link.dy * link.dy;
+    const closestDistanceSquared = closest
+      ? closest.dx * closest.dx + closest.dy * closest.dy
+      : Infinity;
+    if (distanceSquared < closestDistanceSquared
+      || (distanceSquared === closestDistanceSquared && link.index < closest.index)) closest = link;
+  }
+  return closest;
+}
+
+function drawCoastingPair(lens, link) {
   if (!lens || !link) {
     coastingPairDiagram.toggleAttribute('hidden', true);
     coastingPairHelp.toggleAttribute('hidden', true);
@@ -883,13 +899,13 @@ function drawCoastingPair(lens) {
   coastingPairHelp.toggleAttribute('hidden', false);
 }
 
-function updateTurnParts(lens) {
+function updateTurnParts(lens, nearestLink) {
   turnPartsDrawer.hidden = !lensEnabled;
   turnPartsDiagram.toggleAttribute('hidden', !lens);
   turnPartsDiagramHelp.toggleAttribute('hidden', !lens);
   flightLimitDiagram.toggleAttribute('hidden', !lens);
   flightLimitHelp.toggleAttribute('hidden', !lens);
-  drawCoastingPair(lens);
+  drawCoastingPair(lens, nearestLink);
   turnPartsEmpty.hidden = Boolean(lens);
   turnApartRow.hidden = !lens;
   turnAlignRow.hidden = !lens;
@@ -1124,7 +1140,8 @@ function draw() {
   }
   context.globalAlpha = 1;
   const lens = lensSnapshot();
-  updateTurnParts(lens);
+  const nearestLink = closestCoastingLink(lens);
+  updateTurnParts(lens, nearestLink);
   birdCensus.hidden = !lensEnabled;
   const censusText = !lensEnabled
     ? ''
@@ -1138,23 +1155,22 @@ function draw() {
     : `Speed: ${Math.hypot(birds[lens.index].vx, birds[lens.index].vy).toFixed(2)} toy units per beat.`;
   if (speedReadout.textContent !== speedText) speedReadout.textContent = speedText;
   nearestReadout.hidden = !lensEnabled;
-  let nearestLink = null;
-  if (lens) {
-    for (const link of lens.links) {
-      const distanceSquared = link.dx * link.dx + link.dy * link.dy;
-      const nearestDistanceSquared = nearestLink
-        ? nearestLink.dx * nearestLink.dx + nearestLink.dy * nearestLink.dy
-        : Infinity;
-      if (distanceSquared < nearestDistanceSquared
-        || (distanceSquared === nearestDistanceSquared && link.index < nearestLink.index)) nearestLink = link;
-    }
-  }
   const nearestText = !lens
     ? 'Choose a bird to find its nearest neighbor.'
     : nearestLink
       ? `Nearest: Bird ${nearestLink.index + 1} · gap ${Math.sqrt(nearestLink.dx * nearestLink.dx + nearestLink.dy * nearestLink.dy).toFixed(1)} toy units.`
       : 'Nearest: none inside the neighbor ring.';
   if (nearestReadout.textContent !== nearestText) nearestReadout.textContent = nearestText;
+  coastingFractionLabel.hidden = !nearestLink;
+  coastingFractionInput.hidden = !nearestLink;
+  coastingFractionReadout.hidden = !lens;
+  coastingFractionHelp.hidden = !nearestLink;
+  const fractionText = !lens
+    ? ''
+    : !nearestLink
+      ? 'No nearest bird inside the neighbor ring.'
+      : `At ${coastingFraction.toFixed(2)} of a coasting beat: gap ${Math.hypot(nearestLink.dx + coastingFraction * (birds[nearestLink.index].vx - birds[lens.index].vx), nearestLink.dy + coastingFraction * (birds[nearestLink.index].vy - birds[lens.index].vy)).toFixed(3)} toy units.`;
+  if (coastingFractionReadout.textContent !== fractionText) coastingFractionReadout.textContent = fractionText;
   relativeFlightRow.hidden = !lens;
   pairSidewaysRow.hidden = !lens;
   pairGapRow.hidden = !lens;
@@ -1238,6 +1254,11 @@ function animate(now) {
   draw();
   requestAnimationFrame(animate);
 }
+
+coastingFractionInput.addEventListener('input', () => {
+  coastingFraction = Number(coastingFractionInput.value);
+  draw();
+});
 
 pauseButton.addEventListener('click', () => {
   manuallyPaused = !manuallyPaused;
