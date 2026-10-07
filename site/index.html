@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5d6bb">
   <title>Evening Flock</title>
-  <link rel="stylesheet" href="/style.css?v=100">
+  <link rel="stylesheet" href="/style.css?v=101">
 </head>
 <body>
   <main class="page">
@@ -84,6 +84,12 @@
       <input id="coasting-fraction" type="range" min="0" max="1" step="0.001" value="0.5" hidden>
       <button id="coasting-seek-closest" type="button" hidden disabled>Inspect closest point</button>
       <p id="coasting-fraction-readout" hidden aria-live="off"></p>
+      <div id="coasting-kept-controls" hidden>
+        <button id="coasting-keep-fraction" type="button">Keep this fraction</button>
+        <button id="coasting-forget-fraction" type="button" disabled>Forget kept fraction</button>
+      </div>
+      <p id="coasting-kept-readout" hidden aria-live="off">No fraction kept.</p>
+      <p id="coasting-kept-help" hidden>The gold dots use your kept fraction on the pair chosen now. They do not remember another sky or move these birds.</p>
       <p id="coasting-fraction-help" hidden>This is a point on the unchanged-flight comparison, not the next steering decision.</p>
       <p id="coasting-seek-help" hidden>Inspect the closest point, rounded to the nearest thousandth of this beat. The birds do not move.</p>
       <p id="coasting-fraction-markers-help" hidden>The mint dots are the inspected fraction. Ivory is now; coral is one full beat.</p>
@@ -324,6 +330,6 @@
     <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
-  <script type="module" src="/app.mjs?v=98"></script>
+  <script type="module" src="/app.mjs?v=99"></script>
 </body>
 </html>

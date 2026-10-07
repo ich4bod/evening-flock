@@ -1,4 +1,4 @@
-import { seed, seedScene, step, gust, reverseFlight, restFlight, quarterTurn } from './engine.mjs?v=23';
+import { seed, seedScene, step, gust, reverseFlight, restFlight, quarterTurn } from './engine.mjs?v=24';
 
 const canvas = document.querySelector('#flock');
 const context = canvas.getContext('2d');
@@ -36,6 +36,11 @@ const coastingFractionInput = document.querySelector('#coasting-fraction');
 const coastingFractionReadout = document.querySelector('#coasting-fraction-readout');
 const coastingFractionHelp = document.querySelector('#coasting-fraction-help');
 const coastingFractionMarkersHelp = document.querySelector('#coasting-fraction-markers-help');
+const coastingKeptControls = document.querySelector('#coasting-kept-controls');
+const coastingKeepFractionButton = document.querySelector('#coasting-keep-fraction');
+const coastingForgetFractionButton = document.querySelector('#coasting-forget-fraction');
+const coastingKeptReadout = document.querySelector('#coasting-kept-readout');
+const coastingKeptHelp = document.querySelector('#coasting-kept-help');
 const coastingSeekClosestButton = document.querySelector('#coasting-seek-closest');
 const coastingSeekHelp = document.querySelector('#coasting-seek-help');
 const coastingFractionLabel = document.querySelector('label[for="coasting-fraction"]');
@@ -67,6 +72,19 @@ const coastingFractionMarkers = ['a', 'b'].map(name => {
   return circle;
 });
 coastingPairDiagram.append(...coastingFractionMarkers);
+const coastingKeptMarkers = ['a', 'b'].map(name => {
+  const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+  circle.id = `coasting-kept-${name}`;
+  circle.setAttribute('r', '3');
+  circle.setAttribute('fill', '#ffd166');
+  circle.setAttribute('stroke', '#283346');
+  circle.setAttribute('stroke-width', '1');
+  circle.setAttribute('pointer-events', 'none');
+  circle.setAttribute('aria-hidden', 'true');
+  circle.setAttribute('hidden', '');
+  return circle;
+});
+coastingPairDiagram.append(...coastingKeptMarkers);
 const turnPartsDiagramTerms = [
   ['apart', '#c2a4e8'],
   ['align', '#a7d46f'],
@@ -220,6 +238,7 @@ let apartArrow = false;
 let gatherArrow = false;
 let alignmentArrow = false;
 let coastingFraction = 0.5;
+let keptFraction = null;
 let neighborRadius = 80;
 let activePointerId = null;
 let lastTime = null;
@@ -938,6 +957,50 @@ function drawCoastingPair(lens, link) {
   coastingPairHelp.toggleAttribute('hidden', false);
 }
 
+function updateKeptFraction(lens, nearestLink) {
+  const hasLens = Boolean(lens);
+  coastingKeptControls.hidden = !hasLens;
+  coastingKeepFractionButton.disabled = !hasLens;
+  coastingForgetFractionButton.disabled = keptFraction === null;
+  coastingKeptReadout.hidden = !hasLens;
+  coastingKeptHelp.hidden = !hasLens;
+  if (!hasLens || keptFraction === null) {
+    coastingKeptReadout.textContent = hasLens ? 'No fraction kept.' : '';
+  } else if (!nearestLink) {
+    coastingKeptReadout.textContent = 'No nearest bird inside the neighbor ring.';
+  } else {
+    const a = birds[lens.index];
+    const b = birds[nearestLink.index];
+    const gap = Math.hypot(
+      nearestLink.dx + keptFraction * (b.vx - a.vx),
+      nearestLink.dy + keptFraction * (b.vy - a.vy),
+    );
+    coastingKeptReadout.textContent = `At kept ${keptFraction.toFixed(2)} of this coasting beat: gap ${gap.toFixed(3)} toy units.`;
+  }
+  for (const marker of coastingKeptMarkers) marker.setAttribute('hidden', '');
+  if (!hasLens || !nearestLink || keptFraction === null) return;
+  const a = birds[lens.index];
+  const b = birds[nearestLink.index];
+  const scale = 96 / Math.max(
+    1,
+    Math.hypot(nearestLink.dx, nearestLink.dy),
+    Math.hypot(a.vx, a.vy),
+    Math.hypot(nearestLink.dx + b.vx, nearestLink.dy + b.vy),
+  );
+  const points = [
+    { x: 120 + scale * keptFraction * a.vx, y: 120 + scale * keptFraction * a.vy },
+    {
+      x: 120 + scale * (nearestLink.dx + keptFraction * b.vx),
+      y: 120 + scale * (nearestLink.dy + keptFraction * b.vy),
+    },
+  ];
+  for (const [index, point] of points.entries()) {
+    coastingKeptMarkers[index].setAttribute('cx', String(point.x));
+    coastingKeptMarkers[index].setAttribute('cy', String(point.y));
+    coastingKeptMarkers[index].removeAttribute('hidden');
+  }
+}
+
 function updateTurnParts(lens, nearestLink) {
   turnPartsDrawer.hidden = !lensEnabled;
   turnPartsDiagram.toggleAttribute('hidden', !lens);
@@ -1214,6 +1277,7 @@ function draw() {
       ? 'No nearest bird inside the neighbor ring.'
       : `At ${coastingFraction.toFixed(2)} of a coasting beat: gap ${Math.hypot(nearestLink.dx + coastingFraction * (birds[nearestLink.index].vx - birds[lens.index].vx), nearestLink.dy + coastingFraction * (birds[nearestLink.index].vy - birds[lens.index].vy)).toFixed(3)} toy units.`;
   if (coastingFractionReadout.textContent !== fractionText) coastingFractionReadout.textContent = fractionText;
+  updateKeptFraction(lens, nearestLink);
   relativeFlightRow.hidden = !lens;
   pairSidewaysRow.hidden = !lens;
   pairGapRow.hidden = !lens;
@@ -1306,6 +1370,16 @@ function animate(now) {
 
 coastingFractionInput.addEventListener('input', () => {
   coastingFraction = Number(coastingFractionInput.value);
+  draw();
+});
+coastingKeepFractionButton.addEventListener('click', () => {
+  if (!lensSnapshot()) return;
+  keptFraction = Number(coastingFractionInput.value);
+  draw();
+});
+coastingForgetFractionButton.addEventListener('click', () => {
+  if (keptFraction === null) return;
+  keptFraction = null;
   draw();
 });
 coastingSeekClosestButton.addEventListener('click', () => {
