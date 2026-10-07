@@ -24,6 +24,7 @@ const pairSidewaysReadout = document.querySelector('#pair-sideways');
 const pairGapRow = document.querySelector('#pair-gap-row');
 const pairGapReadout = document.querySelector('#pair-gap');
 const pairGapHelp = document.querySelector('#pair-gap-help');
+const coastingClosestReadout = document.querySelector('#coasting-closest');
 const turnPartsDiagram = document.querySelector('#turn-parts-diagram');
 const turnPartsDiagramHelp = document.querySelector('#turn-parts-diagram-help');
 const flightLimitDiagram = document.querySelector('#flight-limit-diagram');
@@ -857,6 +858,16 @@ function closestCoastingLink(lens) {
   return closest;
 }
 
+function closestCoastingApproach(link, a, b) {
+  const dvx = b.vx - a.vx;
+  const dvy = b.vy - a.vy;
+  const q = dvx * dvx + dvy * dvy;
+  const t = q === 0
+    ? 0
+    : Math.max(0, Math.min(1, -(link.dx * dvx + link.dy * dvy) / q));
+  return { t, gap: Math.hypot(link.dx + t * dvx, link.dy + t * dvy) };
+}
+
 function drawCoastingPair(lens, link) {
   if (!lens || !link) {
     coastingPairDiagram.toggleAttribute('hidden', true);
@@ -1175,11 +1186,14 @@ function draw() {
   pairSidewaysRow.hidden = !lens;
   pairGapRow.hidden = !lens;
   pairGapHelp.hidden = !lens || !nearestLink;
+  coastingClosestReadout.hidden = !lens;
   if (!lens) {
+    coastingClosestReadout.textContent = '';
     relativeFlightReadout.textContent = '';
     pairSidewaysReadout.textContent = '';
     pairGapReadout.textContent = '';
   } else if (!nearestLink) {
+    coastingClosestReadout.textContent = 'No nearest bird inside the neighbor ring.';
     relativeFlightReadout.textContent = 'No nearest bird inside the neighbor ring.';
     pairSidewaysReadout.textContent = 'No nearest bird inside the neighbor ring.';
     pairGapReadout.textContent = 'No nearest bird inside the neighbor ring.';
@@ -1195,6 +1209,8 @@ function draw() {
       ? 'Sideways relative flight is undefined at zero gap.'
       : `Bird ${nearestLink.index + 1} · sideways relative flight ${formatTurnPart((-nearestLink.dy * relativeVx + nearestLink.dx * relativeVy) / distance)} toy units per beat.`;
     pairGapReadout.textContent = `Gap now: ${formatTurnPart(distance)} · after one coasting beat: ${formatTurnPart(Math.hypot(nearestLink.dx + relativeVx, nearestLink.dy + relativeVy))} toy units.`;
+    const closestApproach = closestCoastingApproach(nearestLink, selected, neighbor);
+    coastingClosestReadout.textContent = `Closest within this coasting beat: fraction ${closestApproach.t.toFixed(3)} · gap ${closestApproach.gap.toFixed(3)} toy units.`;
   }
   updateFollowNeighborEligibility(lens);
   updateBirdEditEligibility();
