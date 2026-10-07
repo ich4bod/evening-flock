@@ -25,6 +25,7 @@ const pairGapRow = document.querySelector('#pair-gap-row');
 const pairGapReadout = document.querySelector('#pair-gap');
 const pairGapHelp = document.querySelector('#pair-gap-help');
 const coastingClosestReadout = document.querySelector('#coasting-closest');
+const coastingClosestHelp = document.querySelector('#coasting-closest-help');
 const turnPartsDiagram = document.querySelector('#turn-parts-diagram');
 const turnPartsDiagramHelp = document.querySelector('#turn-parts-diagram-help');
 const flightLimitDiagram = document.querySelector('#flight-limit-diagram');
@@ -1187,6 +1188,7 @@ function draw() {
   pairGapRow.hidden = !lens;
   pairGapHelp.hidden = !lens || !nearestLink;
   coastingClosestReadout.hidden = !lens;
+  coastingClosestHelp.hidden = !nearestLink;
   if (!lens) {
     coastingClosestReadout.textContent = '';
     relativeFlightReadout.textContent = '';
