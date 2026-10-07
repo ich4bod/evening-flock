@@ -67,6 +67,10 @@
           <dt>Sideways relative flight</dt>
           <dd id="pair-sideways"></dd>
         </div>
+        <div id="pair-gap-row" hidden>
+          <dt>Gap after one unchanged-flight beat</dt>
+          <dd id="pair-gap"></dd>
+        </div>
       </dl>
       <p id="relative-flight-help">Positive gap change means separating; negative means approaching. This compares current flights, not the next rule correction.</p>
       <p id="pair-sideways-help">This is the part of their current relative flight across the gap, rather than along it. Its sign follows the screen-coordinate normal, not a steering command.</p>
@@ -76,6 +80,7 @@
       <p id="flight-limit-help" hidden>Current flight (ivory), before limit (coral), next flight (gold). One shared scale; the next flight cannot exceed three toy units per beat.</p>
       <svg id="coasting-pair-diagram" viewBox="0 0 240 240" role="img" aria-label="A pair now and after one coasting beat" hidden></svg>
       <p id="coasting-pair-help" hidden>Ivory: the pair now. Coral: one beat of unchanged flight. This local preview ignores steering, the hawk and boundary wrapping; it does not advance the flock.</p>
+      <p id="pair-gap-help" hidden>The ending gap uses the same wrapped neighbor image as the diagram. Neither bird steers during this comparison; the real next beat can differ.</p>
     </details>
     <details id="bird-edits">
       <summary>Change one bird</summary>
@@ -310,6 +315,6 @@
     <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
-  <script type="module" src="/app.mjs?v=92"></script>
+  <script type="module" src="/app.mjs?v=93"></script>
 </body>
 </html>

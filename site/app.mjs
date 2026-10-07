@@ -21,6 +21,9 @@ const relativeFlightRow = document.querySelector('#relative-flight-row');
 const relativeFlightReadout = document.querySelector('#relative-flight');
 const pairSidewaysRow = document.querySelector('#pair-sideways-row');
 const pairSidewaysReadout = document.querySelector('#pair-sideways');
+const pairGapRow = document.querySelector('#pair-gap-row');
+const pairGapReadout = document.querySelector('#pair-gap');
+const pairGapHelp = document.querySelector('#pair-gap-help');
 const turnPartsDiagram = document.querySelector('#turn-parts-diagram');
 const turnPartsDiagramHelp = document.querySelector('#turn-parts-diagram-help');
 const flightLimitDiagram = document.querySelector('#flight-limit-diagram');
@@ -1154,12 +1157,16 @@ function draw() {
   if (nearestReadout.textContent !== nearestText) nearestReadout.textContent = nearestText;
   relativeFlightRow.hidden = !lens;
   pairSidewaysRow.hidden = !lens;
+  pairGapRow.hidden = !lens;
+  pairGapHelp.hidden = !lens || !nearestLink;
   if (!lens) {
     relativeFlightReadout.textContent = '';
     pairSidewaysReadout.textContent = '';
+    pairGapReadout.textContent = '';
   } else if (!nearestLink) {
     relativeFlightReadout.textContent = 'No nearest bird inside the neighbor ring.';
     pairSidewaysReadout.textContent = 'No nearest bird inside the neighbor ring.';
+    pairGapReadout.textContent = 'No nearest bird inside the neighbor ring.';
   } else {
     const selected = birds[lens.index];
     const neighbor = birds[nearestLink.index];
@@ -1171,6 +1178,7 @@ function draw() {
     pairSidewaysReadout.textContent = distance === 0
       ? 'Sideways relative flight is undefined at zero gap.'
       : `Bird ${nearestLink.index + 1} · sideways relative flight ${formatTurnPart((-nearestLink.dy * relativeVx + nearestLink.dx * relativeVy) / distance)} toy units per beat.`;
+    pairGapReadout.textContent = `Gap now: ${formatTurnPart(distance)} · after one coasting beat: ${formatTurnPart(Math.hypot(nearestLink.dx + relativeVx, nearestLink.dy + relativeVy))} toy units.`;
   }
   updateFollowNeighborEligibility(lens);
   updateBirdEditEligibility();
