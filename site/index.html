@@ -63,8 +63,13 @@
           <dt id="relative-flight-label">Flight relative to the nearest bird</dt>
           <dd id="relative-flight"></dd>
         </div>
+        <div id="pair-sideways-row" hidden>
+          <dt>Sideways relative flight</dt>
+          <dd id="pair-sideways"></dd>
+        </div>
       </dl>
       <p id="relative-flight-help">Positive gap change means separating; negative means approaching. This compares current flights, not the next rule correction.</p>
+      <p id="pair-sideways-help">This is the part of their current relative flight across the gap, rather than along it. Its sign follows the screen-coordinate normal, not a steering command.</p>
       <svg id="turn-parts-diagram" viewBox="0 0 240 240" role="img" aria-label="Three rule corrections and their sum" hidden></svg>
       <p id="turn-parts-diagram-help" hidden>All four arrows share one scale. Colored arrows are rule corrections; ivory is their sum.</p>
       <svg id="flight-limit-diagram" viewBox="0 0 240 240" role="img" aria-label="Current flight, uncapped flight and next flight" hidden></svg>
@@ -305,6 +310,6 @@
     <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
-  <script type="module" src="/app.mjs?v=91"></script>
+  <script type="module" src="/app.mjs?v=92"></script>
 </body>
 </html>

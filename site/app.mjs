@@ -19,6 +19,8 @@ const turnVelocityRow = document.querySelector('#turn-velocity-row');
 const turnVelocityReadout = document.querySelector('#turn-velocity');
 const relativeFlightRow = document.querySelector('#relative-flight-row');
 const relativeFlightReadout = document.querySelector('#relative-flight');
+const pairSidewaysRow = document.querySelector('#pair-sideways-row');
+const pairSidewaysReadout = document.querySelector('#pair-sideways');
 const turnPartsDiagram = document.querySelector('#turn-parts-diagram');
 const turnPartsDiagramHelp = document.querySelector('#turn-parts-diagram-help');
 const flightLimitDiagram = document.querySelector('#flight-limit-diagram');
@@ -1151,18 +1153,24 @@ function draw() {
       : 'Nearest: none inside the neighbor ring.';
   if (nearestReadout.textContent !== nearestText) nearestReadout.textContent = nearestText;
   relativeFlightRow.hidden = !lens;
+  pairSidewaysRow.hidden = !lens;
   if (!lens) {
     relativeFlightReadout.textContent = '';
+    pairSidewaysReadout.textContent = '';
   } else if (!nearestLink) {
     relativeFlightReadout.textContent = 'No nearest bird inside the neighbor ring.';
+    pairSidewaysReadout.textContent = 'No nearest bird inside the neighbor ring.';
   } else {
     const selected = birds[lens.index];
     const neighbor = birds[nearestLink.index];
     const relativeVx = neighbor.vx - selected.vx;
     const relativeVy = neighbor.vy - selected.vy;
-    const gapChange = (nearestLink.dx * relativeVx + nearestLink.dy * relativeVy)
-      / Math.hypot(nearestLink.dx, nearestLink.dy);
+    const distance = Math.hypot(nearestLink.dx, nearestLink.dy);
+    const gapChange = (nearestLink.dx * relativeVx + nearestLink.dy * relativeVy) / distance;
     relativeFlightReadout.textContent = `Bird ${nearestLink.index + 1} · Δvx ${formatTurnPart(relativeVx)} · Δvy ${formatTurnPart(relativeVy)} · gap change ${formatTurnPart(gapChange)} toy units per beat.`;
+    pairSidewaysReadout.textContent = distance === 0
+      ? 'Sideways relative flight is undefined at zero gap.'
+      : `Bird ${nearestLink.index + 1} · sideways relative flight ${formatTurnPart((-nearestLink.dy * relativeVx + nearestLink.dx * relativeVy) / distance)} toy units per beat.`;
   }
   updateFollowNeighborEligibility(lens);
   updateBirdEditEligibility();
