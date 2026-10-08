@@ -99,6 +99,16 @@ export function seedScene(name) {
   });
 }
 
+export function shearFlight(birds) {
+  return birds.map(bird => {
+    const vx = bird.vx + (bird.y < 300 ? 1 : -1);
+    const vy = bird.vy;
+    const speed = Math.hypot(vx, vy);
+    const scale = speed > 3 ? 3 / speed : 1;
+    return { x: bird.x, y: bird.y, vx: vx * scale, vy: vy * scale };
+  });
+}
+
 export function gust(birds, dx, dy = 0) {
   return birds.map(bird => {
     let vx = bird.vx + dx;

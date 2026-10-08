@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5d6bb">
   <title>Evening Flock</title>
-  <link rel="stylesheet" href="/style.css?v=103">
+  <link rel="stylesheet" href="/style.css?v=104">
 </head>
 <body>
   <main class="page">
@@ -269,12 +269,14 @@
         <button id="gust-east" type="button">Gust right</button>
         <button id="gust-north" type="button">Gust up</button>
         <button id="gust-south" type="button">Gust down</button>
+        <button id="wind-shear" type="button">Opposite side winds</button>
         <button id="reverse-flight" type="button">Turn around</button>
         <button id="turn-counterclockwise" type="button">Turn left</button>
         <button id="turn-clockwise" type="button">Turn right</button>
         <button id="rest-flight" type="button">Rest here</button>
       </div>
       <p>A gust nudges every heading once. The flock rules take it from there.</p>
+      <p>Above the middle, add an eastward push; below it, add a westward push. Positions stay put until a beat. The same speed limit still applies.</p>
       <p class="reverse-flight-instruction">Turn around reverses every heading once. Positions and flock rules stay put.</p>
       <p class="rest-flight-instruction">Rest here stops every bird in place. Neighbor steering can start them moving again.</p>
       <p class="quarter-turn-instruction">Turn left and Turn right rotate every heading a quarter turn. The birds stay where they are.</p>
@@ -338,6 +340,6 @@
     <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
-  <script type="module" src="/app.mjs?v=99"></script>
+  <script type="module" src="/app.mjs?v=100"></script>
 </body>
 </html>

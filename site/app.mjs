@@ -1,4 +1,4 @@
-import { seed, seedScene, step, gust, reverseFlight, restFlight, quarterTurn } from './engine.mjs?v=24';
+import { seed, seedScene, step, gust, shearFlight, reverseFlight, restFlight, quarterTurn } from './engine.mjs?v=25';
 
 const canvas = document.querySelector('#flock');
 const context = canvas.getContext('2d');
@@ -1631,10 +1631,25 @@ function applyGust(dx, dy = 0) {
   draw();
 }
 
+function applyOppositeSideWinds() {
+  if (document.hidden) return;
+  manuallyPaused = true;
+  updatePauseButton();
+  const nextBirds = shearFlight(birds);
+  if (nextBirds.every((bird, index) => bird.x === birds[index].x
+    && bird.y === birds[index].y && bird.vx === birds[index].vx && bird.vy === birds[index].vy)) return;
+  saveBeatSnapshot();
+  birds = nextBirds;
+  accumulator = 0;
+  lastTime = null;
+  draw();
+}
+
 document.querySelector('#gust-west').addEventListener('click', () => applyGust(-1));
 document.querySelector('#gust-east').addEventListener('click', () => applyGust(1));
 document.querySelector('#gust-north').addEventListener('click', () => applyGust(0, -1));
 document.querySelector('#gust-south').addEventListener('click', () => applyGust(0, 1));
+document.querySelector('#wind-shear').addEventListener('click', applyOppositeSideWinds);
 
 function applyReversal() {
   clearBeatHistory();
