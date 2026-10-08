@@ -21,6 +21,12 @@ h1 { margin: 0; font: 40px/1.15 Georgia, serif; }
 }
 #flock:focus-visible { outline: 3px solid #ffd166; outline-offset: 4px; }
 .controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; padding: 18px 0 8px; }
+#flock-transport { margin: 0; }
+#flock-overlays { margin: 0 0 8px; padding: 0 12px; border: 1px solid #283346; border-radius: 12px; background: #fff7e7; }
+#flock-overlays > summary { display: flex; align-items: center; min-height: 44px; color: #283346; font: 18px Georgia, serif; cursor: pointer; }
+#flock-overlays > summary:focus-visible { outline: 3px solid #e9755c; outline-offset: 3px; }
+#flock-overlays .controls { padding: 8px 0; }
+#flock-overlays [hidden] { display: none; }
 button {
   min-height: 44px;
   padding: 9px 18px;

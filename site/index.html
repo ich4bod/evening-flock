@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5d6bb">
   <title>Evening Flock</title>
-  <link rel="stylesheet" href="/style.css?v=101">
+  <link rel="stylesheet" href="/style.css?v=102">
 </head>
 <body>
   <main class="page">
@@ -14,23 +14,28 @@
       <p class="intro">Eighty birds. No conductor. Just three local rules.</p>
     </header>
     <canvas id="flock" tabindex="0" aria-describedby="lens-keyboard-help" aria-label="Eighty birds in an evening sky"></canvas>
-    <div class="controls" aria-label="Flock controls">
+    <div id="flock-transport" class="controls" aria-label="Flock transport">
       <button id="pause" type="button">Pause</button>
       <button id="step-back" type="button" disabled>Step back</button>
       <button id="step" type="button" disabled>One beat</button>
       <button id="reset" type="button">Gather again</button>
       <button id="hawk" type="button" aria-pressed="false">Hawk</button>
-      <button id="neighbors" type="button" aria-pressed="false">Neighbors</button>
-      <button id="follow-neighbor" type="button" disabled>Follow neighbor</button>
-      <button id="turn-arrow" type="button" aria-pressed="false">Next turn</button>
-      <button id="coast-arrow" type="button" aria-pressed="false">Without a turn</button>
-      <button id="neighbor-links" type="button" aria-pressed="false">Neighbor threads</button>
-      <button id="apart-arrow" type="button" aria-pressed="false">Push away</button>
-      <button id="alignment-arrow" type="button" aria-pressed="false">Matching direction</button>
-      <button id="gather-arrow" type="button" aria-pressed="false">Gathering direction</button>
-      <button id="trails" type="button" aria-pressed="false">Flight trails</button>
-      <button id="selected-trail" type="button" aria-pressed="false">Selected trail</button>
     </div>
+    <details id="flock-overlays">
+      <summary>Show parts of the flight</summary>
+      <div class="controls" aria-label="Flight overlays">
+        <button id="neighbors" type="button" aria-pressed="false">Neighbors</button>
+        <button id="follow-neighbor" type="button" disabled>Follow neighbor</button>
+        <button id="turn-arrow" type="button" aria-pressed="false">Next turn</button>
+        <button id="coast-arrow" type="button" aria-pressed="false">Without a turn</button>
+        <button id="neighbor-links" type="button" aria-pressed="false">Neighbor threads</button>
+        <button id="apart-arrow" type="button" aria-pressed="false">Push away</button>
+        <button id="alignment-arrow" type="button" aria-pressed="false">Matching direction</button>
+        <button id="gather-arrow" type="button" aria-pressed="false">Gathering direction</button>
+        <button id="trails" type="button" aria-pressed="false">Flight trails</button>
+        <button id="selected-trail" type="button" aria-pressed="false">Selected trail</button>
+      </div>
+    </details>
     <p id="bird-census" hidden aria-live="off"></p>
     <p id="speed-readout" class="bird-local-readout" hidden aria-live="off"></p>
     <p id="nearest-readout" class="bird-local-readout" hidden aria-live="off"></p>
