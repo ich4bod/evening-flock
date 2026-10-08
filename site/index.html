@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5d6bb">
   <title>Evening Flock</title>
-  <link rel="stylesheet" href="/style.css?v=102">
+  <link rel="stylesheet" href="/style.css?v=103">
 </head>
 <body>
   <main class="page">
@@ -240,6 +240,8 @@
       </div>
       <p>A wider ring lets each bird listen farther away. The close-range push stays the same.</p>
     </section>
+    <details id="flock-whole-sky">
+      <summary>Change the whole sky</summary>
     <section class="sky-control" aria-labelledby="sky-heading">
       <h2 id="sky-heading">Starting sky</h2>
       <div class="sky-row" role="group" aria-label="Starting sky">
@@ -254,6 +256,11 @@
         <button id="sky-crowded" type="button">Crowded sky</button>
       </div>
       <p>Try two groups, a turning ring or crossing streams, then watch the same rules reshape them.</p>
+      <p class="overtaking-instruction">Overtaking starts a faster group behind a slower one.</p>
+      <p class="seam-instruction">Across the edge puts neighbors on opposite sides of the wrapped sky.</p>
+      <p class="lanes-instruction">Passing lanes puts nearby streams in opposite directions.</p>
+      <p class="still-instruction">Still cloud starts every bird at rest. Coast leaves it still; neighbor steering can set it moving.</p>
+      <p class="crowded-instruction">Crowded sky packs the birds close enough for the short-range push to matter.</p>
     </section>
     <section class="gust-control" aria-labelledby="gust-heading">
       <h2 id="gust-heading">A passing gust</h2>
@@ -268,7 +275,11 @@
         <button id="rest-flight" type="button">Rest here</button>
       </div>
       <p>A gust nudges every heading once. The flock rules take it from there.</p>
+      <p class="reverse-flight-instruction">Turn around reverses every heading once. Positions and flock rules stay put.</p>
+      <p class="rest-flight-instruction">Rest here stops every bird in place. Neighbor steering can start them moving again.</p>
+      <p class="quarter-turn-instruction">Turn left and Turn right rotate every heading a quarter turn. The birds stay where they are.</p>
     </section>
+    </details>
     <section class="pace-control" aria-labelledby="pace-heading">
       <h2 id="pace-heading">Flight pace</h2>
       <div class="pace-row" role="group" aria-label="Flight pace">
@@ -284,9 +295,6 @@
       <p class="trails-instruction">Show one bird’s trail while you follow its neighbors.</p>
       <p class="step-instruction">Pause the sky, then take one beat at a time.</p>
       <p class="step-back-instruction">Step back revisits the last paused beat. Resume or a gust begins a fresh flight.</p>
-      <p class="reverse-flight-instruction">Turn around reverses every heading once. Positions and flock rules stay put.</p>
-      <p class="rest-flight-instruction">Rest here stops every bird in place. Neighbor steering can start them moving again.</p>
-      <p class="quarter-turn-instruction">Turn left and Turn right rotate every heading a quarter turn. The birds stay where they are.</p>
       <p class="hawk-instruction">Turn on Hawk, then hold a finger in the sky. Let go and the flock regroups.</p>
       <p class="neighbors-instruction">Turn on Neighbors and tap a bird. The wide ring finds neighbors; the small ring marks the close-range push.</p>
       <p class="follow-neighbor-instruction">Follow neighbor chooses the nearest bird inside the wide ring.</p>
@@ -297,11 +305,6 @@
       <p class="apart-arrow-instruction">Push away points away from birds inside the small close-range ring. An empty ring has no push to show.</p>
       <p class="alignment-arrow-instruction">Matching direction shows the correction toward nearby headings. Matching birds need no correction, so their arrow disappears.</p>
       <p class="gather-arrow-instruction">Gathering direction points toward the average nearby offset, across the sky’s wrapped edges. It shows a direction, not the strength of a turn.</p>
-      <p class="overtaking-instruction">Overtaking starts a faster group behind a slower one.</p>
-      <p class="seam-instruction">Across the edge puts neighbors on opposite sides of the wrapped sky.</p>
-      <p class="lanes-instruction">Passing lanes puts nearby streams in opposite directions.</p>
-      <p class="still-instruction">Still cloud starts every bird at rest. Coast leaves it still; neighbor steering can set it moving.</p>
-      <p class="crowded-instruction">Crowded sky packs the birds close enough for the short-range push to matter.</p>
       <p class="apart-align-instruction">Apart + direction keeps the close-range push and heading matching, without gathering toward neighbors.</p>
       <p class="apart-gather-instruction">Apart + gathering keeps the close-range push and gathering, without matching neighbors’ headings.</p>
       <p class="align-gather-instruction">Direction + gathering matches nearby headings and gathers toward neighbors, without the close-range push.</p>
