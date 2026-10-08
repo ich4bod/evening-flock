@@ -169,6 +169,7 @@ const birdPlaceNarrowButton = document.querySelector('#bird-place-narrow');
 const birdPlaceDiagonalButton = document.querySelector('#bird-place-diagonal');
 const pauseButton = document.querySelector('#pause');
 const stepButton = document.querySelector('#step');
+const birdCoastBeatButton = document.querySelector('#bird-coast-beat');
 const paceButtons = {
   quarter: document.querySelector('#pace-quarter'),
   half: document.querySelector('#pace-half'),
@@ -248,8 +249,20 @@ const fixedStep = 1000 / 60;
 const worldWidth = 1000;
 const worldHeight = 600;
 
-function advanceFlock() {
-  birds = step(birds, weights, predator, neighborRadius);
+function advanceFlock(coastingIndex = null) {
+  const startingBirds = birds;
+  const nextBirds = step(startingBirds, weights, predator, neighborRadius);
+  if (coastingIndex !== null) {
+    const chosen = startingBirds[coastingIndex];
+    nextBirds[coastingIndex] = {
+      ...nextBirds[coastingIndex],
+      x: (chosen.x + chosen.vx + 1000) % 1000,
+      y: (chosen.y + chosen.vy + 600) % 600,
+      vx: chosen.vx,
+      vy: chosen.vy,
+    };
+  }
+  birds = nextBirds;
   if (trails) {
     trailFrames.push(birds.map(({ x, y }) => ({ x, y })));
     if (trailFrames.length > 12) trailFrames.shift();
@@ -488,6 +501,9 @@ function nearestHeadingCandidate(kind) {
 function updateBirdEditEligibility() {
   const selected = lensSelection === null ? null : birds[lensSelection];
   const baseEligible = manuallyPaused && !document.hidden && lensEnabled && lensSelection !== null && selected;
+  const coastBeatEligible = manuallyPaused && !document.hidden && lensEnabled
+    && Number.isInteger(lensSelection) && lensSelection >= 0 && lensSelection < birds.length;
+  birdCoastBeatButton.disabled = !coastBeatEligible;
   const eligible = baseEligible && (selected.vx !== 0 || selected.vy !== 0);
   const reverseEligible = eligible && (selected.vx !== 0 || selected.vy !== 0);
   const slowerCandidate = selected ? selectedBirdCandidate('slower', selected) : null;
@@ -1419,6 +1435,14 @@ stepButton.addEventListener('click', () => {
   if (!manuallyPaused || document.hidden) return;
   saveBeatSnapshot();
   advanceFlock();
+  draw();
+});
+birdCoastBeatButton.addEventListener('click', () => {
+  if (!manuallyPaused || document.hidden || !lensEnabled
+    || !Number.isInteger(lensSelection) || lensSelection < 0 || lensSelection >= birds.length
+    || !birds[lensSelection]) return;
+  saveBeatSnapshot();
+  advanceFlock(lensSelection);
   draw();
 });
 birdLeftButton.addEventListener('click', () => editSelectedBird('left'));

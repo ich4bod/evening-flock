@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5d6bb">
   <title>Evening Flock</title>
-  <link rel="stylesheet" href="/style.css?v=104">
+  <link rel="stylesheet" href="/style.css?v=105">
 </head>
 <body>
   <main class="page">
@@ -161,6 +161,9 @@
           </div>
         </fieldset>
       </div>
+      <div class="bird-edit-row">
+        <button id="bird-coast-beat" type="button" disabled>One beat with this bird coasting</button>
+      </div>
     </details>
     <details id="bird-edit-guide">
       <summary>How to change one bird</summary>
@@ -173,6 +176,7 @@
         <p class="bird-slower-helper">Slow this bird halves only its velocity. Its heading stays the same; One beat lets the neighbors respond.</p>
         <p class="bird-faster-helper">Speed up this bird doubles its velocity up to three world units per beat. Only this bird changes, and Step back restores it.</p>
         <p class="bird-borrow-helper">Borrow nearest flight copies the closest bird’s velocity inside the neighbor ring. It changes only this bird, not the flock rule.</p>
+        <div class="bird-coast-beat-helper">This bird carries its current flight for one beat, without flock or hawk steering. The other birds make their ordinary decision using the same starting sky. Step back restores the whole beat.</div>
         <p class="bird-nearest-toward-helper">Face nearest bird aims this bird at its closest neighbor inside the ring. Its speed stays the same; positions do not move until One beat.</p>
         <p class="bird-nearest-away-helper">Face away from nearest aims directly away from the closest neighbor inside the ring. Its speed stays the same, and Step back restores the sky.</p>
         <p class="bird-nearest-speed-helper">Match nearest speed copies the closest neighbor’s speed, up to three world units per beat, while keeping this bird’s heading. A resting bird has no heading to keep.</p>
@@ -340,6 +344,6 @@
     <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
-  <script type="module" src="/app.mjs?v=100"></script>
+  <script type="module" src="/app.mjs?v=101"></script>
 </body>
 </html>

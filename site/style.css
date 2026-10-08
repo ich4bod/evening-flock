@@ -98,8 +98,10 @@ button:focus-visible, a:focus-visible { outline: 3px solid #283346; outline-offs
 #bird-flight-rest-nearest:focus-visible { outline: 3px solid #283346; outline-offset: 3px; }
 #bird-edit-guide .bird-flight-rest-nearest-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
 #bird-flight-teach-nearest:disabled { opacity: 0.45; cursor: default; }
+#bird-coast-beat:disabled { opacity: 0.45; cursor: default; }
 #bird-flight-teach-nearest:focus-visible { outline: 3px solid #283346; outline-offset: 3px; }
 #bird-edit-guide .bird-flight-teach-nearest-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
+#bird-edit-guide .bird-coast-beat-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
 #bird-place-left:disabled { opacity: 0.45; cursor: default; }
 #bird-place-left:focus-visible { outline: 3px solid #283346; outline-offset: 3px; }
 #bird-edit-guide .bird-place-left-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
