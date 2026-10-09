@@ -146,6 +146,10 @@ button:focus-visible, a:focus-visible { outline: 3px solid #283346; outline-offs
 #flock-whole-sky > summary { display: flex; align-items: center; min-height: 44px; color: #283346; font: 18px Georgia, serif; cursor: pointer; }
 #flock-whole-sky > summary:focus-visible { outline: 3px solid #e9755c; outline-offset: 3px; }
 #flock-whole-sky [hidden] { display: none; }
+#flock-starting-scenes, #flock-current-winds { margin: 8px 0; padding: 12px; border: 1px solid #283346; border-radius: 8px; background: #fff7e7; }
+#flock-starting-scenes > summary, #flock-current-winds > summary { display: flex; align-items: center; min-height: 45px; color: #283346; font: 16px system-ui, sans-serif; cursor: pointer; }
+#flock-starting-scenes > summary:focus-visible, #flock-current-winds > summary:focus-visible { outline: 3px solid #e9755c; outline-offset: 3px; }
+#flock-starting-scenes[hidden], #flock-current-winds[hidden] { display: none; }
 #flock-whole-sky .sky-control { margin-top: 8px; }
 .sky-control { margin: 0 auto 8px; text-align: center; }
 .sky-control h2 { margin: 0 0 8px; font: 20px/1.2 Georgia, serif; }
