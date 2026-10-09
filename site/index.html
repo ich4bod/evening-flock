@@ -275,6 +275,8 @@
         <button id="gust-south" type="button">Gust down</button>
         <button id="wind-shear" type="button">Opposite side winds</button>
         <button id="wind-quarter-turn" type="button">Turn flights clockwise</button>
+        <button id="wind-mirror-horizontal" type="button">Mirror left–right flights</button>
+        <button id="wind-mirror-vertical" type="button">Mirror top–bottom flights</button>
         <button id="reverse-flight" type="button">Turn around</button>
         <button id="turn-counterclockwise" type="button">Turn left</button>
         <button id="turn-clockwise" type="button">Turn right</button>
@@ -286,6 +288,7 @@
       <p class="rest-flight-instruction">Rest here stops every bird in place. Neighbor steering can start them moving again.</p>
       <p class="quarter-turn-instruction">Turn left and Turn right rotate every heading a quarter turn. The birds stay where they are.</p>
       <p id="wind-quarter-turn-help">Turn every flight a quarter circle without changing its speed. The birds stay where they are until a beat. Step back restores the turn.</p>
+      <p id="wind-mirror-help">Reflect headings, not places. Speeds stay the same; a beat lets the birds move. Step back restores the whole sky.</p>
     </section>
     </details>
     <section class="pace-control" aria-labelledby="pace-heading">
@@ -346,6 +349,6 @@
     <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
-  <script type="module" src="/app.mjs?v=102"></script>
+  <script type="module" src="/app.mjs?v=103"></script>
 </body>
 </html>

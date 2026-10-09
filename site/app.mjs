@@ -1,4 +1,4 @@
-import { seed, seedScene, step, gust, shearFlight, reverseFlight, restFlight, quarterTurn, quarterTurnFlight } from './engine.mjs?v=26';
+import { seed, seedScene, step, gust, shearFlight, reverseFlight, restFlight, quarterTurn, quarterTurnFlight, mirrorFlight } from './engine.mjs?v=27';
 
 const canvas = document.querySelector('#flock');
 const context = canvas.getContext('2d');
@@ -171,6 +171,8 @@ const pauseButton = document.querySelector('#pause');
 const stepButton = document.querySelector('#step');
 const birdCoastBeatButton = document.querySelector('#bird-coast-beat');
 const windQuarterTurnButton = document.querySelector('#wind-quarter-turn');
+const windMirrorHorizontalButton = document.querySelector('#wind-mirror-horizontal');
+const windMirrorVerticalButton = document.querySelector('#wind-mirror-vertical');
 const paceButtons = {
   quarter: document.querySelector('#pace-quarter'),
   half: document.querySelector('#pace-half'),
@@ -1691,6 +1693,23 @@ function applyClockwiseFlightTurn() {
 }
 
 windQuarterTurnButton.addEventListener('click', applyClockwiseFlightTurn);
+
+function applyFlightMirror(axis) {
+  if (document.hidden) return;
+  manuallyPaused = true;
+  updatePauseButton();
+  const nextBirds = mirrorFlight(birds, axis);
+  if (nextBirds.every((bird, index) => bird.x === birds[index].x
+    && bird.y === birds[index].y && bird.vx === birds[index].vx && bird.vy === birds[index].vy)) return;
+  saveBeatSnapshot();
+  birds = nextBirds;
+  accumulator = 0;
+  lastTime = null;
+  draw();
+}
+
+windMirrorHorizontalButton.addEventListener('click', () => applyFlightMirror('x'));
+windMirrorVerticalButton.addEventListener('click', () => applyFlightMirror('y'));
 
 function applyReversal() {
   clearBeatHistory();

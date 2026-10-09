@@ -145,6 +145,19 @@ export function quarterTurnFlight(birds) {
   }));
 }
 
+export function mirrorFlight(birds, axis) {
+  if (axis !== 'x' && axis !== 'y') throw new RangeError('axis must be x or y');
+  return birds.map(bird => {
+    const vx = axis === 'x' ? -bird.vx : bird.vx;
+    const vy = axis === 'y' ? -bird.vy : bird.vy;
+    return {
+      ...bird,
+      vx: Object.is(vx, -0) ? 0 : vx,
+      vy: Object.is(vy, -0) ? 0 : vy,
+    };
+  });
+}
+
 export function step(birds, weights = DEFAULT_WEIGHTS, predator = null, neighborRadius = 80) {
   return birds.map((bird, index) => {
     let separationX = 0;
