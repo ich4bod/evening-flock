@@ -137,6 +137,14 @@ export function quarterTurn(birds, direction) {
     : { x: bird.x, y: bird.y, vx: bird.vy, vy: -bird.vx });
 }
 
+export function quarterTurnFlight(birds) {
+  return birds.map(bird => ({
+    ...bird,
+    vx: Object.is(-bird.vy, -0) ? 0 : -bird.vy,
+    vy: Object.is(bird.vx, -0) ? 0 : bird.vx,
+  }));
+}
+
 export function step(birds, weights = DEFAULT_WEIGHTS, predator = null, neighborRadius = 80) {
   return birds.map((bird, index) => {
     let separationX = 0;

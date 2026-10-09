@@ -1,4 +1,4 @@
-import { seed, seedScene, step, gust, shearFlight, reverseFlight, restFlight, quarterTurn } from './engine.mjs?v=25';
+import { seed, seedScene, step, gust, shearFlight, reverseFlight, restFlight, quarterTurn, quarterTurnFlight } from './engine.mjs?v=26';
 
 const canvas = document.querySelector('#flock');
 const context = canvas.getContext('2d');
@@ -170,6 +170,7 @@ const birdPlaceDiagonalButton = document.querySelector('#bird-place-diagonal');
 const pauseButton = document.querySelector('#pause');
 const stepButton = document.querySelector('#step');
 const birdCoastBeatButton = document.querySelector('#bird-coast-beat');
+const windQuarterTurnButton = document.querySelector('#wind-quarter-turn');
 const paceButtons = {
   quarter: document.querySelector('#pace-quarter'),
   half: document.querySelector('#pace-half'),
@@ -1674,6 +1675,22 @@ document.querySelector('#gust-east').addEventListener('click', () => applyGust(1
 document.querySelector('#gust-north').addEventListener('click', () => applyGust(0, -1));
 document.querySelector('#gust-south').addEventListener('click', () => applyGust(0, 1));
 document.querySelector('#wind-shear').addEventListener('click', applyOppositeSideWinds);
+
+function applyClockwiseFlightTurn() {
+  if (document.hidden) return;
+  manuallyPaused = true;
+  updatePauseButton();
+  const nextBirds = quarterTurnFlight(birds);
+  if (nextBirds.every((bird, index) => bird.x === birds[index].x
+    && bird.y === birds[index].y && bird.vx === birds[index].vx && bird.vy === birds[index].vy)) return;
+  saveBeatSnapshot();
+  birds = nextBirds;
+  accumulator = 0;
+  lastTime = null;
+  draw();
+}
+
+windQuarterTurnButton.addEventListener('click', applyClockwiseFlightTurn);
 
 function applyReversal() {
   clearBeatHistory();
