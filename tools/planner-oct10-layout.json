@@ -1,0 +1,670 @@
+{
+  "slug": "evening-flock",
+  "controls": [
+    [
+      "pause",
+      "button"
+    ],
+    [
+      "step-back",
+      "button"
+    ],
+    [
+      "step",
+      "button"
+    ],
+    [
+      "reset",
+      "button"
+    ],
+    [
+      "hawk",
+      "button"
+    ],
+    [
+      "neighbors",
+      "button"
+    ],
+    [
+      "follow-neighbor",
+      "button"
+    ],
+    [
+      "turn-arrow",
+      "button"
+    ],
+    [
+      "coast-arrow",
+      "button"
+    ],
+    [
+      "neighbor-links",
+      "button"
+    ],
+    [
+      "apart-arrow",
+      "button"
+    ],
+    [
+      "alignment-arrow",
+      "button"
+    ],
+    [
+      "gather-arrow",
+      "button"
+    ],
+    [
+      "trails",
+      "button"
+    ],
+    [
+      "selected-trail",
+      "button"
+    ],
+    [
+      "coasting-fraction",
+      "input"
+    ],
+    [
+      "coasting-seek-closest",
+      "button"
+    ],
+    [
+      "coasting-keep-fraction",
+      "button"
+    ],
+    [
+      "coasting-forget-fraction",
+      "button"
+    ],
+    [
+      "bird-left",
+      "button"
+    ],
+    [
+      "bird-right",
+      "button"
+    ],
+    [
+      "bird-reverse",
+      "button"
+    ],
+    [
+      "bird-rest",
+      "button"
+    ],
+    [
+      "bird-slower",
+      "button"
+    ],
+    [
+      "bird-faster",
+      "button"
+    ],
+    [
+      "bird-borrow",
+      "button"
+    ],
+    [
+      "bird-nearest-toward",
+      "button"
+    ],
+    [
+      "bird-nearest-away",
+      "button"
+    ],
+    [
+      "bird-nearest-speed",
+      "button"
+    ],
+    [
+      "bird-flight-blend",
+      "button"
+    ],
+    [
+      "bird-flight-counter",
+      "button"
+    ],
+    [
+      "bird-coast-beat",
+      "button"
+    ],
+    [
+      "bird-position-flight-swap",
+      "button"
+    ],
+    [
+      "bird-flight-unison",
+      "button"
+    ],
+    [
+      "bird-flight-rest-pair",
+      "button"
+    ],
+    [
+      "bird-flight-pair-left",
+      "button"
+    ],
+    [
+      "bird-flight-pair-right",
+      "button"
+    ],
+    [
+      "bird-flight-pair-reverse",
+      "button"
+    ],
+    [
+      "bird-flight-pair-half",
+      "button"
+    ],
+    [
+      "bird-flight-rest-nearest",
+      "button"
+    ],
+    [
+      "bird-flight-teach-nearest",
+      "button"
+    ],
+    [
+      "bird-position-closer",
+      "button"
+    ],
+    [
+      "bird-position-farther",
+      "button"
+    ],
+    [
+      "bird-position-halfway",
+      "button"
+    ],
+    [
+      "bird-position-swap",
+      "button"
+    ],
+    [
+      "bird-position-orbit-left",
+      "button"
+    ],
+    [
+      "bird-position-orbit-right",
+      "button"
+    ],
+    [
+      "bird-place-left",
+      "button"
+    ],
+    [
+      "bird-place-right",
+      "button"
+    ],
+    [
+      "bird-place-around",
+      "button"
+    ],
+    [
+      "bird-place-near",
+      "button"
+    ],
+    [
+      "bird-place-apart",
+      "button"
+    ],
+    [
+      "bird-place-reflect",
+      "button"
+    ],
+    [
+      "bird-place-other-diagonal",
+      "button"
+    ],
+    [
+      "bird-place-level",
+      "button"
+    ],
+    [
+      "bird-place-upright",
+      "button"
+    ],
+    [
+      "bird-place-flatten",
+      "button"
+    ],
+    [
+      "bird-place-narrow",
+      "button"
+    ],
+    [
+      "bird-place-diagonal",
+      "button"
+    ],
+    [
+      "bird-place-flip-height",
+      "button"
+    ],
+    [
+      "recipe-coast",
+      "button"
+    ],
+    [
+      "recipe-apart",
+      "button"
+    ],
+    [
+      "recipe-align",
+      "button"
+    ],
+    [
+      "recipe-gather",
+      "button"
+    ],
+    [
+      "recipe-apart-align",
+      "button"
+    ],
+    [
+      "recipe-apart-gather",
+      "button"
+    ],
+    [
+      "recipe-align-gather",
+      "button"
+    ],
+    [
+      "recipe-flock",
+      "button"
+    ],
+    [
+      "reach-near",
+      "button"
+    ],
+    [
+      "reach-usual",
+      "button"
+    ],
+    [
+      "reach-wide",
+      "button"
+    ],
+    [
+      "sky-two-flocks",
+      "button"
+    ],
+    [
+      "sky-head-on",
+      "button"
+    ],
+    [
+      "sky-ring",
+      "button"
+    ],
+    [
+      "sky-crossing",
+      "button"
+    ],
+    [
+      "sky-overtaking",
+      "button"
+    ],
+    [
+      "sky-seam",
+      "button"
+    ],
+    [
+      "sky-lanes",
+      "button"
+    ],
+    [
+      "sky-still",
+      "button"
+    ],
+    [
+      "sky-crowded",
+      "button"
+    ],
+    [
+      "gust-west",
+      "button"
+    ],
+    [
+      "gust-east",
+      "button"
+    ],
+    [
+      "gust-north",
+      "button"
+    ],
+    [
+      "gust-south",
+      "button"
+    ],
+    [
+      "wind-shear",
+      "button"
+    ],
+    [
+      "wind-quarter-turn",
+      "button"
+    ],
+    [
+      "wind-mirror-horizontal",
+      "button"
+    ],
+    [
+      "wind-mirror-vertical",
+      "button"
+    ],
+    [
+      "reverse-flight",
+      "button"
+    ],
+    [
+      "turn-counterclockwise",
+      "button"
+    ],
+    [
+      "turn-clockwise",
+      "button"
+    ],
+    [
+      "rest-flight",
+      "button"
+    ],
+    [
+      "pace-quarter",
+      "button"
+    ],
+    [
+      "pace-half",
+      "button"
+    ],
+    [
+      "pace-full",
+      "button"
+    ],
+    [
+      "separation",
+      "input"
+    ],
+    [
+      "alignment",
+      "input"
+    ],
+    [
+      "cohesion",
+      "input"
+    ],
+    [
+      "restore-rules",
+      "button"
+    ]
+  ],
+  "copy": [
+    {
+      "selector": "#turn-parts-help",
+      "text": "Rule corrections change this bird’s velocity. Positive vx is right; positive vy is down. Units are toy units per beat. Neighbor rules only; the hawk is left out."
+    },
+    {
+      "selector": "#relative-flight-help",
+      "text": "Positive gap change means separating; negative means approaching. This compares current flights, not the next rule correction."
+    },
+    {
+      "selector": "#pair-sideways-help",
+      "text": "This is the part of their current relative flight across the gap, rather than along it. Its sign follows the screen-coordinate normal, not a steering command."
+    },
+    {
+      "selector": "#turn-parts-diagram-help",
+      "text": "All four arrows share one scale. Colored arrows are rule corrections; ivory is their sum."
+    },
+    {
+      "selector": "#flight-limit-help",
+      "text": "Current flight (ivory), before limit (coral), next flight (gold). One shared scale; the next flight cannot exceed three toy units per beat."
+    },
+    {
+      "selector": "#coasting-pair-help",
+      "text": "Ivory: the pair now. Coral: one beat of unchanged flight. This local preview ignores steering, the hawk and boundary wrapping; it does not advance the flock."
+    },
+    {
+      "selector": "#coasting-kept-help",
+      "text": "The gold dots use your kept fraction on the pair chosen now. They do not remember another sky or move these birds."
+    },
+    {
+      "selector": "#coasting-fraction-help",
+      "text": "This is a point on the unchanged-flight comparison, not the next steering decision."
+    },
+    {
+      "selector": "#coasting-seek-help",
+      "text": "Inspect the closest point, rounded to the nearest thousandth of this beat. The birds do not move."
+    },
+    {
+      "selector": "#coasting-fraction-markers-help",
+      "text": "The mint dots are the inspected fraction. Ivory is now; coral is one full beat."
+    },
+    {
+      "selector": "#pair-gap-help",
+      "text": "The ending gap uses the same wrapped neighbor image as the diagram. Neither bird steers during this comparison; the real next beat can differ."
+    },
+    {
+      "selector": "#coasting-closest-help",
+      "text": "The closest point may come before the ending gap. Both current flights stay unchanged, and the comparison stops after one beat."
+    },
+    {
+      "selector": ".bird-left-helper",
+      "text": "Pause, turn on Neighbors and choose a bird. Turn this bird left changes only its heading. One beat lets the neighbors respond; Step back undoes the edit."
+    },
+    {
+      "selector": ".bird-right-helper",
+      "text": "Turn this bird right rotates only the selected heading a quarter turn. The other birds keep their headings until a beat."
+    },
+    {
+      "selector": ".bird-reverse-helper",
+      "text": "Turn this bird around reverses only the selected heading. Step back restores it before you try a different turn."
+    },
+    {
+      "selector": ".bird-rest-helper",
+      "text": "Rest this bird sets only the selected velocity to zero. Neighbor steering can start it again on the next beat."
+    },
+    {
+      "selector": ".bird-slower-helper",
+      "text": "Slow this bird halves only its velocity. Its heading stays the same; One beat lets the neighbors respond."
+    },
+    {
+      "selector": ".bird-faster-helper",
+      "text": "Speed up this bird doubles its velocity up to three world units per beat. Only this bird changes, and Step back restores it."
+    },
+    {
+      "selector": ".bird-borrow-helper",
+      "text": "Borrow nearest flight copies the closest bird’s velocity inside the neighbor ring. It changes only this bird, not the flock rule."
+    },
+    {
+      "selector": ".bird-nearest-toward-helper",
+      "text": "Face nearest bird aims this bird at its closest neighbor inside the ring. Its speed stays the same; positions do not move until One beat."
+    },
+    {
+      "selector": ".bird-nearest-away-helper",
+      "text": "Face away from nearest aims directly away from the closest neighbor inside the ring. Its speed stays the same, and Step back restores the sky."
+    },
+    {
+      "selector": ".bird-nearest-speed-helper",
+      "text": "Match nearest speed copies the closest neighbor’s speed, up to three world units per beat, while keeping this bird’s heading. A resting bird has no heading to keep."
+    },
+    {
+      "selector": ".bird-flight-blend-helper",
+      "text": "Meet nearest flight halfway averages this bird’s velocity with its nearest neighbor’s. Only this bird changes; positions stay put. Opposite flights can cancel into rest. Step back restores the flight."
+    },
+    {
+      "selector": ".bird-flight-counter-helper",
+      "text": "Counter nearest flight gives this bird the negative of its nearest neighbor’s velocity. The neighbor keeps flying as before. A resting neighbor gives this bird rest too. Step back restores the flight."
+    },
+    {
+      "selector": ".bird-position-flight-swap-helper",
+      "text": "Trade flights with nearest swaps these two birds’ velocities, not their positions. The selected bird stays selected; Step back restores both flights."
+    },
+    {
+      "selector": ".bird-flight-unison-helper",
+      "text": "Give the pair one flight gives both birds their average velocity. Their positions stay put, and equal opposite flights become rest. This is an edit, not a new flock rule. Step back restores both flights."
+    },
+    {
+      "selector": ".bird-flight-rest-pair-helper",
+      "text": "Rest this pair sets this bird and its nearest neighbor to zero velocity without moving either. One beat can let the flock rules steer them again. Step back restores both flights."
+    },
+    {
+      "selector": ".bird-flight-pair-left-helper",
+      "text": "Turn this pair left rotates both velocities a quarter turn left. Neither bird moves until a beat. Step back restores both flights."
+    },
+    {
+      "selector": ".bird-flight-pair-right-helper",
+      "text": "Turn this pair right rotates both velocities a quarter turn right. Neither bird moves until a beat. Step back restores both flights."
+    },
+    {
+      "selector": ".bird-flight-pair-reverse-helper",
+      "text": "Turn this pair around reverses both velocities. Their speeds and positions stay the same. Step back restores both flights."
+    },
+    {
+      "selector": ".bird-flight-pair-half-helper",
+      "text": "Slow this pair by half halves both velocities. It leaves the rest of the sky at its current pace. One beat shows the local difference; Step back restores both flights."
+    },
+    {
+      "selector": ".bird-flight-rest-nearest-helper",
+      "text": "Rest only the nearest sets the nearest neighbor’s velocity to zero. This bird keeps its flight, and neither position changes. Step back restores the neighbor’s flight."
+    },
+    {
+      "selector": ".bird-flight-teach-nearest-helper",
+      "text": "Give nearest this flight copies this bird’s velocity to its nearest neighbor. This bird keeps its own flight. The edit does not add a new flock rule; Step back restores the neighbor’s flight."
+    },
+    {
+      "selector": ".bird-position-closer-helper",
+      "text": "Move closer to nearest shifts this bird toward its closest neighbor by twelve world units, or half the gap if that is smaller. Headings stay put. Step back restores the positions."
+    },
+    {
+      "selector": ".bird-position-farther-helper",
+      "text": "Move farther from nearest shifts this bird twelve world units away from its closest neighbor. Positions wrap across the sky edge; headings stay put."
+    },
+    {
+      "selector": ".bird-position-halfway-helper",
+      "text": "Meet nearest halfway moves only this bird to the midpoint of the shortest wrapped gap. The neighbor stays put, and both headings stay the same."
+    },
+    {
+      "selector": ".bird-position-swap-helper",
+      "text": "Trade places with nearest swaps these two birds’ positions, not their headings. The selected bird stays selected; Step back restores both places."
+    },
+    {
+      "selector": ".bird-position-orbit-left-helper",
+      "text": "Circle nearest left moves this bird a quarter turn around its closest neighbor across the wrapped sky. The gap stays the same; headings do not turn. Step back restores the position."
+    },
+    {
+      "selector": ".bird-position-orbit-right-helper",
+      "text": "Circle nearest right moves this bird a quarter turn around its closest neighbor across the wrapped sky. The neighbor stays put; headings do not turn. Step back restores the position."
+    },
+    {
+      "selector": ".bird-place-left-helper",
+      "text": "Turn the pair’s places left rotates both positions a quarter turn around their shared midpoint along the shortest wrap-around gap. Their flight arrows do not turn. One beat shows what the flock rules do with the new places; Step back restores them."
+    },
+    {
+      "selector": ".bird-place-right-helper",
+      "text": "Turn the pair’s places right rotates both positions a quarter turn around their shared midpoint along the shortest wrap-around gap. Their flight arrows do not turn. Step back restores the places."
+    },
+    {
+      "selector": ".bird-place-around-helper",
+      "text": "Turn the pair’s places around exchanges the two positions by a half turn about their wrap-aware midpoint. Each bird keeps its own flight. Step back restores the places."
+    },
+    {
+      "selector": ".bird-place-near-helper",
+      "text": "Bring both places closer halves the gap, moving both birds equally toward their shared midpoint. It does not slow either flight. One beat lets the closer neighbors react; Step back restores the places."
+    },
+    {
+      "selector": ".bird-place-apart-helper",
+      "text": "Spread both places apart doubles the original shortest gap about its midpoint, wrapping each position back into the sky. It may put the birds outside each other’s neighbor rings. Flights stay unchanged; Step back restores the places."
+    },
+    {
+      "selector": ".bird-place-reflect-helper",
+      "text": "Reflect the pair’s places flips their left-to-right separation about the vertical line through their shared midpoint. Their heights and flight arrows stay unchanged. Step back restores both places."
+    },
+    {
+      "selector": ".bird-place-other-diagonal-helper",
+      "text": "Keep the shortest-gap midpoint and distance; put the nearest bird down and left on a 45-degree diagonal. Both flights stay unchanged."
+    },
+    {
+      "selector": ".bird-place-level-helper",
+      "text": "Keep the shortest-gap midpoint and distance; put the nearest bird to the right. Both flights stay unchanged."
+    },
+    {
+      "selector": ".bird-place-upright-helper",
+      "text": "Keep the shortest-gap midpoint and distance; put the nearest bird below. Both flights stay unchanged."
+    },
+    {
+      "selector": ".bird-place-flatten-helper",
+      "text": "Halve only the shortest vertical gap around the shared midpoint. Keep the horizontal gap and both flights."
+    },
+    {
+      "selector": ".bird-place-narrow-helper",
+      "text": "Halve only the shortest horizontal gap around the shared midpoint. Keep the vertical gap and both flights."
+    },
+    {
+      "selector": ".bird-place-diagonal-helper",
+      "text": "Keep the shortest-gap midpoint and distance; put the nearest bird down and right on a 45-degree diagonal. Both flights stay unchanged."
+    },
+    {
+      "selector": ".bird-place-flip-height-helper",
+      "text": "Reverse only the shortest vertical gap around the shared midpoint. Keep the horizontal gap and both flights."
+    },
+    {
+      "selector": "#wind-quarter-turn-help",
+      "text": "Turn every flight a quarter circle without changing its speed. The birds stay where they are until a beat. Step back restores the turn."
+    },
+    {
+      "selector": "#wind-mirror-help",
+      "text": "Reflect headings, not places. Speeds stay the same; a beat lets the birds move. Step back restores the whole sky."
+    },
+    {
+      "selector": "#lens-keyboard-help",
+      "text": "Keyboard: turn on Neighbors, focus the sky, then use Left and Right to choose a bird. Home chooses the first bird; End chooses the last."
+    }
+  ],
+  "cases": [
+    {
+      "slug": "evening-flock",
+      "lane": 8,
+      "mode": "wholechoices",
+      "title": "Evening Flock — Separate starting a sky from turning the flights already there",
+      "depends": "nothing",
+      "goal": "Choose a starting scene or change the current flights without confusing those two gestures. Each set keeps its own explanation, while flight pace remains directly available inside the existing whole-sky door.",
+      "steps": "Inside existing #flock-whole-sky add two closed sibling details #flock-starting-scenes and #flock-current-winds. Move intact section.sky-control into starting-scenes, including every named sky button and all its paragraphs. Move intact section.gust-control into current-winds, including every gust, shear, quarter-turn, mirror, turn-around/left/right/rest button and all help. Keep section.pace-control directly outside both new doors, still inside #flock-whole-sky. Do not move recipe/reach/one-bird controls or change any wind, starting-scene, history or pause handler. Both new doors use native summaries only; opening a scene door must not restart the flock.",
+      "groups": [
+        {
+          "id": "flock-starting-scenes",
+          "summary": "Start a different sky",
+          "members": [
+            ".sky-control",
+            "#sky-two-flocks",
+            "#sky-ring",
+            "#sky-still",
+            "#sky-crowded"
+          ]
+        },
+        {
+          "id": "flock-current-winds",
+          "summary": "Change these flights",
+          "members": [
+            ".gust-control",
+            "#gust-west",
+            "#wind-shear",
+            "#wind-quarter-turn",
+            "#wind-mirror-horizontal",
+            "#reverse-flight",
+            "#rest-flight",
+            "#wind-quarter-turn-help",
+            "#wind-mirror-help"
+          ]
+        }
+      ],
+      "outside": [
+        ".pace-control",
+        "#pace-quarter",
+        "#pause",
+        "#step-back",
+        "#quick-recipes"
+      ],
+      "message": "starting scenes and current winds use independent doors without replacing a flock on disclosure"
+    }
+  ]
+}
