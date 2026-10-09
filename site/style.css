@@ -48,21 +48,21 @@ button:focus-visible, a:focus-visible { outline: 3px solid #283346; outline-offs
 #bird-place-upright:focus-visible { outline: 3px solid #283346; outline-offset: 3px; }
 #bird-place-flatten:disabled { opacity: 0.45; cursor: default; }
 #bird-place-flatten:focus-visible { outline: 3px solid #283346; outline-offset: 3px; }
-#bird-edit-guide .bird-place-level-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
-#bird-edit-guide .bird-place-upright-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
-#bird-edit-guide .bird-place-flatten-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
+.bird-edit-drawer .bird-place-level-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
+.bird-edit-drawer .bird-place-upright-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
+.bird-edit-drawer .bird-place-flatten-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
 #bird-place-narrow:disabled { opacity: 0.45; cursor: default; }
 #bird-place-narrow:focus-visible { outline: 3px solid #283346; outline-offset: 3px; }
-#bird-edit-guide .bird-place-narrow-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
+.bird-edit-drawer .bird-place-narrow-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
 #bird-place-diagonal:disabled { opacity: 0.45; cursor: default; }
 #bird-place-diagonal:focus-visible { outline: 3px solid #283346; outline-offset: 3px; }
-#bird-edit-guide .bird-place-diagonal-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
+.bird-edit-drawer .bird-place-diagonal-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
 #bird-place-other-diagonal:disabled { opacity: 0.45; cursor: default; }
 #bird-place-other-diagonal:focus-visible { outline: 3px solid #283346; outline-offset: 3px; }
 #bird-place-flip-height:disabled { opacity: 0.45; cursor: default; }
 #bird-place-flip-height:focus-visible { outline: 3px solid #283346; outline-offset: 3px; }
-#bird-edit-guide .bird-place-other-diagonal-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
-#bird-edit-guide .bird-place-flip-height-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
+.bird-edit-drawer .bird-place-other-diagonal-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
+.bird-edit-drawer .bird-place-flip-height-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
 #bird-census { margin: 8px 0; min-height: 36px; color: #283346; text-align: center; font: 13px system-ui, sans-serif; }
 .bird-local-readout { margin: 4px 0; min-height: 40px; color: #283346; text-align: center; font: 14px/20px system-ui, sans-serif; }
 .bird-local-readout[hidden] { display: none; }
@@ -87,39 +87,39 @@ button:focus-visible, a:focus-visible { outline: 3px solid #283346; outline-offs
 #turn-parts[hidden], #turn-parts [hidden] { display: none; }
 #bird-edits { margin: 12px 0; padding: 0 12px; border: 1px solid #283346; border-radius: 12px; background: #fff7e7; }
 #bird-edits summary { display: flex; align-items: center; min-height: 44px; color: #283346; font: 18px Georgia, serif; cursor: pointer; }
-#bird-edits summary:focus-visible { outline: 3px solid #e9755c; }
-#bird-edit-guide { margin: 8px 0 12px; padding: 0 12px; border: 1px solid #283346; border-radius: 12px; background: #fff7e7; }
-#bird-edit-guide summary { display: flex; align-items: center; min-height: 44px; color: #283346; font: 18px Georgia, serif; cursor: pointer; }
-#bird-edit-guide summary:focus-visible { outline: 3px solid #e9755c; }
-#bird-edit-guide section { margin: 16px 0; padding: 0; }
-#bird-edit-guide h3 { margin: 0 0 8px; color: #283346; font: 18px/1.3 Georgia, serif; }
-#bird-edit-guide .bird-left-helper, #bird-edit-guide .bird-right-helper, #bird-edit-guide .bird-reverse-helper, #bird-edit-guide .bird-rest-helper, #bird-edit-guide .bird-slower-helper, #bird-edit-guide .bird-faster-helper, #bird-edit-guide .bird-borrow-helper, #bird-edit-guide .bird-nearest-toward-helper, #bird-edit-guide .bird-nearest-away-helper, #bird-edit-guide .bird-nearest-speed-helper, #bird-edit-guide .bird-position-closer-helper, #bird-edit-guide .bird-position-farther-helper, #bird-edit-guide .bird-position-halfway-helper, #bird-edit-guide .bird-position-swap-helper, #bird-edit-guide .bird-position-orbit-left-helper, #bird-edit-guide .bird-position-orbit-right-helper, #bird-edit-guide .bird-position-flight-swap-helper, #bird-edit-guide .bird-flight-blend-helper, #bird-edit-guide .bird-flight-unison-helper, #bird-edit-guide .bird-flight-counter-helper, #bird-edit-guide .bird-flight-rest-pair-helper, #bird-edit-guide .bird-flight-pair-left-helper, #bird-edit-guide .bird-flight-pair-right-helper, #bird-edit-guide .bird-flight-pair-reverse-helper, #bird-edit-guide .bird-flight-pair-half-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
+#bird-edits summary:focus-visible { outline: 3px solid #e9755c; outline-offset: 3px; }
+.bird-edit-drawer { margin: 8px 0 12px; padding: 0 12px; border: 1px solid #283346; border-radius: 12px; background: #fff7e7; }
+.bird-edit-drawer > summary { display: flex; align-items: center; min-height: 44px; color: #283346; font: 18px Georgia, serif; cursor: pointer; }
+.bird-edit-drawer > summary:focus-visible { outline: 3px solid #e9755c; outline-offset: 3px; }
+.bird-edit-drawer section { margin: 16px 0; padding: 0; }
+.bird-edit-drawer h3 { margin: 0 0 8px; color: #283346; font: 18px/1.3 Georgia, serif; }
+.bird-edit-drawer .bird-left-helper, .bird-edit-drawer .bird-right-helper, .bird-edit-drawer .bird-reverse-helper, .bird-edit-drawer .bird-rest-helper, .bird-edit-drawer .bird-slower-helper, .bird-edit-drawer .bird-faster-helper, .bird-edit-drawer .bird-borrow-helper, .bird-edit-drawer .bird-nearest-toward-helper, .bird-edit-drawer .bird-nearest-away-helper, .bird-edit-drawer .bird-nearest-speed-helper, .bird-edit-drawer .bird-position-closer-helper, .bird-edit-drawer .bird-position-farther-helper, .bird-edit-drawer .bird-position-halfway-helper, .bird-edit-drawer .bird-position-swap-helper, .bird-edit-drawer .bird-position-orbit-left-helper, .bird-edit-drawer .bird-position-orbit-right-helper, .bird-edit-drawer .bird-position-flight-swap-helper, .bird-edit-drawer .bird-flight-blend-helper, .bird-edit-drawer .bird-flight-unison-helper, .bird-edit-drawer .bird-flight-counter-helper, .bird-edit-drawer .bird-flight-rest-pair-helper, .bird-edit-drawer .bird-flight-pair-left-helper, .bird-edit-drawer .bird-flight-pair-right-helper, .bird-edit-drawer .bird-flight-pair-reverse-helper, .bird-edit-drawer .bird-flight-pair-half-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
 #bird-flight-rest-nearest:disabled { opacity: 0.45; cursor: default; }
 #bird-flight-rest-nearest:focus-visible { outline: 3px solid #283346; outline-offset: 3px; }
-#bird-edit-guide .bird-flight-rest-nearest-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
+.bird-edit-drawer .bird-flight-rest-nearest-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
 #bird-flight-teach-nearest:disabled { opacity: 0.45; cursor: default; }
 #bird-coast-beat:disabled { opacity: 0.45; cursor: default; }
 #bird-flight-teach-nearest:focus-visible { outline: 3px solid #283346; outline-offset: 3px; }
-#bird-edit-guide .bird-flight-teach-nearest-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
-#bird-edit-guide .bird-coast-beat-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
+.bird-edit-drawer .bird-flight-teach-nearest-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
+.bird-edit-drawer .bird-coast-beat-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
 #bird-place-left:disabled { opacity: 0.45; cursor: default; }
 #bird-place-left:focus-visible { outline: 3px solid #283346; outline-offset: 3px; }
-#bird-edit-guide .bird-place-left-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
+.bird-edit-drawer .bird-place-left-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
 #bird-place-right:disabled { opacity: 0.45; cursor: default; }
 #bird-place-right:focus-visible { outline: 3px solid #283346; outline-offset: 3px; }
 #bird-place-around:disabled { opacity: 0.45; cursor: default; }
 #bird-place-around:focus-visible { outline: 3px solid #283346; outline-offset: 3px; }
-#bird-edit-guide .bird-place-right-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
-#bird-edit-guide .bird-place-around-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
+.bird-edit-drawer .bird-place-right-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
+.bird-edit-drawer .bird-place-around-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
 #bird-place-near:disabled { opacity: 0.45; cursor: default; }
 #bird-place-near:focus-visible { outline: 3px solid #283346; outline-offset: 3px; }
-#bird-edit-guide .bird-place-near-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
+.bird-edit-drawer .bird-place-near-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
 #bird-place-apart:disabled { opacity: 0.45; cursor: default; }
 #bird-place-apart:focus-visible { outline: 3px solid #283346; outline-offset: 3px; }
-#bird-edit-guide .bird-place-apart-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
+.bird-edit-drawer .bird-place-apart-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
 #bird-place-reflect:disabled { opacity: 0.45; cursor: default; }
 #bird-place-reflect:focus-visible { outline: 3px solid #283346; outline-offset: 3px; }
-#bird-edit-guide .bird-place-reflect-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
+.bird-edit-drawer .bird-place-reflect-helper { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
 .bird-edit-row { display: flex; align-items: center; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 8px 0; }
 #bird-edits .bird-edit-family { width: 100%; flex-basis: 100%; min-width: 0; margin: 4px 0; padding: 8px; border: 1px solid #283346; border-radius: 8px; background: #fff7e7; color: #283346; }
 #bird-edits .bird-edit-family legend { padding: 0 6px; color: #283346; text-align: left; font: 14px/1.4 system-ui, sans-serif; }

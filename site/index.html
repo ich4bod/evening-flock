@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5d6bb">
   <title>Evening Flock</title>
-  <link rel="stylesheet" href="/style.css?v=105">
+  <link rel="stylesheet" href="/style.css?v=106">
 </head>
 <body>
   <main class="page">
@@ -104,7 +104,8 @@
     </details>
     <details id="bird-edits">
       <summary>Change one bird</summary>
-      <div class="bird-edit-row">
+      <details id="bird-flight-edits" class="bird-edit-drawer">
+        <summary>This bird’s flight</summary>
         <fieldset id="family-own-flight" class="bird-edit-family">
           <legend>Change this bird’s flight</legend>
           <div class="family-buttons">
@@ -122,6 +123,28 @@
             <button id="bird-flight-counter" type="button" disabled>Counter nearest flight</button>
           </div>
         </fieldset>
+        <div class="bird-edit-row">
+        <button id="bird-coast-beat" type="button" disabled>One beat with this bird coasting</button>
+      </div>
+        <section id="guide-own-flight" aria-labelledby="guide-heading-own-flight">
+        <h3 id="guide-heading-own-flight">Change this bird’s flight</h3>
+        <p class="bird-left-helper">Pause, turn on Neighbors and choose a bird. Turn this bird left changes only its heading. One beat lets the neighbors respond; Step back undoes the edit.</p>
+        <p class="bird-right-helper">Turn this bird right rotates only the selected heading a quarter turn. The other birds keep their headings until a beat.</p>
+        <p class="bird-reverse-helper">Turn this bird around reverses only the selected heading. Step back restores it before you try a different turn.</p>
+        <p class="bird-rest-helper">Rest this bird sets only the selected velocity to zero. Neighbor steering can start it again on the next beat.</p>
+        <p class="bird-slower-helper">Slow this bird halves only its velocity. Its heading stays the same; One beat lets the neighbors respond.</p>
+        <p class="bird-faster-helper">Speed up this bird doubles its velocity up to three world units per beat. Only this bird changes, and Step back restores it.</p>
+        <p class="bird-borrow-helper">Borrow nearest flight copies the closest bird’s velocity inside the neighbor ring. It changes only this bird, not the flock rule.</p>
+        <div class="bird-coast-beat-helper">This bird carries its current flight for one beat, without flock or hawk steering. The other birds make their ordinary decision using the same starting sky. Step back restores the whole beat.</div>
+        <p class="bird-nearest-toward-helper">Face nearest bird aims this bird at its closest neighbor inside the ring. Its speed stays the same; positions do not move until One beat.</p>
+        <p class="bird-nearest-away-helper">Face away from nearest aims directly away from the closest neighbor inside the ring. Its speed stays the same, and Step back restores the sky.</p>
+        <p class="bird-nearest-speed-helper">Match nearest speed copies the closest neighbor’s speed, up to three world units per beat, while keeping this bird’s heading. A resting bird has no heading to keep.</p>
+        <p class="bird-flight-blend-helper">Meet nearest flight halfway averages this bird’s velocity with its nearest neighbor’s. Only this bird changes; positions stay put. Opposite flights can cancel into rest. Step back restores the flight.</p>
+        <p class="bird-flight-counter-helper">Counter nearest flight gives this bird the negative of its nearest neighbor’s velocity. The neighbor keeps flying as before. A resting neighbor gives this bird rest too. Step back restores the flight.</p>
+      </section>
+      </details>
+      <details id="bird-pair-flight-edits" class="bird-edit-drawer">
+        <summary>Neighboring flights</summary>
         <fieldset id="family-shared-flight" class="bird-edit-family">
           <legend>Change the neighboring flights</legend>
           <div class="family-buttons">
@@ -136,6 +159,21 @@
             <button id="bird-flight-teach-nearest" type="button" disabled>Give nearest this flight</button>
           </div>
         </fieldset>
+        <section id="guide-shared-flight" aria-labelledby="guide-heading-shared-flight">
+        <h3 id="guide-heading-shared-flight">Change the neighboring flights</h3>
+        <p class="bird-position-flight-swap-helper">Trade flights with nearest swaps these two birds’ velocities, not their positions. The selected bird stays selected; Step back restores both flights.</p>
+        <p class="bird-flight-unison-helper">Give the pair one flight gives both birds their average velocity. Their positions stay put, and equal opposite flights become rest. This is an edit, not a new flock rule. Step back restores both flights.</p>
+        <p class="bird-flight-rest-pair-helper">Rest this pair sets this bird and its nearest neighbor to zero velocity without moving either. One beat can let the flock rules steer them again. Step back restores both flights.</p>
+        <p class="bird-flight-pair-left-helper">Turn this pair left rotates both velocities a quarter turn left. Neither bird moves until a beat. Step back restores both flights.</p>
+        <p class="bird-flight-pair-right-helper">Turn this pair right rotates both velocities a quarter turn right. Neither bird moves until a beat. Step back restores both flights.</p>
+        <p class="bird-flight-pair-reverse-helper">Turn this pair around reverses both velocities. Their speeds and positions stay the same. Step back restores both flights.</p>
+        <p class="bird-flight-pair-half-helper">Slow this pair by half halves both velocities. It leaves the rest of the sky at its current pace. One beat shows the local difference; Step back restores both flights.</p>
+        <p class="bird-flight-rest-nearest-helper">Rest only the nearest sets the nearest neighbor’s velocity to zero. This bird keeps its flight, and neither position changes. Step back restores the neighbor’s flight.</p>
+        <p class="bird-flight-teach-nearest-helper">Give nearest this flight copies this bird’s velocity to its nearest neighbor. This bird keeps its own flight. The edit does not add a new flock rule; Step back restores the neighbor’s flight.</p>
+      </section>
+      </details>
+      <details id="bird-place-edits" class="bird-edit-drawer">
+        <summary>Places, not flights</summary>
         <fieldset id="family-bird-places" class="bird-edit-family">
           <legend>Change places, keep flights</legend>
           <div class="family-buttons">
@@ -160,42 +198,7 @@
             <button id="bird-place-flip-height" type="button" disabled>Flip the pair top to bottom</button>
           </div>
         </fieldset>
-      </div>
-      <div class="bird-edit-row">
-        <button id="bird-coast-beat" type="button" disabled>One beat with this bird coasting</button>
-      </div>
-    </details>
-    <details id="bird-edit-guide">
-      <summary>How to change one bird</summary>
-      <section id="guide-own-flight" aria-labelledby="guide-heading-own-flight">
-        <h3 id="guide-heading-own-flight">Change this bird’s flight</h3>
-        <p class="bird-left-helper">Pause, turn on Neighbors and choose a bird. Turn this bird left changes only its heading. One beat lets the neighbors respond; Step back undoes the edit.</p>
-        <p class="bird-right-helper">Turn this bird right rotates only the selected heading a quarter turn. The other birds keep their headings until a beat.</p>
-        <p class="bird-reverse-helper">Turn this bird around reverses only the selected heading. Step back restores it before you try a different turn.</p>
-        <p class="bird-rest-helper">Rest this bird sets only the selected velocity to zero. Neighbor steering can start it again on the next beat.</p>
-        <p class="bird-slower-helper">Slow this bird halves only its velocity. Its heading stays the same; One beat lets the neighbors respond.</p>
-        <p class="bird-faster-helper">Speed up this bird doubles its velocity up to three world units per beat. Only this bird changes, and Step back restores it.</p>
-        <p class="bird-borrow-helper">Borrow nearest flight copies the closest bird’s velocity inside the neighbor ring. It changes only this bird, not the flock rule.</p>
-        <div class="bird-coast-beat-helper">This bird carries its current flight for one beat, without flock or hawk steering. The other birds make their ordinary decision using the same starting sky. Step back restores the whole beat.</div>
-        <p class="bird-nearest-toward-helper">Face nearest bird aims this bird at its closest neighbor inside the ring. Its speed stays the same; positions do not move until One beat.</p>
-        <p class="bird-nearest-away-helper">Face away from nearest aims directly away from the closest neighbor inside the ring. Its speed stays the same, and Step back restores the sky.</p>
-        <p class="bird-nearest-speed-helper">Match nearest speed copies the closest neighbor’s speed, up to three world units per beat, while keeping this bird’s heading. A resting bird has no heading to keep.</p>
-        <p class="bird-flight-blend-helper">Meet nearest flight halfway averages this bird’s velocity with its nearest neighbor’s. Only this bird changes; positions stay put. Opposite flights can cancel into rest. Step back restores the flight.</p>
-        <p class="bird-flight-counter-helper">Counter nearest flight gives this bird the negative of its nearest neighbor’s velocity. The neighbor keeps flying as before. A resting neighbor gives this bird rest too. Step back restores the flight.</p>
-      </section>
-      <section id="guide-shared-flight" aria-labelledby="guide-heading-shared-flight">
-        <h3 id="guide-heading-shared-flight">Change the neighboring flights</h3>
-        <p class="bird-position-flight-swap-helper">Trade flights with nearest swaps these two birds’ velocities, not their positions. The selected bird stays selected; Step back restores both flights.</p>
-        <p class="bird-flight-unison-helper">Give the pair one flight gives both birds their average velocity. Their positions stay put, and equal opposite flights become rest. This is an edit, not a new flock rule. Step back restores both flights.</p>
-        <p class="bird-flight-rest-pair-helper">Rest this pair sets this bird and its nearest neighbor to zero velocity without moving either. One beat can let the flock rules steer them again. Step back restores both flights.</p>
-        <p class="bird-flight-pair-left-helper">Turn this pair left rotates both velocities a quarter turn left. Neither bird moves until a beat. Step back restores both flights.</p>
-        <p class="bird-flight-pair-right-helper">Turn this pair right rotates both velocities a quarter turn right. Neither bird moves until a beat. Step back restores both flights.</p>
-        <p class="bird-flight-pair-reverse-helper">Turn this pair around reverses both velocities. Their speeds and positions stay the same. Step back restores both flights.</p>
-        <p class="bird-flight-pair-half-helper">Slow this pair by half halves both velocities. It leaves the rest of the sky at its current pace. One beat shows the local difference; Step back restores both flights.</p>
-        <p class="bird-flight-rest-nearest-helper">Rest only the nearest sets the nearest neighbor’s velocity to zero. This bird keeps its flight, and neither position changes. Step back restores the neighbor’s flight.</p>
-        <p class="bird-flight-teach-nearest-helper">Give nearest this flight copies this bird’s velocity to its nearest neighbor. This bird keeps its own flight. The edit does not add a new flock rule; Step back restores the neighbor’s flight.</p>
-      </section>
-      <section id="guide-bird-places" aria-labelledby="guide-heading-bird-places">
+        <section id="guide-bird-places" aria-labelledby="guide-heading-bird-places">
         <h3 id="guide-heading-bird-places">Change places, keep flights</h3>
         <p class="bird-position-closer-helper">Move closer to nearest shifts this bird toward its closest neighbor by twelve world units, or half the gap if that is smaller. Headings stay put. Step back restores the positions.</p>
         <p class="bird-position-farther-helper">Move farther from nearest shifts this bird twelve world units away from its closest neighbor. Positions wrap across the sky edge; headings stay put.</p>
@@ -217,6 +220,7 @@
         <p class="bird-place-diagonal-helper">Keep the shortest-gap midpoint and distance; put the nearest bird down and right on a 45-degree diagonal. Both flights stay unchanged.</p>
         <p class="bird-place-flip-height-helper">Reverse only the shortest vertical gap around the shared midpoint. Keep the horizontal gap and both flights.</p>
       </section>
+      </details>
     </details>
     <section id="quick-recipes" aria-labelledby="quick-recipes-heading">
       <h2 id="quick-recipes-heading">Try the flock rules</h2>
