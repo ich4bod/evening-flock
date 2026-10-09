@@ -1,0 +1,29 @@
+{
+  "slug": "evening-flock",
+  "cases": {
+    "scenes": {
+      "kind": "flock",
+      "message": "three radial starting skies retain the chosen pace and steering settings",
+      "rows": [
+        [
+          "inward-ring",
+          "Inward ring",
+          -2,
+          0
+        ],
+        [
+          "outward-ring",
+          "Outward ring",
+          2,
+          0
+        ],
+        [
+          "counter-ring",
+          "Ring the other way",
+          0,
+          -2
+        ]
+      ]
+    }
+  }
+}
