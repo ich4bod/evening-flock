@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5d6bb">
   <title>Evening Flock</title>
-  <link rel="stylesheet" href="/style.css?v=110">
+  <link rel="stylesheet" href="/style.css?v=111">
 </head>
 <body>
   <main class="page">
@@ -280,6 +280,16 @@
       <p class="lanes-instruction">Passing lanes puts nearby streams in opposite directions.</p>
       <p class="still-instruction">Still cloud starts every bird at rest. Coast leaves it still; neighbor steering can set it moving.</p>
       <p class="crowded-instruction">Crowded sky packs the birds close enough for the short-range push to matter.</p>
+      <div class="paired-sky-controls">
+        <label for="paired-sky">Paired rings</label>
+        <select id="paired-sky">
+          <option value="paired-same" selected>Two rings, same turn</option>
+          <option value="paired-opposed">Two rings, opposite turns</option>
+          <option value="paired-rest">Two resting rings</option>
+        </select>
+        <button id="paired-sky-apply" type="button">Start these rings</button>
+        <p id="paired-sky-help">Two rings share the same starting places. Change their flights, then take a beat to see what the local rules do. Starting a sky clears its old steps.</p>
+      </div>
     </section>
     </details>
     <details id="flock-current-winds">
@@ -368,6 +378,6 @@
     <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
-  <script type="module" src="/app.mjs?v=105"></script>
+  <script type="module" src="/app.mjs?v=106"></script>
 </body>
 </html>

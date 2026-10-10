@@ -12,6 +12,25 @@ export function seed() {
 }
 
 export function seedScene(name) {
+  const pairedFlights = {
+    'paired-same': [1, 1],
+    'paired-opposed': [1, -1],
+    'paired-rest': [0, 0],
+  }[name];
+  if (pairedFlights) {
+    return Array.from({ length: 80 }, (_, i) => {
+      const j = i % 40;
+      const t = 2 * Math.PI * j / 40;
+      const centerX = i < 40 ? 350 : 650;
+      const k = i < 40 ? pairedFlights[0] : pairedFlights[1];
+      return {
+        x: centerX + 110 * Math.cos(t),
+        y: 300 + 110 * Math.sin(t),
+        vx: -2 * k * Math.sin(t),
+        vy: 2 * k * Math.cos(t),
+      };
+    });
+  }
   if (name === 'crowded') {
     return Array.from({ length: 80 }, (_, i) => ({
       x: 464 + (i % 10) * 8,

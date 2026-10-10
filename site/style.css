@@ -162,6 +162,13 @@ button:focus-visible, a:focus-visible { outline: 3px solid #283346; outline-offs
 #sky-inward-ring, #sky-outward-ring, #sky-counter-ring { min-height: 45px; font-family: system-ui, sans-serif; font-size: 16px; }
 #sky-inward-ring:focus-visible, #sky-outward-ring:focus-visible, #sky-counter-ring:focus-visible { outline: 3px solid #e9755c; outline-offset: 3px; }
 .sky-control p { margin: 8px auto 0; max-width: 760px; font-size: 15px; line-height: 1.45; }
+.paired-sky-controls { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; margin: 12px auto 0; }
+.paired-sky-controls label { font: 16px system-ui, sans-serif; }
+.paired-sky-controls select, .paired-sky-controls button { min-height: 45px; max-width: 100%; font: 16px system-ui, sans-serif; }
+.paired-sky-controls select { padding: 8px; border: 2px solid #283346; border-radius: 8px; background: #fff7e7; color: #283346; }
+.paired-sky-controls select:focus-visible, .paired-sky-controls button:focus-visible { outline: 3px solid #e9755c; outline-offset: 3px; }
+.paired-sky-controls #paired-sky-help { flex-basis: 100%; margin: 0; max-width: 760px; font-size: 15px; line-height: 1.45; }
+.paired-sky-controls [hidden] { display: none; }
 .gust-control { margin: 0 auto 8px; text-align: center; }
 .gust-control h2 { margin: 0 0 8px; font: 20px/1.2 Georgia, serif; }
 .gust-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
