@@ -1,0 +1,27 @@
+{
+  "mode": "rings",
+  "lane": 8,
+  "title": "Evening Flock \u2014 Start two neighboring rings with matching opposed or absent flights",
+  "message": "paired rings keep eighty starting places while changing their current flights",
+  "rows": [
+    [
+      "paired-same",
+      "Two rings, same turn",
+      1,
+      1
+    ],
+    [
+      "paired-opposed",
+      "Two rings, opposite turns",
+      1,
+      -1
+    ],
+    [
+      "paired-rest",
+      "Two resting rings",
+      0,
+      0
+    ]
+  ],
+  "help": "Two rings share the same starting places. Change their flights, then take a beat to see what the local rules do. Starting a sky clears its old steps."
+}
