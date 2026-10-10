@@ -82,6 +82,19 @@ export function seedScene(name) {
       };
     });
   }
+  if (['inward-ring', 'outward-ring', 'counter-ring'].includes(name)) {
+    const radial = name === 'inward-ring' ? -2 : name === 'outward-ring' ? 2 : 0;
+    const tangent = name === 'counter-ring' ? -2 : 0;
+    return Array.from({ length: 80 }, (_, i) => {
+      const t = 2 * Math.PI * i / 80;
+      return {
+        x: 500 + 180 * Math.cos(t),
+        y: 300 + 180 * Math.sin(t),
+        vx: radial * Math.cos(t) - tangent * Math.sin(t),
+        vy: radial * Math.sin(t) + tangent * Math.cos(t),
+      };
+    });
+  }
   if (name !== 'two-flocks' && name !== 'head-on') return seed();
   return Array.from({ length: 80 }, (_, i) => {
     const j = i % 40;

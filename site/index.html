@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5d6bb">
   <title>Evening Flock</title>
-  <link rel="stylesheet" href="/style.css?v=107">
+  <link rel="stylesheet" href="/style.css?v=109">
 </head>
 <body>
   <main class="page">
@@ -264,8 +264,12 @@
         <button id="sky-lanes" type="button">Passing lanes</button>
         <button id="sky-still" type="button">Still cloud</button>
         <button id="sky-crowded" type="button">Crowded sky</button>
+        <button id="sky-inward-ring" type="button">Inward ring</button>
+        <button id="sky-outward-ring" type="button">Outward ring</button>
+        <button id="sky-counter-ring" type="button">Ring the other way</button>
       </div>
       <p>Try two groups, a turning ring or crossing streams, then watch the same rules reshape them.</p>
+      <p id="sky-radial-help">The ring keeps the same eighty starting places. Choose flights toward the center, away from it, or around it in the other direction.</p>
       <p class="overtaking-instruction">Overtaking starts a faster group behind a slower one.</p>
       <p class="seam-instruction">Across the edge puts neighbors on opposite sides of the wrapped sky.</p>
       <p class="lanes-instruction">Passing lanes puts nearby streams in opposite directions.</p>
@@ -359,6 +363,6 @@
     <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
-  <script type="module" src="/app.mjs?v=103"></script>
+  <script type="module" src="/app.mjs?v=104"></script>
 </body>
 </html>

@@ -154,6 +154,8 @@ button:focus-visible, a:focus-visible { outline: 3px solid #283346; outline-offs
 .sky-control { margin: 0 auto 8px; text-align: center; }
 .sky-control h2 { margin: 0 0 8px; font: 20px/1.2 Georgia, serif; }
 .sky-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+#sky-inward-ring, #sky-outward-ring, #sky-counter-ring { min-height: 45px; font-family: system-ui, sans-serif; font-size: 16px; }
+#sky-inward-ring:focus-visible, #sky-outward-ring:focus-visible, #sky-counter-ring:focus-visible { outline: 3px solid #e9755c; outline-offset: 3px; }
 .sky-control p { margin: 8px auto 0; max-width: 760px; font-size: 15px; line-height: 1.45; }
 .gust-control { margin: 0 auto 8px; text-align: center; }
 .gust-control h2 { margin: 0 0 8px; font: 20px/1.2 Georgia, serif; }
