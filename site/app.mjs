@@ -26,6 +26,8 @@ const pairGapReadout = document.querySelector('#pair-gap');
 const pairGapHelp = document.querySelector('#pair-gap-help');
 const coastingClosestReadout = document.querySelector('#coasting-closest');
 const coastingClosestHelp = document.querySelector('#coasting-closest-help');
+const coastingRingDrawer = document.querySelector('#coasting-ring');
+const coastingRingReadout = document.querySelector('#coasting-ring-readout');
 const turnPartsDiagram = document.querySelector('#turn-parts-diagram');
 const turnPartsDiagramHelp = document.querySelector('#turn-parts-diagram-help');
 const flightLimitDiagram = document.querySelector('#flight-limit-diagram');
@@ -899,6 +901,43 @@ function drawFlightLimitDiagram(values) {
   }
 }
 
+function coastRingMembership(flock, selectedIndex, radius) {
+  if (!Number.isInteger(selectedIndex) || !flock[selectedIndex]) return null;
+  const selected = flock[selectedIndex];
+  const members = [0, 1].map(time => {
+    const ids = [];
+    for (let index = 0; index < flock.length; index++) {
+      if (index === selectedIndex) continue;
+      const bird = flock[index];
+      let dx = bird.x + bird.vx * time - selected.x - selected.vx * time;
+      let dy = bird.y + bird.vy * time - selected.y - selected.vy * time;
+      if (dx > worldWidth / 2) dx -= worldWidth;
+      else if (dx < -worldWidth / 2) dx += worldWidth;
+      if (dy > worldHeight / 2) dy -= worldHeight;
+      else if (dy < -worldHeight / 2) dy += worldHeight;
+      const distanceSquared = dx * dx + dy * dy;
+      if (distanceSquared > 0 && distanceSquared < radius * radius) ids.push(index + 1);
+    }
+    return ids;
+  });
+  const [now, coast] = members;
+  const stay = now.filter(id => coast.includes(id));
+  const enter = coast.filter(id => !now.includes(id));
+  const leave = now.filter(id => !coast.includes(id));
+  const list = ids => ids.length ? ids.join(', ') : 'none';
+  return { stay, enter, leave, list };
+}
+
+function updateCoastingRing(lens) {
+  coastingRingDrawer.hidden = !lens;
+  if (!lens) {
+    coastingRingReadout.textContent = '';
+    return;
+  }
+  const { stay, enter, leave, list } = coastRingMembership(birds, lens.index, neighborRadius);
+  coastingRingReadout.textContent = `After one coasting beat: ${stay.length} stay · ${enter.length} enter · ${leave.length} leave. Entering birds: ${list(enter)}. Leaving birds: ${list(leave)}.`;
+}
+
 function closestCoastingLink(lens) {
   let closest = null;
   for (const link of lens?.links ?? []) {
@@ -1265,6 +1304,7 @@ function draw() {
   context.globalAlpha = 1;
   const lens = lensSnapshot();
   const nearestLink = closestCoastingLink(lens);
+  updateCoastingRing(lens);
   updateTurnParts(lens, nearestLink);
   birdCensus.hidden = !lensEnabled;
   const censusText = !lensEnabled

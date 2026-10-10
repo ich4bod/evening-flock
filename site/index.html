@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5d6bb">
   <title>Evening Flock</title>
-  <link rel="stylesheet" href="/style.css?v=109">
+  <link rel="stylesheet" href="/style.css?v=110">
 </head>
 <body>
   <main class="page">
@@ -101,6 +101,11 @@
       <p id="pair-gap-help" hidden>The ending gap uses the same wrapped neighbor image as the diagram. Neither bird steers during this comparison; the real next beat can differ.</p>
       <p id="coasting-closest" hidden aria-live="off"></p>
       <p id="coasting-closest-help" hidden>The closest point may come before the ending gap. Both current flights stay unchanged, and the comparison stops after one beat.</p>
+      <details id="coasting-ring" hidden>
+        <summary>Who stays inside the neighbor ring</summary>
+        <p id="coasting-ring-readout"></p>
+        <p id="coasting-ring-help">All birds keep their current flights for this one-beat comparison, and both ends wrap across the sky. The real next beat includes steering and can have different neighbors. Reading this does not move a bird.</p>
+      </details>
     </details>
     <details id="bird-edits">
       <summary>Change one bird</summary>
@@ -363,6 +368,6 @@
     <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
-  <script type="module" src="/app.mjs?v=104"></script>
+  <script type="module" src="/app.mjs?v=105"></script>
 </body>
 </html>

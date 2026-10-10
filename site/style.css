@@ -70,6 +70,11 @@ button:focus-visible, a:focus-visible { outline: 3px solid #283346; outline-offs
 #turn-parts summary { display: flex; align-items: center; min-height: 44px; color: #283346; font: 18px Georgia, serif; cursor: pointer; }
 #turn-parts summary:focus-visible { outline: 3px solid #e9755c; outline-offset: 3px; }
 #turn-parts p { margin: 8px 0; color: #283346; font: 14px/1.5 system-ui, sans-serif; }
+#coasting-ring { margin: 8px 0; padding: 0 8px; border: 1px solid #283346; border-radius: 8px; background: #fff7e7; }
+#coasting-ring > summary { display: flex; align-items: center; min-height: 45px; color: #283346; font: 16px system-ui, sans-serif; cursor: pointer; }
+#coasting-ring > summary:focus-visible { outline: 3px solid #e9755c; outline-offset: 3px; }
+#coasting-ring p { font: 16px/1.5 system-ui, sans-serif; overflow-wrap: anywhere; }
+#coasting-ring[hidden], #turn-parts #coasting-ring [hidden] { display: none; }
 #turn-parts dl { margin: 8px 0; }
 #turn-parts dt { font-weight: 650; }
 #turn-parts dd { margin: 2px 0 10px; font: 14px/1.5 system-ui, sans-serif; overflow-wrap: anywhere; }
