@@ -1,0 +1,32 @@
+{
+  "slug": "evening-flock",
+  "mode": "rings",
+  "lane": 8,
+  "title": "Evening Flock — Start the same rings with matching or opposed flights",
+  "group": "Rings in opposite directions",
+  "helpID": "paired-ring-direction-help",
+  "help": "The same eighty places begin with tangent flights. The two rings can turn together or oppose one another; speed stays two in every starting ring. Applying starts a paused sky and clears beat history. These are initial directions, not rails the birds must follow.",
+  "rows": [
+    [
+      "rings-both-forward",
+      "Both rings in the usual direction",
+      1,
+      1
+    ],
+    [
+      "rings-left-backward",
+      "Left ring reversed",
+      -1,
+      1
+    ],
+    [
+      "rings-right-backward",
+      "Right ring reversed",
+      1,
+      -1
+    ]
+  ],
+  "depends": "nothing",
+  "message": "rings experiments keep the supplied choices silent and reversible",
+  "facts": "Rows[id,label,leftCoefficient,rightCoefficient]. i0..79,j=i%40,t=2πj/40,x=(i<40?350:650)+110*cos(t),y=300+110*sin(t). k=left for first40 else right; vx=−2*k*sin(t),vy=2*k*cos(t). k±1 keeps speed2 and exact existing places; negative reverses only that ring. JSON hook normalizes−0, compute expected trig in Chromium. seedScene pairedFlights mapping is the ONLY engine authorization; no ordinary step changes."
+}
