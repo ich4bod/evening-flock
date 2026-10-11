@@ -31,6 +31,22 @@ export function seedScene(name) {
       };
     });
   }
+  const pairedGrids = {
+    'grids-approach': [2, -2],
+    'grids-together': [2, 2],
+    'grids-rest': [0, 0],
+  }[name];
+  if (pairedGrids) {
+    return Array.from({ length: 80 }, (_, i) => {
+      const j = i % 40;
+      return {
+        x: 160 + (i < 40 ? 0 : 520) + 35 * (j % 8),
+        y: 180 + 60 * Math.floor(j / 8),
+        vx: i < 40 ? pairedGrids[0] : pairedGrids[1],
+        vy: 0,
+      };
+    });
+  }
   if (name === 'crowded') {
     return Array.from({ length: 80 }, (_, i) => ({
       x: 464 + (i % 10) * 8,

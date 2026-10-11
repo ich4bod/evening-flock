@@ -1,4 +1,4 @@
-import { seed, seedScene, step, gust, shearFlight, reverseFlight, restFlight, quarterTurn, quarterTurnFlight, mirrorFlight } from './engine.mjs?v=29';
+import { seed, seedScene, step, gust, shearFlight, reverseFlight, restFlight, quarterTurn, quarterTurnFlight, mirrorFlight } from './engine.mjs?v=30';
 
 const canvas = document.querySelector('#flock');
 const context = canvas.getContext('2d');
@@ -1803,6 +1803,9 @@ for (const name of ['two-flocks', 'head-on', 'ring', 'crossing', 'overtaking', '
 }
 document.querySelector('#paired-sky-apply').addEventListener('click', () => {
   resetToBirds(seedScene(document.querySelector('#paired-sky').value));
+});
+document.querySelector('#lane-sky-apply').addEventListener('click', () => {
+  resetToBirds(seedScene(document.querySelector('#lane-sky').value));
 });
 document.addEventListener('visibilitychange', () => {
   accumulator = 0;

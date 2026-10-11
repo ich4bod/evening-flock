@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5d6bb">
   <title>Evening Flock</title>
-  <link rel="stylesheet" href="/style.css?v=111">
+  <link rel="stylesheet" href="/style.css?v=112">
 </head>
 <body>
   <main class="page">
@@ -290,6 +290,16 @@
         <button id="paired-sky-apply" type="button">Start these rings</button>
         <p id="paired-sky-help">Two rings share the same starting places. Change their flights, then take a beat to see what the local rules do. Starting a sky clears its old steps.</p>
       </div>
+      <div class="paired-sky-controls">
+        <label for="lane-sky">Paired grids</label>
+        <select id="lane-sky">
+          <option value="grids-approach" selected>Two groups approaching</option>
+          <option value="grids-together">Two groups heading right</option>
+          <option value="grids-rest">Two groups at rest</option>
+        </select>
+        <button id="lane-sky-apply" type="button">Start these groups</button>
+        <p id="lane-sky-help">The same two grids can approach, travel in one direction, or begin at rest. Take one beat to see the rules answer those flights. Starting again clears the old steps.</p>
+      </div>
     </section>
     </details>
     <details id="flock-current-winds">
@@ -378,6 +388,6 @@
     <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
-  <script type="module" src="/app.mjs?v=106"></script>
+  <script type="module" src="/app.mjs?v=107"></script>
 </body>
 </html>
