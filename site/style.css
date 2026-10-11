@@ -168,6 +168,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid #283346; outline-offs
 .paired-sky-controls select { padding: 8px; border: 2px solid #283346; border-radius: 8px; background: #fff7e7; color: #283346; }
 .paired-sky-controls select:focus-visible, .paired-sky-controls button:focus-visible { outline: 3px solid #e9755c; outline-offset: 3px; }
 .paired-sky-controls #paired-sky-help { flex-basis: 100%; margin: 0; max-width: 760px; font-size: 15px; line-height: 1.45; }
+.paired-sky-controls #paired-ring-pace-help { flex-basis: 100%; min-width: 0; max-width: 100%; margin: 8px 0 0; color: #283346; font: 16px/1.5 system-ui, sans-serif; overflow-wrap: anywhere; }
 .paired-sky-controls #lane-unequal-pace-help { flex-basis: 100%; margin: 0; max-width: 760px; font: 16px/1.45 system-ui, sans-serif; }
 .paired-sky-controls [hidden] { display: none; }
 .gust-control { margin: 0 auto 8px; text-align: center; }

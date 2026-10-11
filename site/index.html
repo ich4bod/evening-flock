@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5d6bb">
   <title>Evening Flock</title>
-  <link rel="stylesheet" href="/style.css?v=117">
+  <link rel="stylesheet" href="/style.css?v=118">
 </head>
 <body>
   <main class="page">
@@ -286,9 +286,15 @@
           <option value="paired-same" selected>Two rings, same turn</option>
           <option value="paired-opposed">Two rings, opposite turns</option>
           <option value="paired-rest">Two resting rings</option>
+          <optgroup label="Unequal ring flights">
+            <option value="paired-left-rest">Resting left ring, moving right ring</option>
+            <option value="paired-right-rest">Moving left ring, resting right ring</option>
+            <option value="paired-quarter-follow">Quarter-speed left ring</option>
+          </optgroup>
         </select>
         <button id="paired-sky-apply" type="button">Start these rings</button>
         <p id="paired-sky-help">Two rings share the same starting places. Change their flights, then take a beat to see what the local rules do. Starting a sky clears its old steps.</p>
+        <p id="paired-ring-pace-help">The same eighty places start with different tangent flights. One ring can rest while the other moves, or follow the same direction at a quarter of its speed. Starting replaces the sky and clears beat history; these are starting velocities, not promised paths.</p>
       </div>
       <div class="paired-sky-controls">
         <label for="lane-sky">Paired grids</label>
@@ -437,6 +443,6 @@
     </details>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
-  <script type="module" src="/app.mjs?v=111"></script>
+  <script type="module" src="/app.mjs?v=112"></script>
 </body>
 </html>
