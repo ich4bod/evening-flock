@@ -1,0 +1,31 @@
+{
+  "slug": "evening-flock",
+  "mode": "lines",
+  "lane": 8,
+  "title": "Evening Flock \u2014 Start fast followers behind slow leaders",
+  "rows": [
+    [
+      "grids-catching",
+      "Fast followers, slow leaders",
+      3,
+      0.5
+    ],
+    [
+      "grids-opening",
+      "Slow followers, fast leaders",
+      0.5,
+      3
+    ],
+    [
+      "grids-west-catching",
+      "Westbound fast followers",
+      -0.5,
+      -3
+    ]
+  ],
+  "group": "Unequal paces",
+  "help": "Both grids keep the same eighty places. Their starting speeds differ: followers can close the empty gap or let it widen. This starts a new paused sky and clears beat history; it is not an edit of the current flights.",
+  "helpID": "lane-unequal-pace-help",
+  "depends": "nothing",
+  "message": "unequal grid speeds start one paused sky without changing its eighty places"
+}
