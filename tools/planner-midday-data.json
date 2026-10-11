@@ -1,0 +1,31 @@
+{
+  "slug": "evening-flock",
+  "mode": "rings",
+  "lane": 8,
+  "title": "Evening Flock — Set one ring moving while its neighbor rests or follows slowly",
+  "group": "Unequal ring flights",
+  "helpID": "paired-ring-pace-help",
+  "help": "The same eighty places start with different tangent flights. One ring can rest while the other moves, or follow the same direction at a quarter of its speed. Starting replaces the sky and clears beat history; these are starting velocities, not promised paths.",
+  "rows": [
+    [
+      "paired-left-rest",
+      "Resting left ring, moving right ring",
+      0,
+      1
+    ],
+    [
+      "paired-right-rest",
+      "Moving left ring, resting right ring",
+      1,
+      0
+    ],
+    [
+      "paired-quarter-follow",
+      "Quarter-speed left ring",
+      0.25,
+      1
+    ]
+  ],
+  "depends": "nothing",
+  "message": "unequal ring flights retain eighty places and begin as one paused sky"
+}
