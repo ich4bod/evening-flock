@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5d6bb">
   <title>Evening Flock</title>
-  <link rel="stylesheet" href="/style.css?v=116">
+  <link rel="stylesheet" href="/style.css?v=117">
 </head>
 <body>
   <main class="page">
@@ -407,6 +407,34 @@
     </section>
     <p class="explanation">Keep apart. Match direction. Stay near your neighbors. Together, small decisions become a flock.</p>
     <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
+    <details id="three-questions-evening-flock">
+      <summary>Try three questions about place and flight</summary>
+      <p>Pause the sky to make one deliberate change. These are steering experiments with eighty toy birds, not measurements of a real flock.</p>
+      <section>
+        <h3>Does pointing toward the center move a bird?</h3>
+        <p>Pause, open the current-flight tools and press Fly toward the sky center. Look at the places before taking an ordinary Step.</p>
+        <details>
+          <summary>Read an answer</summary>
+          <p>The press changes each moving bird’s velocity direction, keeping its current speed and place. Birds at rest and birds exactly at the center remain unchanged. A later ordinary beat moves the sky and applies the ordinary engine rules; the pointing press itself does not.</p>
+        </details>
+      </section>
+      <section>
+        <h3>Will a resting bird join that pointing gesture?</h3>
+        <p>Rest one side of the sky, then point the current flights toward the center. Compare the resting side with the moving side. Use Step back after trying it.</p>
+        <details>
+          <summary>Read an answer</summary>
+          <p>Not in the pointing press. A zero-speed bird remains exactly at rest. On a later ordinary beat, neighbor steering may change it again. Rest is a current condition, not a permanent category of bird.</p>
+        </details>
+      </section>
+      <section>
+        <h3>Is a new sky an Undo step?</h3>
+        <p>Keep a beat, then choose a starting sky and apply it. Compare that with changing the current flights.</p>
+        <details>
+          <summary>Read an answer</summary>
+          <p>Starting a sky replaces the eighty-bird arrangement and clears beat history. A current-flight edit instead saves one beat snapshot, so Step back restores the whole press. Starting conditions and interventions are different experiments.</p>
+        </details>
+      </section>
+    </details>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
   <script type="module" src="/app.mjs?v=111"></script>

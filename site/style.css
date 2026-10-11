@@ -219,6 +219,39 @@ button:focus-visible, a:focus-visible { outline: 3px solid #283346; outline-offs
 .inspiration { margin: 12px 0 0; text-align: center; }
 a { color: #283346; }
 footer { margin-top: 22px; text-align: center; font-size: 14px; }
+#three-questions-evening-flock {
+  max-width: 100%;
+  margin: 16px 0;
+  padding: 12px;
+  border: 1px solid #e9755c;
+  border-radius: 8px;
+  background: #fff7e7;
+  font: 16px/1.5 system-ui, sans-serif;
+  overflow-wrap: anywhere;
+}
+#three-questions-evening-flock > summary,
+#three-questions-evening-flock section > details > summary {
+  box-sizing: border-box;
+  min-height: 45px;
+  max-width: 100%;
+  padding: 8px;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+#three-questions-evening-flock > summary:focus-visible,
+#three-questions-evening-flock section > details > summary:focus-visible {
+  outline: 3px solid #e9755c;
+  outline-offset: 3px;
+}
+#three-questions-evening-flock h3 { margin: 0 0 8px; font: bold 18px/1.35 system-ui, sans-serif; }
+#three-questions-evening-flock p { margin: 8px 0; }
+#three-questions-evening-flock section { margin: 16px 0; }
+#three-questions-evening-flock section > details {
+  max-width: 100%;
+  padding: 8px;
+  border: 1px solid #283346;
+  border-radius: 6px;
+}
 
 @media (max-width: 600px) {
   .page { width: calc(100% - 32px); padding-top: 22px; }
