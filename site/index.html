@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5d6bb">
   <title>Evening Flock</title>
-  <link rel="stylesheet" href="/style.css?v=112">
+  <link rel="stylesheet" href="/style.css?v=113">
 </head>
 <body>
   <main class="page">
@@ -320,6 +320,11 @@
         <button id="turn-clockwise" type="button">Turn right</button>
         <button id="rest-flight" type="button">Rest here</button>
       </div>
+      <div class="rest-side-row">
+        <button id="rest-left-sky" type="button">Rest flights on the left</button>
+        <button id="rest-right-sky" type="button">Rest flights on the right</button>
+        <p id="rest-side-help">Pause and set flights to zero only on the chosen half of the sky. Places and the other half’s flights stay put. The middle line belongs to the right half. One beat lets the rules answer; Step back restores the edit.</p>
+      </div>
       <p>A gust nudges every heading once. The flock rules take it from there.</p>
       <p>Above the middle, add an eastward push; below it, add a westward push. Positions stay put until a beat. The same speed limit still applies.</p>
       <p class="reverse-flight-instruction">Turn around reverses every heading once. Positions and flock rules stay put.</p>
@@ -388,6 +393,6 @@
     <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
-  <script type="module" src="/app.mjs?v=107"></script>
+  <script type="module" src="/app.mjs?v=108"></script>
 </body>
 </html>

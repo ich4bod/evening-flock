@@ -172,6 +172,11 @@ button:focus-visible, a:focus-visible { outline: 3px solid #283346; outline-offs
 .gust-control { margin: 0 auto 8px; text-align: center; }
 .gust-control h2 { margin: 0 0 8px; font: 20px/1.2 Georgia, serif; }
 .gust-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.rest-side-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; margin: 8px auto 0; }
+.rest-side-row button { min-height: 45px; max-width: 100%; font: 16px system-ui, sans-serif; }
+.rest-side-row button:disabled { opacity: 0.45; cursor: default; }
+.rest-side-row button:focus-visible { outline: 3px solid #e9755c; outline-offset: 3px; }
+#rest-side-help { flex-basis: 100%; margin: 0; max-width: 760px; font: 16px/1.45 system-ui, sans-serif; }
 .gust-control p { margin: 8px auto 0; max-width: 760px; font-size: 15px; line-height: 1.45; }
 .pace-control { margin: 0 auto 8px; text-align: center; }
 .pace-control h2 { margin: 0 0 8px; font: 20px/1.2 Georgia, serif; }

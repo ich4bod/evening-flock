@@ -175,6 +175,8 @@ const birdCoastBeatButton = document.querySelector('#bird-coast-beat');
 const windQuarterTurnButton = document.querySelector('#wind-quarter-turn');
 const windMirrorHorizontalButton = document.querySelector('#wind-mirror-horizontal');
 const windMirrorVerticalButton = document.querySelector('#wind-mirror-vertical');
+const restLeftSkyButton = document.querySelector('#rest-left-sky');
+const restRightSkyButton = document.querySelector('#rest-right-sky');
 const paceButtons = {
   quarter: document.querySelector('#pace-quarter'),
   half: document.querySelector('#pace-half'),
@@ -276,6 +278,18 @@ function advanceFlock(coastingIndex = null) {
 
 function isPaused() {
   return manuallyPaused || document.hidden;
+}
+
+function restSideCandidate(side, flock = birds) {
+  if (side !== 'left' && side !== 'right') return null;
+  let changed = false;
+  const candidate = flock.map(bird => {
+    const addressed = side === 'left' ? bird.x < 500 : bird.x >= 500;
+    if (!addressed || (bird.vx === 0 && bird.vy === 0)) return bird;
+    changed = true;
+    return { ...bird, vx: 0, vy: 0 };
+  });
+  return changed ? candidate : null;
 }
 
 for (const [name, button] of Object.entries(reachButtons)) {
@@ -504,6 +518,10 @@ function nearestHeadingCandidate(kind) {
 }
 
 function updateBirdEditEligibility() {
+  const restLeftCandidate = restSideCandidate('left');
+  const restRightCandidate = restSideCandidate('right');
+  restLeftSkyButton.disabled = document.hidden || !restLeftCandidate;
+  restRightSkyButton.disabled = document.hidden || !restRightCandidate;
   const selected = lensSelection === null ? null : birds[lensSelection];
   const baseEligible = manuallyPaused && !document.hidden && lensEnabled && lensSelection !== null && selected;
   const coastBeatEligible = manuallyPaused && !document.hidden && lensEnabled
@@ -1750,6 +1768,22 @@ function applyFlightMirror(axis) {
 
 windMirrorHorizontalButton.addEventListener('click', () => applyFlightMirror('x'));
 windMirrorVerticalButton.addEventListener('click', () => applyFlightMirror('y'));
+
+function applyRestSide(side) {
+  if (document.hidden) return;
+  const candidate = restSideCandidate(side);
+  if (!candidate) return;
+  manuallyPaused = true;
+  updatePauseButton();
+  saveBeatSnapshot();
+  birds = candidate;
+  accumulator = 0;
+  lastTime = null;
+  draw();
+}
+
+restLeftSkyButton.addEventListener('click', () => applyRestSide('left'));
+restRightSkyButton.addEventListener('click', () => applyRestSide('right'));
 
 function applyReversal() {
   clearBeatHistory();
