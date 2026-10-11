@@ -1,0 +1,35 @@
+{
+  "slug": "evening-flock",
+  "lane": 8,
+  "title": "Evening Flock \u2014 Ask whether pointing a flight changes its place",
+  "id": "three-questions-evening-flock",
+  "summary": "Try three questions about place and flight",
+  "lead": "Pause the sky to make one deliberate change. These are steering experiments with eighty toy birds, not measurements of a real flock.",
+  "questions": [
+    {
+      "title": "Does pointing toward the center move a bird?",
+      "prompt": "Pause, open the current-flight tools and press Fly toward the sky center. Look at the places before taking an ordinary Step.",
+      "answer": "The press changes each moving bird\u2019s velocity direction, keeping its current speed and place. Birds at rest and birds exactly at the center remain unchanged. A later ordinary beat moves the sky and applies the ordinary engine rules; the pointing press itself does not."
+    },
+    {
+      "title": "Will a resting bird join that pointing gesture?",
+      "prompt": "Rest one side of the sky, then point the current flights toward the center. Compare the resting side with the moving side. Use Step back after trying it.",
+      "answer": "Not in the pointing press. A zero-speed bird remains exactly at rest. On a later ordinary beat, neighbor steering may change it again. Rest is a current condition, not a permanent category of bird."
+    },
+    {
+      "title": "Is a new sky an Undo step?",
+      "prompt": "Keep a beat, then choose a starting sky and apply it. Compare that with changing the current flights.",
+      "answer": "Starting a sky replaces the eighty-bird arrangement and clears beat history. A current-flight edit instead saves one beat snapshot, so Step back restores the whole press. Starting conditions and interventions are different experiments."
+    }
+  ],
+  "facts": "Center500/300 speedhypot(vx,vy). Radial presspreserves speed/place, zero speed/distance untouched; ordinary model capspeed later. apply paired/newsky clears history; shipped__flock state supports reducedmotion.",
+  "palette": "#f5d6bb/#283346/#fff7e7/#e9755c",
+  "files": [
+    "site/index.html",
+    "site/style.css"
+  ],
+  "root": "main",
+  "anchor": "footer",
+  "url": "https://evening-flock.ichabod-crane.net/",
+  "message": "three authored evening-flock questions stay optional and leave the live experiment alone"
+}
