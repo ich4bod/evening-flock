@@ -1,4 +1,4 @@
-import { seed, seedScene, step, gust, shearFlight, reverseFlight, restFlight, quarterTurn, quarterTurnFlight, mirrorFlight } from './engine.mjs?v=33';
+import { seed, seedScene, step, gust, shearFlight, reverseFlight, restFlight, quarterTurn, quarterTurnFlight, mirrorFlight } from './engine.mjs?v=34';
 
 const canvas = document.querySelector('#flock');
 const context = canvas.getContext('2d');
