@@ -1,0 +1,13 @@
+{
+  "mode": "lines",
+  "lane": 8,
+  "depends": "nothing",
+  "title": "Evening Flock — Start two grids that approach pass together or wait",
+  "message": "paired grids share eighty places while their flights approach agree or rest",
+  "rows": [
+    ["grids-approach", "Two groups approaching", 2, -2],
+    ["grids-together", "Two groups heading right", 2, 2],
+    ["grids-rest", "Two groups at rest", 0, 0]
+  ],
+  "help": "The same two grids can approach, travel in one direction, or begin at rest. Take one beat to see the rules answer those flights. Starting again clears the old steps."
+}
