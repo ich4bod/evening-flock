@@ -177,6 +177,11 @@ button:focus-visible, a:focus-visible { outline: 3px solid #283346; outline-offs
 .rest-side-row button:disabled { opacity: 0.45; cursor: default; }
 .rest-side-row button:focus-visible { outline: 3px solid #e9755c; outline-offset: 3px; }
 #rest-side-help { flex-basis: 100%; margin: 0; max-width: 760px; font: 16px/1.45 system-ui, sans-serif; }
+.turn-side-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; margin: 8px auto 0; }
+.turn-side-row button { min-height: 45px; max-width: 100%; font: 16px system-ui, sans-serif; }
+.turn-side-row button:disabled { opacity: 0.45; cursor: default; }
+.turn-side-row button:focus-visible { outline: 3px solid #e9755c; outline-offset: 3px; }
+#turn-side-help { flex-basis: 100%; margin: 0; max-width: 760px; font: 16px/1.45 system-ui, sans-serif; }
 .radial-flight-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; margin: 8px auto 0; }
 .radial-flight-row button { min-height: 45px; max-width: 100%; font: 16px system-ui, sans-serif; }
 .radial-flight-row button:disabled { opacity: 0.45; cursor: default; }

@@ -177,6 +177,8 @@ const windMirrorHorizontalButton = document.querySelector('#wind-mirror-horizont
 const windMirrorVerticalButton = document.querySelector('#wind-mirror-vertical');
 const restLeftSkyButton = document.querySelector('#rest-left-sky');
 const restRightSkyButton = document.querySelector('#rest-right-sky');
+const turnLeftSideButton = document.querySelector('#turn-left-side');
+const turnRightSideButton = document.querySelector('#turn-right-side');
 const flightCenterTowardButton = document.querySelector('#flight-center-toward');
 const flightCenterAwayButton = document.querySelector('#flight-center-away');
 const paceButtons = {
@@ -290,6 +292,21 @@ function restSideCandidate(side, flock = birds) {
     if (!addressed || (bird.vx === 0 && bird.vy === 0)) return bird;
     changed = true;
     return { ...bird, vx: 0, vy: 0 };
+  });
+  return changed ? candidate : null;
+}
+
+function turnSideCandidate(side, flock = birds) {
+  if (side !== 'left' && side !== 'right') return null;
+  let changed = false;
+  const candidate = flock.map(bird => {
+    const addressed = side === 'left' ? bird.x < 500 : bird.x >= 500;
+    if (!addressed || (bird.vx === 0 && bird.vy === 0)) return bird;
+    const vx = Object.is(-bird.vy, -0) ? 0 : -bird.vy;
+    const vy = Object.is(bird.vx, -0) ? 0 : bird.vx;
+    if (vx === bird.vx && vy === bird.vy) return bird;
+    changed = true;
+    return { ...bird, vx, vy };
   });
   return changed ? candidate : null;
 }
@@ -547,6 +564,8 @@ function updateBirdEditEligibility() {
   const restRightCandidate = restSideCandidate('right');
   restLeftSkyButton.disabled = document.hidden || !restLeftCandidate;
   restRightSkyButton.disabled = document.hidden || !restRightCandidate;
+  turnLeftSideButton.disabled = document.hidden || !turnSideCandidate('left');
+  turnRightSideButton.disabled = document.hidden || !turnSideCandidate('right');
   updateRadialFlightEligibility();
   const selected = lensSelection === null ? null : birds[lensSelection];
   const baseEligible = manuallyPaused && !document.hidden && lensEnabled && lensSelection !== null && selected;
@@ -1811,6 +1830,22 @@ function applyRestSide(side) {
 
 restLeftSkyButton.addEventListener('click', () => applyRestSide('left'));
 restRightSkyButton.addEventListener('click', () => applyRestSide('right'));
+
+function applyTurnSide(side) {
+  if (document.hidden) return;
+  const candidate = turnSideCandidate(side);
+  if (!candidate) return;
+  manuallyPaused = true;
+  updatePauseButton();
+  saveBeatSnapshot();
+  birds = candidate;
+  accumulator = 0;
+  lastTime = null;
+  draw();
+}
+
+turnLeftSideButton.addEventListener('click', () => applyTurnSide('left'));
+turnRightSideButton.addEventListener('click', () => applyTurnSide('right'));
 
 function applyRadialFlight(sign) {
   if (document.hidden) return;

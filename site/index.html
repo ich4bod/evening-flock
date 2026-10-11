@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5d6bb">
   <title>Evening Flock</title>
-  <link rel="stylesheet" href="/style.css?v=114">
+  <link rel="stylesheet" href="/style.css?v=115">
 </head>
 <body>
   <main class="page">
@@ -325,6 +325,11 @@
         <button id="rest-right-sky" type="button">Rest flights on the right</button>
         <p id="rest-side-help">Pause and set flights to zero only on the chosen half of the sky. Places and the other half’s flights stay put. The middle line belongs to the right half. One beat lets the rules answer; Step back restores the edit.</p>
       </div>
+      <div class="turn-side-row">
+        <button id="turn-left-side" type="button">Turn left-side flights clockwise</button>
+        <button id="turn-right-side" type="button">Turn right-side flights clockwise</button>
+        <p id="turn-side-help">Turn only the flights on this side of the sky. Bird places and speeds stay put; the center line belongs to the right side. Step back restores all eighty flights.</p>
+      </div>
       <div class="radial-flight-row">
         <button id="flight-center-toward" type="button">Fly toward the sky center</button>
         <button id="flight-center-away" type="button">Fly away from the sky center</button>
@@ -398,6 +403,6 @@
     <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
-  <script type="module" src="/app.mjs?v=109"></script>
+  <script type="module" src="/app.mjs?v=110"></script>
 </body>
 </html>
