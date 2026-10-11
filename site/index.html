@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5d6bb">
   <title>Evening Flock</title>
-  <link rel="stylesheet" href="/style.css?v=115">
+  <link rel="stylesheet" href="/style.css?v=116">
 </head>
 <body>
   <main class="page">
@@ -296,9 +296,15 @@
           <option value="grids-approach" selected>Two groups approaching</option>
           <option value="grids-together">Two groups heading right</option>
           <option value="grids-rest">Two groups at rest</option>
+          <optgroup label="Unequal paces">
+            <option value="grids-catching">Fast followers, slow leaders</option>
+            <option value="grids-opening">Slow followers, fast leaders</option>
+            <option value="grids-west-catching">Westbound fast followers</option>
+          </optgroup>
         </select>
         <button id="lane-sky-apply" type="button">Start these groups</button>
         <p id="lane-sky-help">The same two grids can approach, travel in one direction, or begin at rest. Take one beat to see the rules answer those flights. Starting again clears the old steps.</p>
+        <p id="lane-unequal-pace-help">Both grids keep the same eighty places. Their starting speeds differ: followers can close the empty gap or let it widen. This starts a new paused sky and clears beat history; it is not an edit of the current flights.</p>
       </div>
     </section>
     </details>
@@ -403,6 +409,6 @@
     <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
-  <script type="module" src="/app.mjs?v=110"></script>
+  <script type="module" src="/app.mjs?v=111"></script>
 </body>
 </html>

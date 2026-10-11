@@ -35,6 +35,9 @@ export function seedScene(name) {
     'grids-approach': [2, -2],
     'grids-together': [2, 2],
     'grids-rest': [0, 0],
+    'grids-catching': [3, 0.5],
+    'grids-opening': [0.5, 3],
+    'grids-west-catching': [-0.5, -3],
   }[name];
   if (pairedGrids) {
     return Array.from({ length: 80 }, (_, i) => {
