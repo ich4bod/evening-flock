@@ -1,0 +1,31 @@
+{
+  "slug": "evening-flock",
+  "mode": "rings",
+  "lane": 8,
+  "title": "Evening Flock \u2014 Give opposed ring flights different starting speeds",
+  "group": "Unequal opposed rings",
+  "helpID": "paired-opposed-pace-help",
+  "help": "The same eighty places receive opposed tangent flights. One ring starts at half the other\u2019s speed, or both take opposed half-speed flights. Starting replaces the sky and clears beat history. These are starting velocities, not promises that the rings keep circling.",
+  "rows": [
+    [
+      "ring-opposed-left-half",
+      "Half-speed left ring opposes full-speed right",
+      -0.5,
+      1
+    ],
+    [
+      "ring-opposed-right-half",
+      "Full-speed left ring opposes half-speed right",
+      1,
+      -0.5
+    ],
+    [
+      "ring-opposed-both-half",
+      "Opposed half-speed rings",
+      -0.5,
+      0.5
+    ]
+  ],
+  "depends": "nothing",
+  "message": "rings comparisons preserve the authored experiment without replacing its memory"
+}
