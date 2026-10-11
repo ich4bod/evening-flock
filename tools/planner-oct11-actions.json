@@ -1,0 +1,17 @@
+{
+  "restside": {
+    "lane": 8,
+    "depends": "nothing",
+    "title": "Evening Flock \u2014 Rest the flights on only one side of the sky",
+    "message": "resting one half of the sky edits addressed flights once and Step back restores all eighty",
+    "buttons": [
+      "rest-left-sky",
+      "rest-right-sky"
+    ],
+    "copy": {
+      "rest-left-sky": "Rest flights on the left",
+      "rest-right-sky": "Rest flights on the right",
+      "rest-side-help": "Pause and set flights to zero only on the chosen half of the sky. Places and the other half\u2019s flights stay put. The middle line belongs to the right half. One beat lets the rules answer; Step back restores the edit."
+    }
+  }
+}
