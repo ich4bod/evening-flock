@@ -1,0 +1,68 @@
+{
+  "slug": "evening-flock",
+  "lane": 8,
+  "title": "Evening Flock \u2014 Ask whether pointing a flight changes its place",
+  "id": "three-questions-evening-flock",
+  "summary": "Questions about place and flight",
+  "lead": "Pause the sky to make one deliberate change. These are steering experiments with eighty toy birds, not measurements of a real flock.",
+  "questions": [
+    {
+      "title": "Does pointing toward the center move a bird?",
+      "prompt": "Pause, open the current-flight tools and press Fly toward the sky center. Look at the places before taking an ordinary Step.",
+      "answer": "The press changes each moving bird\u2019s velocity direction, keeping its current speed and place. Birds at rest and birds exactly at the center remain unchanged. A later ordinary beat moves the sky and applies the ordinary engine rules; the pointing press itself does not."
+    },
+    {
+      "title": "Will a resting bird join that pointing gesture?",
+      "prompt": "Rest one side of the sky, then point the current flights toward the center. Compare the resting side with the moving side. Use Step back after trying it.",
+      "answer": "Not in the pointing press. A zero-speed bird remains exactly at rest. On a later ordinary beat, neighbor steering may change it again. Rest is a current condition, not a permanent category of bird."
+    },
+    {
+      "title": "Is a new sky an Undo step?",
+      "prompt": "Keep a beat, then choose a starting sky and apply it. Compare that with changing the current flights.",
+      "answer": "Starting a sky replaces the eighty-bird arrangement and clears beat history. A current-flight edit instead saves one beat snapshot, so Step back restores the whole press. Starting conditions and interventions are different experiments."
+    },
+    {
+      "title": "Does choosing a ring stop the current birds?",
+      "prompt": "While the sky is running, choose a paired-ring recipe but do not press its Apply button.",
+      "answer": "No. The picker describes a possible start. Selection alone leaves the current sky running. Applying a paired-ring start replaces its eighty birds, clears beat history and pauses ordinary motion; that pause belongs to Apply, not selection."
+    },
+    {
+      "title": "Can a resting ring start to move later?",
+      "prompt": "Apply a paired-ring start with one resting side, then take an ordinary Step and compare the velocities.",
+      "answer": "Rest is part of the initial condition. Ordinary neighbor steering can change a resting bird on a later beat. A recipe that starts at zero speed is not a rule freezing those birds forever."
+    },
+    {
+      "title": "Is Step back a reverse flight?",
+      "prompt": "Pause, take one ordinary Step, then press Step back. Compare the positions and velocities with the previous beat.",
+      "answer": "Step back restores a saved beat snapshot. It does not integrate the flock backward with negative time. The saved places and flights return together, while the chosen starting recipe remains a separate choice."
+    }
+  ],
+  "facts": "Center500/300 speedhypot(vx,vy). Radial presspreserves speed/place, zero speed/distance untouched; ordinary model capspeed later. apply paired/newsky clears history; shipped__flock state supports reducedmotion.",
+  "palette": "#f5d6bb/#283346/#fff7e7/#e9755c",
+  "files": [
+    "site/index.html",
+    "site/style.css"
+  ],
+  "root": "main",
+  "anchor": "footer",
+  "url": "https://evening-flock.ichabod-crane.net/",
+  "message": "six evening-flock questions keep their answers optional and leave the experiment unchanged",
+  "oldSummary": "Try three questions about place and flight",
+  "appendQuestions": [
+    {
+      "title": "Does choosing a ring stop the current birds?",
+      "prompt": "While the sky is running, choose a paired-ring recipe but do not press its Apply button.",
+      "answer": "No. The picker describes a possible start. Selection alone leaves the current sky running. Applying a paired-ring start replaces its eighty birds, clears beat history and pauses ordinary motion; that pause belongs to Apply, not selection."
+    },
+    {
+      "title": "Can a resting ring start to move later?",
+      "prompt": "Apply a paired-ring start with one resting side, then take an ordinary Step and compare the velocities.",
+      "answer": "Rest is part of the initial condition. Ordinary neighbor steering can change a resting bird on a later beat. A recipe that starts at zero speed is not a rule freezing those birds forever."
+    },
+    {
+      "title": "Is Step back a reverse flight?",
+      "prompt": "Pause, take one ordinary Step, then press Step back. Compare the positions and velocities with the previous beat.",
+      "answer": "Step back restores a saved beat snapshot. It does not integrate the flock backward with negative time. The saved places and flights return together, while the chosen starting recipe remains a separate choice."
+    }
+  ]
+}
