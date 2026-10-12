@@ -1,5 +1,17 @@
 import { seed, seedScene, step, gust, shearFlight, reverseFlight, restFlight, quarterTurn, quarterTurnFlight, mirrorFlight } from './engine.mjs?v=35';
 
+const selectedChoiceNotes = {
+  'quarter-rings-follow': 'About the selected choice: Both tangents follow the forward direction at a starting speed of half a world unit per beat. The two rings still begin with forty birds each.',
+  'quarter-rings-back': 'About the selected choice: Both tangents point backward at the same starting speed of half a world unit per beat. Reversing flights does not reflect or reorder the eighty places.',
+  'quarter-rings-opposed': 'About the selected choice: The left ring follows forward and the right ring follows backward, each at half a world unit per beat. These opposed starting flights do not guarantee a stationary ring shape.',
+};
+
+function updateSelectedChoiceNote() {
+  document.querySelector('#choice-note-evening-flock').textContent =
+    selectedChoiceNotes[document.querySelector('#paired-sky').value]
+    ?? 'Other choices keep their existing descriptions.';
+}
+
 const canvas = document.querySelector('#flock');
 const context = canvas.getContext('2d');
 const birdCensus = document.querySelector('#bird-census');
@@ -1913,6 +1925,7 @@ resetButton.addEventListener('click', () => resetToBirds(seed()));
 for (const name of ['two-flocks', 'head-on', 'ring', 'crossing', 'overtaking', 'seam', 'lanes', 'still', 'crowded', 'inward-ring', 'outward-ring', 'counter-ring']) {
   document.querySelector(`#sky-${name}`).addEventListener('click', () => resetToBirds(seedScene(name)));
 }
+document.querySelector('#paired-sky').addEventListener('change', updateSelectedChoiceNote);
 document.querySelector('#paired-sky-apply').addEventListener('click', () => {
   manuallyPaused = true;
   updatePauseButton();
@@ -1937,6 +1950,7 @@ if ('ResizeObserver' in window) new ResizeObserver(resizeCanvas).observe(canvas)
 reduceMotion.addEventListener?.('change', () => {
   // A preference change affects the initial choice only, not a visitor's manual pause choice.
 });
+updateSelectedChoiceNote();
 updatePauseButton();
 resizeCanvas();
 window.__flock = {
