@@ -1,0 +1,42 @@
+{
+  "slug": "evening-flock",
+  "mode": "rings",
+  "lane": 8,
+  "title": "Evening Flock — Begin two slow rings with following or opposed flights",
+  "group": "Quarter-speed ring flights",
+  "helpID": "paired-quarter-rings-help",
+  "help": "All eighty birds start in the same two rings. Quarter-speed tangents follow together, reverse together, or oppose each other. The speed is a starting condition, not a promise of continued circling. Starting clears beat history and leaves the sky paused.",
+  "rows": [
+    [
+      "quarter-rings-follow",
+      "Both rings take quarter-speed forward flights",
+      0.25,
+      0.25
+    ],
+    [
+      "quarter-rings-back",
+      "Both rings take quarter-speed backward flights",
+      -0.25,
+      -0.25
+    ],
+    [
+      "quarter-rings-opposed",
+      "Quarter-speed rings oppose each other",
+      0.25,
+      -0.25
+    ]
+  ],
+  "depends": "nothing",
+  "message": "rings experiments keep their distinct rules and exact supplied choices",
+  "facts": "Use only seedScene pairedFlights map. For i0..79,j=i%40,t=2πj/40,x=(i<40?350:650)+110cos(t),y=300+110sin(t),vx=−2k sin(t),vy=2k cos(t). k from exact row. Speed magnitude=.5; coordinates/tangents are compared in Chromium not Node; normalize JSON negative zero only.",
+  "picker": "paired-sky",
+  "noteID": "choice-note-evening-flock",
+  "noteLead": "About the selected choice: ",
+  "noteFallback": "Other choices keep their existing descriptions.",
+  "notes": [
+    "Both tangents follow the forward direction at a starting speed of half a world unit per beat. The two rings still begin with forty birds each.",
+    "Both tangents point backward at the same starting speed of half a world unit per beat. Reversing flights does not reflect or reorder the eighty places.",
+    "The left ring follows forward and the right ring follows backward, each at half a world unit per beat. These opposed starting flights do not guarantee a stationary ring shape."
+  ],
+  "noteMessage": "the selected evening-flock choice explains its own experiment without adding an action"
+}
