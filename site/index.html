@@ -433,7 +433,7 @@
     <p class="explanation">Keep apart. Match direction. Stay near your neighbors. Together, small decisions become a flock.</p>
     <p class="inspiration"><a href="https://www.red3d.com/cwr/boids/">Inspired by Craig Reynolds's Boids</a></p>
     <details id="three-questions-evening-flock">
-      <summary>Try three questions about place and flight</summary>
+      <summary>Questions about place and flight</summary>
       <p>Pause the sky to make one deliberate change. These are steering experiments with eighty toy birds, not measurements of a real flock.</p>
       <section>
         <h3>Does pointing toward the center move a bird?</h3>
@@ -457,6 +457,30 @@
         <details>
           <summary>Read an answer</summary>
           <p>Starting a sky replaces the eighty-bird arrangement and clears beat history. A current-flight edit instead saves one beat snapshot, so Step back restores the whole press. Starting conditions and interventions are different experiments.</p>
+        </details>
+      </section>
+      <section>
+        <h3>Does choosing a ring stop the current birds?</h3>
+        <p>While the sky is running, choose a paired-ring recipe but do not press its Apply button.</p>
+        <details>
+          <summary>Read an answer</summary>
+          <p>No. The picker describes a possible start. Selection alone leaves the current sky running. Applying a paired-ring start replaces its eighty birds, clears beat history and pauses ordinary motion; that pause belongs to Apply, not selection.</p>
+        </details>
+      </section>
+      <section>
+        <h3>Can a resting ring start to move later?</h3>
+        <p>Apply a paired-ring start with one resting side, then take an ordinary Step and compare the velocities.</p>
+        <details>
+          <summary>Read an answer</summary>
+          <p>Rest is part of the initial condition. Ordinary neighbor steering can change a resting bird on a later beat. A recipe that starts at zero speed is not a rule freezing those birds forever.</p>
+        </details>
+      </section>
+      <section>
+        <h3>Is Step back a reverse flight?</h3>
+        <p>Pause, take one ordinary Step, then press Step back. Compare the positions and velocities with the previous beat.</p>
+        <details>
+          <summary>Read an answer</summary>
+          <p>Step back restores a saved beat snapshot. It does not integrate the flock backward with negative time. The saved places and flights return together, while the chosen starting recipe remains a separate choice.</p>
         </details>
       </section>
     </details>
