@@ -1919,6 +1919,8 @@ document.querySelector('#paired-sky-apply').addEventListener('click', () => {
   resetToBirds(seedScene(document.querySelector('#paired-sky').value));
 });
 document.querySelector('#lane-sky-apply').addEventListener('click', () => {
+  manuallyPaused = true;
+  updatePauseButton();
   resetToBirds(seedScene(document.querySelector('#lane-sky').value));
 });
 document.addEventListener('visibilitychange', () => {
