@@ -25,6 +25,9 @@ export function seedScene(name) {
     'ring-opposed-left-half': [-0.5, 1],
     'ring-opposed-right-half': [1, -0.5],
     'ring-opposed-both-half': [-0.5, 0.5],
+    'quarter-rings-follow': [0.25, 0.25],
+    'quarter-rings-back': [-0.25, -0.25],
+    'quarter-rings-opposed': [0.25, -0.25],
   }[name];
   if (pairedFlights) {
     return Array.from({ length: 80 }, (_, i) => {

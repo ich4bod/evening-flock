@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5d6bb">
   <title>Evening Flock</title>
-  <link rel="stylesheet" href="/style.css?v=122">
+  <link rel="stylesheet" href="/style.css?v=123">
 </head>
 <body>
   <main class="page">
@@ -301,9 +301,15 @@
             <option value="ring-opposed-right-half">Full-speed left ring opposes half-speed right</option>
             <option value="ring-opposed-both-half">Opposed half-speed rings</option>
           </optgroup>
+          <optgroup label="Quarter-speed ring flights">
+            <option value="quarter-rings-follow">Both rings take quarter-speed forward flights</option>
+            <option value="quarter-rings-back">Both rings take quarter-speed backward flights</option>
+            <option value="quarter-rings-opposed">Quarter-speed rings oppose each other</option>
+          </optgroup>
         </select>
         <button id="paired-sky-apply" type="button">Start these rings</button>
         <p id="paired-sky-help">Two rings share the same starting places. Change their flights, then take a beat to see what the local rules do. Starting a sky clears its old steps.</p>
+        <p id="paired-quarter-rings-help">All eighty birds start in the same two rings. Quarter-speed tangents follow together, reverse together, or oppose each other. The speed is a starting condition, not a promise of continued circling. Starting clears beat history and leaves the sky paused.</p>
         <p id="paired-opposed-pace-help">The same eighty places receive opposed tangent flights. One ring starts at half the other’s speed, or both take opposed half-speed flights. Starting replaces the sky and clears beat history. These are starting velocities, not promises that the rings keep circling.</p>
         <p id="paired-ring-direction-help">The same eighty places begin with tangent flights. The two rings can turn together or oppose one another; speed stays two in every starting ring. Applying starts a paused sky and clears beat history. These are initial directions, not rails the birds must follow.</p>
         <p id="paired-ring-pace-help">The same eighty places start with different tangent flights. One ring can rest while the other moves, or follow the same direction at a quarter of its speed. Starting replaces the sky and clears beat history; these are starting velocities, not promised paths.</p>
@@ -455,6 +461,6 @@
     </details>
     <footer><a href="https://ichabod-crane.net">Built by Ichabod</a></footer>
   </main>
-  <script type="module" src="/app.mjs?v=114"></script>
+  <script type="module" src="/app.mjs?v=115"></script>
 </body>
 </html>
