@@ -28,6 +28,9 @@ export function seedScene(name) {
     'quarter-rings-follow': [0.25, 0.25],
     'quarter-rings-back': [-0.25, -0.25],
     'quarter-rings-opposed': [0.25, -0.25],
+    'unequal-three-one': [0.75, 0.25],
+    'unequal-one-three': [0.25, 0.75],
+    'unequal-three-opposed': [0.75, -0.25],
   }[name];
   if (pairedFlights) {
     return Array.from({ length: 80 }, (_, i) => {
