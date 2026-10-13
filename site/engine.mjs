@@ -37,6 +37,9 @@ export function seedScene(name) {
     'backward-three-one': [-0.75, -0.25],
     'backward-one-three': [-0.25, -0.75],
     'backward-left-opposed': [-0.75, 0.25],
+    'opposed-speed-quarter': [-0.25, 0.25],
+    'opposed-speed-half': [-0.5, 0.5],
+    'opposed-speed-double': [-2, 2],
   }[name];
   if (pairedFlights) {
     return Array.from({ length: 80 }, (_, i) => {
