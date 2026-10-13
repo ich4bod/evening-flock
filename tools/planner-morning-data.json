@@ -1,0 +1,37 @@
+{
+  "study": {
+    "mode": "rings",
+    "group": "Unequal circular starts",
+    "rows": [
+      [
+        "unequal-three-one",
+        "Left three times the right",
+        0.75,
+        0.25
+      ],
+      [
+        "unequal-one-three",
+        "Right three times the left",
+        0.25,
+        0.75
+      ],
+      [
+        "unequal-three-opposed",
+        "Faster left, opposed right",
+        0.75,
+        -0.25
+      ]
+    ],
+    "notes": [
+      "The left ring starts with three times the right ring speed. Both tangent directions agree; these are starting velocities, not fixed orbits.",
+      "The same two starting speeds exchange rings. Steering still acts locally after you take a beat.",
+      "The left ring starts three times as fast and the right tangent reverses. This does not reverse the flock rules or promise circular flight."
+    ],
+    "noteID": "choice-note-evening-flock",
+    "noteLead": "About the selected choice: ",
+    "picker": "paired-sky",
+    "facts": "80birds, j=i%40 θ=2πj/40; centers350/650,300 radius110. vx=-2k sinθ,vy=2k cosθ; kleft/right supplied. Speeds1.5/.5toyunits perbeat. Useexisting pairedFlights inseedScene, ONLYmapentries. Applypauses resetsundo/beat; StepBack restoresstart.",
+    "dep": 912,
+    "message": "rings histories keep their authored relationship and independent memory"
+  }
+}
