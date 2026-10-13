@@ -1,0 +1,37 @@
+{
+  "rings": {
+    "mode": "rings",
+    "group": "One ring starts without a flight",
+    "rows": [
+      [
+        "still-ring-right",
+        "Left flies, right starts still",
+        1,
+        0
+      ],
+      [
+        "still-ring-left",
+        "Right flies, left starts still",
+        0,
+        1
+      ],
+      [
+        "still-ring-both",
+        "Both rings start still",
+        0,
+        0
+      ]
+    ],
+    "notes": [
+      "All eighty birds begin in the same two rings. The left tangent speed is two toy units per beat; the right starts at zero. A still start is not a pinned position.",
+      "The same positions swap which ring starts with zero velocity. Local steering can change either ring after a beat.",
+      "Both rings start with zero velocity. Steering still runs when you take a beat; this is not a command to freeze the sky."
+    ],
+    "facts": "seedScene existing pairedFlights map kleft/right;80birds centers350/650,300,radius110,j=i%40,theta2pij/40;vx=-2k sin\u03b8 vy2k cos\u03b8. Zero k must remain a valid mapped start; array truthiness permits[0,0]. Start pauses and clearsbeathistory; StepBack restores.",
+    "dep": 975,
+    "picker": "paired-sky",
+    "noteID": "choice-note-evening-flock",
+    "noteLead": "About the selected choice: ",
+    "message": "rings comparisons keep exact choices silent and reversible"
+  }
+}
