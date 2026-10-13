@@ -1,0 +1,40 @@
+{
+  "rings": {
+    "mode": "rings",
+    "picker": "paired-sky",
+    "noteID": "choice-note-evening-flock",
+    "noteLead": "About the selected choice: ",
+    "slug": "evening-flock",
+    "lane": 8,
+    "title": "Evening Flock — Opposite tangents begin at three shared speeds",
+    "group": "Opposed flights, three speeds",
+    "rows": [
+      [
+        "opposed-speed-quarter",
+        "Opposed quarter-speed flights",
+        -0.25,
+        0.25
+      ],
+      [
+        "opposed-speed-half",
+        "Opposed half-speed flights",
+        -0.5,
+        0.5
+      ],
+      [
+        "opposed-speed-double",
+        "Opposed double-speed flights",
+        -2,
+        2
+      ]
+    ],
+    "notes": [
+      "The two rings start in the same places. Both flights have one-quarter usual speed, but their tangent directions oppose one another. The next beat still uses the ordinary local steering rules.",
+      "Both opposed tangents start at half usual speed. The initial sky positions are unchanged; this is a starting velocity, not a prescribed orbit or a slowed simulation clock.",
+      "Both opposed tangents start at twice usual speed. The ordinary force and speed caps still apply during later beats, so this does not promise a scaled copy of the slower trajectory."
+    ],
+    "facts": "seedScene retains80birds,40per ring,radius110,centers(350,300)/(650,300),theta=2*pi*(i%40)/40. velocity=(-2*k*sin(theta),2*k*cos(theta));kleft/ kright=-.25/.25,-.5/.5,-2/2. Use existing seeded paired-ring map only; no steering/force/clock changes. Starting speeds .5,1,4 model units per beat before later caps. Chromium computes exact trig via supplied formula.",
+    "dep": 1010,
+    "message": "rings afternoon relationships preserve exact choices and independent memory"
+  }
+}
