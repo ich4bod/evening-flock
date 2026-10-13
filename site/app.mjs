@@ -1,4 +1,4 @@
-import { seed, seedScene, step, gust, shearFlight, reverseFlight, restFlight, quarterTurn, quarterTurnFlight, mirrorFlight } from './engine.mjs?v=37';
+import { seed, seedScene, step, gust, shearFlight, reverseFlight, restFlight, quarterTurn, quarterTurnFlight, mirrorFlight } from './engine.mjs?v=38';
 
 const selectedChoiceNotes = {
   'quarter-rings-follow': 'About the selected choice: Both tangents follow the forward direction at a starting speed of half a world unit per beat. The two rings still begin with forty birds each.',
@@ -10,6 +10,9 @@ const selectedChoiceNotes = {
   'still-ring-right': 'About the selected choice: All eighty birds begin in the same two rings. The left tangent speed is two toy units per beat; the right starts at zero. A still start is not a pinned position.',
   'still-ring-left': 'About the selected choice: The same positions swap which ring starts with zero velocity. Local steering can change either ring after a beat.',
   'still-ring-both': 'About the selected choice: Both rings start with zero velocity. Steering still runs when you take a beat; this is not a command to freeze the sky.',
+  'backward-three-one': 'About the selected choice: Both rings begin with reversed tangent velocities. The left starts at 1.5 toy units per beat, the right at 0.5. Local steering acts after the start.',
+  'backward-one-three': 'About the selected choice: Both rings begin backward again, now with the faster starting flight on the right. Their initial circles and eighty positions do not move.',
+  'backward-left-opposed': 'About the selected choice: The faster left ring begins backward while the slower right begins forward. Opposed starting flights are not a promise of fixed circular orbits.',
 };
 
 function updateSelectedChoiceNote() {
