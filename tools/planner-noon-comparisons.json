@@ -1,0 +1,37 @@
+{
+  "rings": {
+    "mode": "rings",
+    "group": "Unequal starting flights reversed",
+    "rows": [
+      [
+        "backward-three-one",
+        "Both backward, faster left",
+        -0.75,
+        -0.25
+      ],
+      [
+        "backward-one-three",
+        "Both backward, faster right",
+        -0.25,
+        -0.75
+      ],
+      [
+        "backward-left-opposed",
+        "Faster backward left opposes right",
+        -0.75,
+        0.25
+      ]
+    ],
+    "notes": [
+      "Both rings begin with reversed tangent velocities. The left starts at 1.5 toy units per beat, the right at 0.5. Local steering acts after the start.",
+      "Both rings begin backward again, now with the faster starting flight on the right. Their initial circles and eighty positions do not move.",
+      "The faster left ring begins backward while the slower right begins forward. Opposed starting flights are not a promise of fixed circular orbits."
+    ],
+    "facts": "Only seedScene pairedFlights map pairs. Forty birds each ring: angle2PI*j/40,center(350or650,300),radius110,v=(-2*k*sin(angle),2*k*cos(angle)). Signed multipliers-.75,-.25,.25 yield speed1.5,.5,.5; negative reverses initial tangent, not time or physical positions. Step/StepBack steering math unchanged.",
+    "dep": 975,
+    "picker": "paired-sky",
+    "noteID": "choice-note-evening-flock",
+    "noteLead": "About the selected choice: ",
+    "message": "rings noon comparisons preserve exact choices silent selection and independent memory"
+  }
+}
