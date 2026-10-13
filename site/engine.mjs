@@ -31,6 +31,9 @@ export function seedScene(name) {
     'unequal-three-one': [0.75, 0.25],
     'unequal-one-three': [0.25, 0.75],
     'unequal-three-opposed': [0.75, -0.25],
+    'still-ring-right': [1, 0],
+    'still-ring-left': [0, 1],
+    'still-ring-both': [0, 0],
   }[name];
   if (pairedFlights) {
     return Array.from({ length: 80 }, (_, i) => {
